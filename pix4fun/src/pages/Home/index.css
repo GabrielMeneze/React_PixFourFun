@@ -1,0 +1,48 @@
+:root {
+    --main-color-01: rgb(127, 205, 205);
+    --main-color-text: #4B4B4B;
+    --title-color: rgb(42, 42, 42);
+    --secundary-color: rgb(226, 88, 62);
+    --color-text-white: white;
+    --border-color: rgb(82, 82, 82);
+}
+
+* {
+    margin: 0;
+}
+
+.mainBanner {
+    height: 500px;
+    display: flex;
+    padding-left: 15em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    background-image: url("../../assets/img/bannerMain.png");
+}
+
+.mainBanner h1 {
+    width: 50%;
+    font-size: 60px;
+}
+
+.btnMainBanner {
+    width: 11em;
+    margin: 4em 6em 4em 0;
+    font-size: 1.2rem;
+    padding: 10px;
+    color: white;
+    background-color: var(--secundary-color);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: solid 3px var(--secundary-color);
+}
+
+.btnMainBanner:hover {
+    background: rgba(226, 88, 62, 0.1);
+    border: solid 3px var(--secundary-color);
+    color: #4B4B4B;
+    transition: 0.6s;
+}
