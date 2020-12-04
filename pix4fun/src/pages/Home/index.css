@@ -239,6 +239,8 @@
 .buyButton:hover {
     transition: 1s;
     background-color: var(--main-color-01);
+    color: white;
+    text-decoration: none;
 }
 
 #faq {
