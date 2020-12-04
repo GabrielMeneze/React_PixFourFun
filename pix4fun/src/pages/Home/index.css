@@ -22,6 +22,11 @@
     padding: 0;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .mainBanner {
     height: 650px;
     display: flex;
@@ -37,6 +42,7 @@
 
 .mainBanner h1 {
     width: 60%;
+    max-width: 1200px;
     font-size: 50px;
     margin-top: -4em;
 }
@@ -64,7 +70,7 @@
     transition: 0.6s;
 }
 
-.summary {
+#summary {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -73,13 +79,17 @@
     font-family: 'Lulo Clean W01 One Bold';
 }
 
-.summary h2 {
+/* Títulos */
+
+#summary h2, #faq h2, #buy h2{
     margin-top: 2em;
     font-size: 1.5em;
     font-weight: 400;
+    color: var(--title-color);
+    font-family: 'Lulo Clean W01 One Bold';
 }
 
-.summary h3 {
+#summary h3 {
     color: var(--main-color-01);
     font-size: 1em;
     font-weight: 400;
@@ -136,19 +146,11 @@
     text-align: center;
 }
 
-.buy {
+#buy {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.buy h2 {
-    color: var(--title-color);
-    font-family: 'Lulo Clean W01 One Bold';
-    margin-top: 2em;
-    font-size: 1.5em;
-    font-weight: 400;
 }
 
 .packs {
@@ -235,4 +237,29 @@
 .buyButton:hover {
     transition: 1s;
     background-color: var(--main-color-01);
+}
+
+#faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--title-color);
+    font-family: 'Lulo Clean W01 One Bold';
+}
+
+.pergunta {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pergunta h4 {
+    margin-top: 1.5em;
+    color: var(--secundary-color);
+}
+
+.pergunta p {
+    font-family: "Questrial";
+    margin-top: .5em;
 }
