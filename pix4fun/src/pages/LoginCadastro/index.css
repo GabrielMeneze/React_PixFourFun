@@ -1,0 +1,23 @@
+:root {
+    --main-color-01: rgb(127, 205, 205);
+    --main-color-text: #4B4B4B;
+    --title-color: rgb(42, 42, 42);
+    --secundary-color: #e2583e;
+    --color-text-white: white;
+    --border-color: rgb(82, 82, 82);
+}
+
+@font-face {
+    font-family: "Lulo Clean W01 One Bold";
+    src: url(../../assets/fonts/FontsFree-Net-Lulo-Clean-W01-One-Bold.ttf)
+}
+
+@font-face {
+    font-family: 'Questrial';
+    src: url(../../assets/fonts/Questrial-Regular.ttf)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

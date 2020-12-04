@@ -1,9 +1,15 @@
 import React from 'react';
+import Header from '../../components/header';
 import './index.css';
+
 
 export default function Home() {
     return (
+        
         <div>
+            <div>
+              <Header/>
+            </div>
             <div className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
                 <a href="/" className="btnMainBanner">CONHEÇA</a>
