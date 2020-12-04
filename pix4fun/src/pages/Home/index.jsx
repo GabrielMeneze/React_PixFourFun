@@ -1,18 +1,14 @@
 import React from 'react';
-import Header from '../../components/header';
+import Header from '../../components/Header/index';
 import './index.css';
-
 
 export default function Home() {
     return (
-        
         <div>
-            <div>
-              <Header/>
-            </div>
+            <Header />
             <div className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
-                <a href="/" className="btnMainBanner">CONHEÇA</a>
+                <a className="btnMainBanner" href="/">CONHEÇA</a>
             </div>
 
             <div className="container">

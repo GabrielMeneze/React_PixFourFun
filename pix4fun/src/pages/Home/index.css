@@ -49,7 +49,7 @@
 
 .btnMainBanner {
     width: 240px;
-    height: 20px;
+    height: 40px;
     margin: 1em 6em 4em 0;
     font-size: .95em;
     padding: 10px;
@@ -68,6 +68,8 @@
     background: rgba(226, 88, 62, 0.1);
     border: solid 3px var(--secundary-color);
     transition: 0.6s;
+    color: white;
+    text-decoration: none;
 }
 
 #summary {
@@ -155,7 +157,7 @@
 
 .packs {
     max-width: 1100px;
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
 }
@@ -255,6 +257,7 @@
 }
 
 .pergunta h4 {
+    font-size: 1.1em;
     margin-top: 1.5em;
     color: var(--secundary-color);
 }
