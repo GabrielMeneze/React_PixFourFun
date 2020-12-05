@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from '../../components/header';
-import Footer from '../../components/Footer';
-
+import Header from '../../components/Header/index';
+import Footer from '../../components/Footer/index';
 import './index.css';
 
 
@@ -9,10 +8,10 @@ export default function Home() {
     return (
         
         <div>
-            <div>   
-              <Header/>
-              <Footer/>
+            <div>
+                <Header/>
             </div>
+
             <div className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
                 <a href="/" className="btnMainBanner">CONHEÇA</a>
@@ -141,6 +140,9 @@ export default function Home() {
                     </div>
                 </section>
 
+            </div>
+            <div>
+                 <Footer/>
             </div>
         </div>
     )
