@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
+import Footer from '../../components/Footer';
+
 import './index.css';
 
 
@@ -7,8 +9,9 @@ export default function Home() {
     return (
         
         <div>
-            <div>
+            <div>   
               <Header/>
+              <Footer/>
             </div>
             <div className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
