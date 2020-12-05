@@ -1,19 +1,13 @@
 import React from 'react';
-import Header from '../../components/header';
+import Header from '../../components/Header/index';
 import './index.css';
 
-
-const LoginCadastro = () =>{
+export default function LoginCadastro() {
    return(
     <div>
         <div>
             <Header/>
         </div>
-        
-
     </div>
    )
-
 }
-
-export default LoginCadastro;
