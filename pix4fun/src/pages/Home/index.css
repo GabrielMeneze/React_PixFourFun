@@ -1,270 +1,338 @@
 :root {
-    --main-color-01: rgb(127, 205, 205);
-    --main-color-text: #4B4B4B;
-    --title-color: rgb(42, 42, 42);
-    --secundary-color: #e2583e;
-    --color-text-white: white;
-    --border-color: rgb(82, 82, 82);
+  --main-color-01: rgb(127, 205, 205);
+  --main-color-text: #4b4b4b;
+  --title-color: rgb(42, 42, 42);
+  --secundary-color: #e2583e;
+  --color-text-white: white;
+  --border-color: rgb(82, 82, 82);
 }
 
 @font-face {
-    font-family: "Lulo Clean W01 One Bold";
-    src: url(../../assets/fonts/FontsFree-Net-Lulo-Clean-W01-One-Bold.ttf)
+  font-family: "Lulo Clean W01 One Bold";
+  src: url(../../assets/fonts/FontsFree-Net-Lulo-Clean-W01-One-Bold.ttf);
 }
 
 @font-face {
-    font-family: 'Questrial';
-    src: url(../../assets/fonts/Questrial-Regular.ttf)
+  font-family: "Questrial";
+  src: url(../../assets/fonts/Questrial-Regular.ttf);
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .mainBanner {
-    height: 650px;
-    display: flex;
-    padding-left: 15em;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    color: var(--color-text-white);
-    font-family: "Lulo Clean W01 One Bold";
-    background-image: url("../../assets/img/bannerMain.png");
-    background-attachment: fixed;
+  height: 650px;
+  display: flex;
+  padding-left: 15em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--color-text-white);
+  font-family: "Lulo Clean W01 One Bold";
+  background-image: url("../../assets/img/bannerMain.png");
+  background-attachment: fixed;
 }
 
 .mainBanner h1 {
-    width: 60%;
-    max-width: 1200px;
-    font-size: 50px;
-    margin-top: -4em;
+  width: 60%;
+  max-width: 1200px;
+  font-size: 50px;
+  margin-top: -4em;
 }
 
 .btnMainBanner {
-    width: 240px;
-    height: 40px;
-    margin: 1em 6em 4em 0;
-    font-size: .95em;
-    padding: 10px;
-    color: var(--color-text-white);
-    background-color: var(--secundary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: solid 3px var(--secundary-color);
-    font-family: "Lulo Clean W01 One Bold";
-    text-decoration: none;
+  width: 240px;
+  height: 40px;
+  margin: 1em 6em 4em 0;
+  font-size: 0.95em;
+  padding: 10px;
+  color: var(--color-text-white);
+  background-color: var(--secundary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: solid 3px var(--secundary-color);
+  font-family: "Lulo Clean W01 One Bold";
+  text-decoration: none;
 }
 
 .btnMainBanner:hover {
-    background: rgba(226, 88, 62, 0.1);
-    border: solid 3px var(--secundary-color);
-    transition: 0.6s;
-    color: white;
-    text-decoration: none;
+  background: rgba(226, 88, 62, 0.1);
+  border: solid 3px var(--secundary-color);
+  transition: 0.6s;
+  color: white;
+  text-decoration: none;
 }
 
 #summary {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--title-color);
-    font-family: 'Lulo Clean W01 One Bold';
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--title-color);
+  font-family: "Lulo Clean W01 One Bold";
 }
 
 /* Títulos */
 
-#summary h2, #faq h2, #buy h2{
-    margin-top: 2em;
-    font-size: 1.5em;
-    font-weight: 400;
-    color: var(--title-color);
-    font-family: 'Lulo Clean W01 One Bold';
+#summary h2,
+#faq h2,
+#buy h2 {
+  margin-top: 2em;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: var(--title-color);
+  font-family: "Lulo Clean W01 One Bold";
 }
 
 #summary h3 {
-    color: var(--main-color-01);
-    font-size: 1em;
-    font-weight: 400;
-    width: 200px;
+  color: var(--main-color-01);
+  font-size: 1em;
+  font-weight: 400;
+  width: 200px;
 }
 
 .imgTextSummary {
-    height: 140px;
-    color: #4a4a4a;
-    margin-top: .5em;
-    font-size: 80px;
-    font-weight: bolder;
-    text-align: center;
+  height: 140px;
+  color: #4a4a4a;
+  margin-top: 0.5em;
+  font-size: 80px;
+  font-weight: bolder;
+  text-align: center;
 }
 
 .imgTextSummary2 {
-    height: 140px;
-    color: var(--secundary-color);
-    margin-top: .5em;
-    font-size: 80px;
-    font-weight: bolder;
-    text-align: center;
+  height: 140px;
+  color: var(--secundary-color);
+  margin-top: 0.5em;
+  font-size: 80px;
+  font-weight: bolder;
+  text-align: center;
 }
 
 .imgTextSummary3 {
-    height: 140px;
-    color: #7ecccc;
-    margin-top: .5em;
-    margin-bottom: .14em;
-    font-size: 80px;
-    font-weight: 900;
-    text-align: center;
+  height: 140px;
+  color: #7ecccc;
+  margin-top: 0.5em;
+  margin-bottom: 0.14em;
+  font-size: 80px;
+  font-weight: 900;
+  text-align: center;
 }
 
 .textSummary {
-    width: 300px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .textSummary div p {
-    width: 200px;
-    margin-top: .9em;
-    font-family: 'Questrial';
-    text-align: center;
+  width: 200px;
+  margin-top: 0.9em;
+  font-family: "Questrial";
+  text-align: center;
 }
 
 .summaryCards {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
 
 #buy {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .packs {
-    max-width: 1100px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
-.pack1, .pack2, .pack3 {
-    width: 290px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 2em;
-    box-shadow: -1px 0 10px 0 rgba(0, 0, 0, 0.3);
+.pack1,
+.pack2,
+.pack3 {
+  width: 290px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 2em;
+  box-shadow: -1px 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-.pack1 h3, .pack2 h3, .pack3 h3 {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--secundary-color);
-    font-size: 1.4em;
-    text-align: center;
-    font-family: 'Lulo Clean W01 One Bold';
-    background-color: var(--main-color-01);
+.pack1 h3,
+.pack2 h3,
+.pack3 h3 {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secundary-color);
+  font-size: 1.4em;
+  text-align: center;
+  font-family: "Lulo Clean W01 One Bold";
+  background-color: var(--main-color-01);
 }
 
-.imgPack1, .imgPack2, .imgPack3 {
-    width: 100%;
-    height: 300px;
-    position: relative;
-    background-image: url('../../assets/img/pack.png');
+.imgPack1,
+.imgPack2,
+.imgPack3 {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  background-image: url("../../assets/img/pack.png");
 }
 
-.imgPack1:hover, .imgPack2:hover, .imgPack3:hover {
-    transition: 1s;
-    transform: scale(1.1);
+.imgPack1:hover,
+.imgPack2:hover,
+.imgPack3:hover {
+  transition: 1s;
+  transform: scale(1.1);
 }
 
 .packDesc {
-    margin-top: 1.3em;
+  margin-top: 1.3em;
 }
 
-.pack1 p, .pack2 p, .pack3 p {
-    text-align: center;
-    margin-top: .1em;
-    color: var(--main-color-text);
-    font-family: 'Lulo Clean W01 One Bold';
-    font-weight: 200;
-    font-size: .7em;
+.pack1 p,
+.pack2 p,
+.pack3 p {
+  text-align: center;
+  margin-top: 0.1em;
+  color: var(--main-color-text);
+  font-family: "Lulo Clean W01 One Bold";
+  font-weight: 200;
+  font-size: 0.7em;
 }
 
-.pack1 span, .pack2 span, .pack3 span {
-    font-size: 1.2em;
+.pack1 span,
+.pack2 span,
+.pack3 span {
+  font-size: 1.2em;
 }
 
 .precoPack {
-    text-align: center;
-    font-family: 'Lulo Clean W01 One Bold';
-    color: var(--secundary-color);
-    margin: .7em 0;
-    font-size: 1.5em;
+  text-align: center;
+  font-family: "Lulo Clean W01 One Bold";
+  color: var(--secundary-color);
+  margin: 0.7em 0;
+  font-size: 1.5em;
 }
 
 .buyButton {
-    font-size: .95em;
-    padding: 13px;
-    font-weight: 400;
-    color: var(--color-text-white);
-    background-color: var(--secundary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-family: "Lulo Clean W01 One Bold";
-    text-decoration: none;
+  font-size: 0.95em;
+  padding: 13px;
+  font-weight: 400;
+  color: var(--color-text-white);
+  background-color: var(--secundary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "Lulo Clean W01 One Bold";
+  text-decoration: none;
 }
 
 .buyButton:hover {
-    transition: 1s;
-    background-color: var(--main-color-01);
-    color: white;
-    text-decoration: none;
+  transition: 1s;
+  background-color: var(--main-color-01);
+  color: white;
+  text-decoration: none;
 }
 
 #faq {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--title-color);
-    font-family: 'Lulo Clean W01 One Bold';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--title-color);
+  font-family: "Lulo Clean W01 One Bold";
 }
 
 .pergunta {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .pergunta h4 {
-    font-size: 1.1em;
-    margin-top: 1.5em;
-    color: var(--secundary-color);
+  font-size: 1.1em;
+  margin-top: 1.5em;
+  color: var(--secundary-color);
 }
 
 .pergunta p {
-    font-family: "Questrial";
-    margin-top: .5em;
+  font-family: "Questrial";
+  margin-top: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .mainBanner {
+    padding-left: 5em;
+  }
+
+  .mainBanner h1 {
+    width: 80%;
+  }
+
+  .textSummary {
+    width: 250px;
+  }
+
+  .packs {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .mainBanner {
+    height: 460px;
+    padding-left: 1em;
+  }
+
+  .mainBanner h1 {
+    width: 100%;
+    padding-top: 4em;
+    font-size: 36px;
+  }
+
+  .imgPack1,
+  .imgPack2,
+  .imgPack3 {
+    background-image: none;
+    height: 0;
+  }
+
+  .summaryCards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .textSummary {
+    height: 300px;
+  }
+
+  #summary h2,
+  #faq h2,
+  #buy h2 {
+    font-size: 1.4em;
+    text-align: center;
+  }
 }
