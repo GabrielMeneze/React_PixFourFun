@@ -5,7 +5,9 @@ import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'
 import logoPT from '../../assets/img/003-pinterest.svg'
 
+
 export default function Footer() {
+    
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");

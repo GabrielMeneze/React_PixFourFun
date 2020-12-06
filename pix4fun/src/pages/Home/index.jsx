@@ -1,15 +1,20 @@
 import React from 'react';
 import Header from '../../components/Header/index';
-import Footer from '../../components/Footer/index'
+import Footer from '../../components/Footer/index';
 import './index.css';
+
 
 export default function Home() {
     return (
+        
         <div>
-            <Header />
+            <div>
+                <Header/>
+            </div>
+
             <div className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
-                <a className="btnMainBanner" href="/">CONHEÇA</a>
+                <a href="/" className="btnMainBanner">CONHEÇA</a>
             </div>
 
             <div className="container">
@@ -134,8 +139,11 @@ export default function Home() {
                         <p>Após confirmado o pagamento, pedimos um prazo de 3 dias para a produção. Logo após passa a vigorar o prazo de entrega de carta registrada dos Correios, que leva de 3 a 14 dias úteis dependendo da região.</p>
                     </div>
                 </section>
+
             </div>
-            <Footer />
+            <div>
+                 <Footer/>
+            </div>
         </div>
     )
 }
