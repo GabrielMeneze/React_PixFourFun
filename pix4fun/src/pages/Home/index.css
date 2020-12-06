@@ -283,13 +283,37 @@
   margin-top: 0.5em;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .mainBanner {
-    padding-left: 5em;
+    padding-left: 23%;
   }
 
   .mainBanner h1 {
     width: 80%;
+  }
+
+  .textSummary {
+    width: 250px;
+  }
+  
+  .summaryCards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .packs {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainBanner {
+    padding-left: 13%;
+  }
+
+  .mainBanner h1 {
+    width: 80%;
+    font-size: 40px;
   }
 
   .textSummary {
