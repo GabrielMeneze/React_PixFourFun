@@ -1,15 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
 import "./index.css";
 import { ModalFooter } from "react-bootstrap";
 
 export default function LoginCadastro() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
   return (
     <div className="main">
       <Header />
 
-      <div className="ContainerGeral">
+      <div className="loginCadastro">
+        <section id="login">
+          <form method="post">
+            <p>Faça o login</p>
+            <div className="field">
+              <label>Email</label>
+              <input
+                type="text"
+                name="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label>Senha</label>
+              <input
+                type="password"
+                name="senha"
+                value={senha}
+                onChange={(event) => setSenha(event.target.value)}
+              />
+            </div>
+            <button className="btnEnviar">Logar</button>
+          </form>
+        </section>
+
+        <hr />
+
+        <section id="cadastro">
+          <form method="post">
+            <p>Faça o cadastro</p>
+            <div className="field">
+              <label>Nome</label>
+              <input
+                type="text"
+                name="nome"
+                value={nome}
+                onChange={(event) => setNome(event.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label>Senha</label>
+              <input
+                type="password"
+                name="senha"
+                value={senha}
+                onChange={(event) => setSenha(event.target.value)}
+              />
+            </div>
+
+            <button className="btnEnviar">Cadastrar</button>
+          </form>
+        </section>
+      </div>
+
+      {/* <div className="ContainerGeral">
         <div className="form" method="post">
           <fieldset className="FildSet">
             <div className="ContainerLogin">
@@ -69,7 +128,7 @@ export default function LoginCadastro() {
             </div>
           </fieldset>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </div>

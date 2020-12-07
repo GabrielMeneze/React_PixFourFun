@@ -48,8 +48,9 @@ footer {
   margin-top: 1em;
 }
 
-input[type="text"],
-textarea {
+footer input[type="text"],
+footer input[type="password"],
+footer textarea {
   width: 100%;
   color: #707070;
   border: solid 2px rgba(82, 82, 82, 1);
