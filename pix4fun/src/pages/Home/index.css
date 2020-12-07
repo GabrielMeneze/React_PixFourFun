@@ -85,8 +85,10 @@
 
 #summary h2,
 #faq h2,
-#buy h2 {
+#buy h2,
+#insta h2 {
   margin-top: 2em;
+  text-align: center;
   font-size: 1.5em;
   font-weight: 400;
   color: var(--title-color);
