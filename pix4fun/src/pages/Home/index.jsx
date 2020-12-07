@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
+import { BrowserRouter as Router,Link, Switch, Route } from 'react-router-dom';
 import './index.css';
 
 
@@ -69,7 +70,7 @@ export default function Home() {
                                 <h4>R$ 17,99</h4>
                             </div>
 
-                            <a href="/Pagamento" className="buyButton">COMPRAR</a>
+                            <Link to="/LoginCadastro" className="buyButton">COMPRAR</Link>
                         </div>
                         <div className="pack2">
                             <h3>PACK COM 12</h3>
@@ -92,7 +93,7 @@ export default function Home() {
                                 <h4>R$ 21,99</h4>
                             </div>
 
-                            <a href="/Pagamento" className="buyButton">COMPRAR</a>
+                            <Link to="/LoginCadastro" className="buyButton">COMPRAR</Link>
                         </div>
                         <div className="pack3">
                             <h3>PACK COM 18</h3>
@@ -115,7 +116,7 @@ export default function Home() {
                                 <h4>R$ 26,99</h4>
                             </div>
 
-                            <a href="/Pagamento" className="buyButton">COMPRAR</a>
+                            <Link to="/LoginCadastro" className="buyButton">COMPRAR</Link>
                         </div>
                     </div>
                 </section>
