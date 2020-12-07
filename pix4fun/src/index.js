@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import Home from './pages/Home';
 import LoginCadastro from './pages/LoginCadastro';
+import UploadImagem from './pages/UploadImagem';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const routing = (
@@ -12,6 +13,7 @@ const routing = (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/LoginCadastro" component={LoginCadastro} />
+      <Route path="/UploadImagem" component={UploadImagem} />
     </Switch>
   </Router>
 )
