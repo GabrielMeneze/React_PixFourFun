@@ -7,7 +7,10 @@ import { ModalFooter } from "react-bootstrap";
 export default function LoginCadastro() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [emailCadastro, setEmailCadastro] = useState("");
   const [senha, setSenha] = useState("");
+  const [senhaCadastro, setSenhaCadastro] = useState("");
+  const [telefone, setTelefone] = useState("");
 
   return (
     <div className="main">
@@ -47,6 +50,7 @@ export default function LoginCadastro() {
             <div className="field">
               <label>Nome</label>
               <input
+                required
                 type="text"
                 name="nome"
                 value={nome}
@@ -54,12 +58,34 @@ export default function LoginCadastro() {
               />
             </div>
             <div className="field">
+              <label>Email</label>
+              <input
+                required
+                type="text"
+                name="email"
+                value={emailCadastro}
+                onChange={(event) => setEmailCadastro(event.target.value)}
+              />
+            </div>
+            <div className="field">
               <label>Senha</label>
               <input
+                required
                 type="password"
                 name="senha"
-                value={senha}
-                onChange={(event) => setSenha(event.target.value)}
+                value={senhaCadastro}
+                onChange={(event) => setSenhaCadastro(event.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="telefone">Telefone</label>
+              <input
+                required
+                type="tel"
+                pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
+                name="telefone"
+                value={telefone}
+                onChange={(event) => setTelefone(event.target.value)}
               />
             </div>
 

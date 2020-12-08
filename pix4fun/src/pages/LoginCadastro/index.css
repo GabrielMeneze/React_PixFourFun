@@ -45,6 +45,7 @@ hr {
 
 .loginCadastro input[type="text"],
 .loginCadastro input[type="password"],
+.loginCadastro input[type="tel"],
 .loginCadastro textarea {
   width: 100%;
   color: #707070;
