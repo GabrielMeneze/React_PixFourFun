@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
+import InstaFeed from '../../components/InstaFeed/index';
 import { BrowserRouter as Router,Link, Switch, Route } from 'react-router-dom';
 import './index.css';
 
@@ -140,6 +141,10 @@ export default function Home() {
                         <p>Após confirmado o pagamento, pedimos um prazo de 3 dias para a produção. Logo após passa a vigorar o prazo de entrega de carta registrada dos Correios, que leva de 3 a 14 dias úteis dependendo da região.</p>
                     </div>
                 </section>
+
+                <div>
+                    <InstaFeed/>
+                </div>
 
             </div>
             <div>

@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import LoginCadastro from './pages/LoginCadastro';
 import UploadImagem from './pages/UploadImagem';
-
 const routing = (
   <Router>
     <Switch>
