@@ -60,6 +60,11 @@ footer textarea {
   background-color: var(--main-color-01);
 }
 
+footer input[type="text"]:focus,
+footer input[type="password"]:focus{
+  background-color: #fff;
+}
+
 .field input:hover, textarea:hover {
   border: solid 2px rgba(82, 82, 82, 1);
   background-color: #fff;
