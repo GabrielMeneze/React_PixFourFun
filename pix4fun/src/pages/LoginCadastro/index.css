@@ -43,6 +43,13 @@ hr {
   align-items: center;
 }
 
+.loginCadastro input[type="text"]:focus,
+.loginCadastro input[type="password"]:focus,
+.loginCadastro input[type="tel"]:focus,
+.loginCadastro textarea:focus {
+  background-color: #fff;
+}
+
 .loginCadastro input[type="text"],
 .loginCadastro input[type="password"],
 .loginCadastro input[type="tel"],
@@ -52,12 +59,12 @@ hr {
   border: solid 2px rgba(82, 82, 82, 1);
   font-family: "Questrial";
   padding: 3px;
-  padding-left: 30px;
   background-color: var(--main-color-01);
 }
 
 .loginCadastro label {
   color: white;
+  margin-top: 1em;
   font-family: "Lulo Clean W01 One Bold";
   font-size: .9em;
   text-decoration: none;

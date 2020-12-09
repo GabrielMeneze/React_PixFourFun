@@ -1,16 +1,98 @@
-import React, { useState } from "react";
-import Header from "../../components/Header/index";
-import Footer from "../../components/Footer/index";
 import "./index.css";
-import { ModalFooter } from "react-bootstrap";
+import React, { useState } from "react";
+import { url } from "../../utils/constants";
+import jwt_decode from "jwt-decode";
+import { useHistory } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
+import Footer from "../../components/Footer/index";
+import Header from "../../components/Header/index";
 
 export default function LoginCadastro() {
+  const [idPerfil, setIdPerfil] = useState(0);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [emailCadastro, setEmailCadastro] = useState("");
   const [senha, setSenha] = useState("");
   const [senhaCadastro, setSenhaCadastro] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [cep, setCep] = useState("");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+  const [complemento, setComplemento] = useState("");
+
+  const history = useHistory();
+
+  const cadastrar = (event) => {
+    event.preventDefault();
+
+    const perfilUsuario =
+      localStorage.getItem("token") === null
+        ? null
+        : jwt_decode(localStorage.getItem("token"));
+
+    fetch(url + "usuario", {
+      method: "POST",
+      body: JSON.stringify({
+        nome: nome,
+        email: emailCadastro,
+        senha: senhaCadastro,
+        telefone: telefone,
+        cep: cep,
+        rua: rua,
+        numero: numero,
+        complemento: complemento,
+        idPerfilAcesso: 1,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        console.log(response.json());
+
+        alert("Usuario cadastrado.");
+        history.push("/");
+      }
+    });
+  };
+
+  const logar = (event) => {
+    event.preventDefault();
+
+    fetch(url + "login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        senha: senha,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        // Verifica se a validação for OK e caso seja, informa a resposta
+        if (response.ok) return response.json();
+
+        // Caso validação não seja OK informa um alert
+        alert("Dado inválido");
+      })
+      .then((data) => {
+        // Armazena o token
+        localStorage.setItem("token", data.token);
+
+        let usuario = jwt_decode(data.token);
+
+        console.log(usuario);
+
+        // Após efetuar login encaminha para uma página
+        // if (usuario.Role === "1") {
+        //   history.push("/");
+        // } else {
+        //   history.push("/");
+        // }
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="main">
@@ -18,7 +100,7 @@ export default function LoginCadastro() {
 
       <div className="loginCadastro">
         <section id="login">
-          <form method="post">
+          <Form onSubmit={(event) => logar(event)}>
             <p>Faça o login</p>
             <div className="field">
               <label>Email</label>
@@ -38,14 +120,14 @@ export default function LoginCadastro() {
                 onChange={(event) => setSenha(event.target.value)}
               />
             </div>
-            <button className="btnEnviar">Logar</button>
-          </form>
+            <Button type="submit" className="btnEnviar">Logar</Button>
+          </Form>
         </section>
 
         <hr />
 
         <section id="cadastro">
-          <form method="post">
+          <Form onSubmit={(event) => cadastrar(event)}>
             <p>Faça o cadastro</p>
             <div className="field">
               <label>Nome</label>
@@ -57,7 +139,7 @@ export default function LoginCadastro() {
                 onChange={(event) => setNome(event.target.value)}
               />
             </div>
-            <div className="field">
+            <div className="Field">
               <label>Email</label>
               <input
                 required
@@ -88,9 +170,50 @@ export default function LoginCadastro() {
                 onChange={(event) => setTelefone(event.target.value)}
               />
             </div>
+            <div className="Field">
+              <label>CEP</label>
+              <input
+                required
+                type="text"
+                name="cep"
+                value={cep}
+                onChange={(event) => setCep(event.target.value)}
+              />
+            </div>
+            <div className="Field">
+              <label>Rua</label>
+              <input
+                required
+                type="text"
+                name="rua"
+                value={rua}
+                onChange={(event) => setRua(event.target.value)}
+              />
+            </div>
+            <div className="Field">
+              <label>Numero</label>
+              <input
+                required
+                type="text"
+                name="numero"
+                value={numero}
+                onChange={(event) => setNumero(event.target.value)}
+              />
+            </div>
+            <div className="Field">
+              <label>Complemento</label>
+              <input
+                required
+                type="text"
+                name="complemento"
+                value={complemento}
+                placeholder="Se não houver, não preencha este campo"
+                onChange={(event) => setComplemento(event.target.value)}
+              />
+            </div>
 
-            <button className="btnEnviar">Cadastrar</button>
-          </form>
+            <Button type="submit" className="btnEnviar">Cadastrar</Button>
+          </Form>
         </section>
       </div>
 
