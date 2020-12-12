@@ -78,3 +78,9 @@ hr {
   text-decoration: none;
   color: var(--main-color-text);
 }
+
+@media screen and (max-width: 1024px){
+  hr {
+    display: none;
+  }
+}
