@@ -22,7 +22,7 @@
     margin-left: 150px;
 }
 
-.text h3{
+.text p{
     font-size: 15px;
 }
 
@@ -30,8 +30,25 @@
     color: gray;
 }
 
-.botton{
-    margin-left: 100px;
-    margin-top: 160px;
+.BtnChoseFile{
+    font-size: 0.95em;
+    padding: 13px;
+    font-weight: 400;
+    color: var(--color-text-white);
+    background-color: var(--secundary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Lulo Clean W01 One Bold";
+    text-decoration: none;
+    transform-style: initial;
 }
+
+.BtnChoseFile:hover {
+    transition: 1s;
+    background-color: var(--main-color-01);
+    color: white;
+    text-decoration: none;
+  }
 
