@@ -31,6 +31,7 @@ export default function Header() {
           <Nav.Link href="/#buy">Comprar</Nav.Link>
           <Nav.Link href="/#doubt">Dúvidas </Nav.Link>
           <Nav.Link href="/#contact">Contatos</Nav.Link>
+          <hr />
           <Nav.Link
             href="/logincadastro"
             alt="Link para página de login ou cadastro"
@@ -71,6 +72,7 @@ export default function Header() {
           <Nav.Link href="/#buy">COMPRAR</Nav.Link>
           <Nav.Link href="/#doubt">DÚVIDAS </Nav.Link>
           <Nav.Link href="/#contact">CONTATOS</Nav.Link>
+          <hr />
           <Dropdown>
             <Dropdown.Toggle
               className="dropdownToggle"
@@ -114,6 +116,7 @@ export default function Header() {
       }}
     >
       <Navbar
+        className="navbar"
         bg="light"
         expand="lg"
         style={{ maxWidth: 1000, margin: "0 auto" }}
