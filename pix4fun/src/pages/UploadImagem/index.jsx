@@ -6,14 +6,15 @@ import './index.css';
 
 const UploadImagem = () => {
 
+  
   const [state, setState] = useState('');
 
-  const escolherImg = event => {
+  const escolherImg = event =>{ 
     setState({
       selectedFile: event.target.files[0]
     })
-  }
-
+}
+  
   const uparImg = () => {
     const fd = new FormData();
     fd.append('image', state.selectedFile, state.selectedFile.name)
@@ -23,42 +24,62 @@ const UploadImagem = () => {
       });
   }
 
-
   return (
-    <div className="Main">
-
-
+    <div className="ContainerMain">
       <Header />
 
-      <div className="ContainerText">
-        <h2 className="text">
-          Agora é a hora de<br></br> nos enviar suas<br></br> fotos!
+      {/* Containem que contem a parte de escolha do usuario */}
+      <div className="ContainerOne">
+        {/* Container que possui o texto */}
+        <div className="ContainerTextOne">
+          <h2 className="textOne">
+            Agora é a hora de<br></br> nos enviar suas<br></br> fotos!
           <span className="textGray">Simples e <br></br>rápido.</span>
-          <p>Selecione suas fotos favoritas, recorte<br></br> no formato em que deseja e clique e<br></br> enviar. Pronto! Receberemos um aviso e<br></br> suas fotos começarão a ser impressas.
+            <p>Selecione suas fotos favoritas, recorte<br></br>
+            no formato em que deseja e clique e<br></br> enviar. Pronto!
+             Receberemos um aviso e<br></br> suas fotos começarão a ser impressas.
           </p>
-        </h2>
+          </h2>
+        </div>
+
+        {/* Container do botão "Escolher Imagem" */}
+        <div className="ContainerBtn">
+          <input
+            className="BtnChoseFile"
+            type="file"
+            onClick={escolherImg}
+          />
+        </div>
       </div>
 
-      <button>
-        <input
-          type="file"
-          className="BtnChoseFile"
-          onChange={escolherImg}
-        />
-      </button>
+      <hr className="linha" />
+
+      <table className="ContainerTwo">
+        <div className="ContainerArquivos">
+          <td className="itensTable">
+            <p>imagem</p>
+            <td className="BtnGrupo">
+              <button>Excluir</button>
+              <button>Cortar</button>
+              <button>Frase</button>
+            </td>
+          </td>
+        </div>
+      </table>
+      
       <button
-        onClick={uparImg}
-
-      >Upload</button>
-
-      <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-        data-preference-id="304819906-8b23b308-730a-4948-bbe3-9410fcc5fa95">
-      </script>
-
-
+      className="BtnChoseFile"
+      onClick={uparImg}
+      >Enviar</button>
 
       <Footer />
     </div>
   )
 }
 export default UploadImagem;
+
+
+
+
+
+

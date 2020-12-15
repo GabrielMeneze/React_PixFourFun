@@ -3,15 +3,19 @@
     padding: 0;
 }
 
-.Main{
+.ContainerMain{
     width: 100%;
 }
+.ContainerOne{
+    display: flex;
+}
 
-.ContainerText{
+.ContainerTextOne{
     width: 100%;
     height: 450px;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: rgb(245, 245, 245);
     text-transform: uppercase;
     font-weight: bold;
@@ -22,7 +26,7 @@
     margin-left: 150px;
 }
 
-.text p{
+.textOne p{
     font-size: 15px;
 }
 
@@ -32,23 +36,73 @@
 
 .BtnChoseFile{
     font-size: 0.95em;
-    padding: 13px;
+    padding: 6px;
     font-weight: 400;
     color: var(--color-text-white);
     background-color: var(--secundary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     font-family: "Lulo Clean W01 One Bold";
-    text-decoration: none;
     transform-style: initial;
 }
 
 .BtnChoseFile:hover {
-    transition: 1s;
+    transition: 0.5s;
     background-color: var(--main-color-01);
     color: white;
-    text-decoration: none;
   }
 
+  .ContainerBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+  }
+
+  .linha{
+      width: 100%;
+      height: 1px;
+      background-color: black;
+  }
+
+  .ContainerTwo{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(245, 245, 245);
+}
+
+.ContainerArquivos{
+    width: 450px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itensTable{
+    display: flex;
+}
+
+.itensTable p{
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.BtnGrupo{
+    display: flex;
+    flex-direction: column;
+}
+.BtnGrupo button{
+    font-size: 0.95em;
+    padding: 6px;
+    font-weight: 400;
+    color: var(--color-text-white);
+    background-color: var(--secundary-color);
+    font-family: "Lulo Clean W01 One Bold";
+    transform-style: initial;
+}
+
+.BtnGrupo button:hover{
+    transition: 0.5s;
+    background-color: var(--main-color-01);
+    color: white;
+}
