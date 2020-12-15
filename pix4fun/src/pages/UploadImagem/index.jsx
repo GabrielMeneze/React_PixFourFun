@@ -4,31 +4,31 @@ import Footer from '../../components/Footer/index';
 import './index.css';
 
 
-const UploadImagem = () => { 
+const UploadImagem = () => {
 
   const [state, setState] = useState('');
 
-  const escolherImg = event =>{ 
-      setState({
-        selectedFile: event.target.files[0]
-      })
+  const escolherImg = event => {
+    setState({
+      selectedFile: event.target.files[0]
+    })
   }
 
-  const uparImg = () => { 
+  const uparImg = () => {
     const fd = new FormData();
     fd.append('image', state.selectedFile, state.selectedFile.name)
     fetch('http://localhost:5000/api/Foto', fd)
-    .then(res =>{
-      console.log(res)
-    });
-}
-  
+      .then(res => {
+        console.log(res)
+      });
+  }
+
 
   return (
     <div className="Main">
-    
 
-        <Header/>
+
+      <Header />
 
       <div className="ContainerText">
         <h2 className="text">
@@ -38,21 +38,27 @@ const UploadImagem = () => {
           </p>
         </h2>
       </div>
-      
-          <button>
-            <input
-              type="file"
-              className="BtnChoseFile"
-              onChange={escolherImg}
-          />
-          </button>
-          <button 
-          onClick={uparImg}
-          
-          >Upload</button>
 
-        <Footer/>
-    </div> 
+      <button>
+        <input
+          type="file"
+          className="BtnChoseFile"
+          onChange={escolherImg}
+        />
+      </button>
+      <button
+        onClick={uparImg}
+
+      >Upload</button>
+
+      <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+        data-preference-id="304819906-8b23b308-730a-4948-bbe3-9410fcc5fa95">
+      </script>
+
+
+
+      <Footer />
+    </div>
   )
 }
 export default UploadImagem;
