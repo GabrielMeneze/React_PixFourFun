@@ -6,18 +6,18 @@ import './index.css';
 
 const UploadImagem = () => {
 
-  
+
   const [state, setState] = useState('');
 
-  const escolherImg = event =>{ 
+  const escolherImg = event => {
     setState({
       selectedFile: event.target.files[0]
     })
-}
-  
-  const uparImg = () => {
+  }
+
+  const uparImg = async e => {
     const fd = new FormData();
-    fd.append('image', state.selectedFile, state.selectedFile.name)
+    fd.append('image', state.selectedFile)
     fetch('http://localhost:5000/api/Foto', fd)
       .then(res => {
         console.log(res)
@@ -44,33 +44,36 @@ const UploadImagem = () => {
 
         {/* Container do botão "Escolher Imagem" */}
         <div className="ContainerBtn">
-          <input
-            className="BtnChoseFile"
-            type="file"
-            onClick={escolherImg}
-          />
+          <button>
+            <input
+              type="file"
+              className="BtnChoseFile"
+              onChange={escolherImg}
+            />
+          </button>
         </div>
       </div>
 
       <hr className="linha" />
 
-      <table className="ContainerTwo">
+      <td className="ContainerTwo">
         <div className="ContainerArquivos">
-          <td className="itensTable">
+          <div className="itensTable">
             <p>imagem</p>
-            <td className="BtnGrupo">
+            <div className="BtnGrupo">
               <button>Excluir</button>
               <button>Cortar</button>
               <button>Frase</button>
-            </td>
-          </td>
+            </div>
+          </div>
         </div>
-      </table>
-      
+      </td>
+
       <button
-      className="BtnChoseFile"
-      onClick={uparImg}
+        className="BtnChoseFile"
+        onClick={uparImg}
       >Enviar</button>
+      
 
       <Footer />
     </div>

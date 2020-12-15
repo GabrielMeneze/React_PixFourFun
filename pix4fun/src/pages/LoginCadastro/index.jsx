@@ -21,15 +21,16 @@ export default function LoginCadastro() {
 
   const history = useHistory();
 
-  // Faz o cadastro do usuário
   const cadastrar = (event) => {
     event.preventDefault();
 
-    // Faz a conexão com o banco de dados
+    const perfilUsuario =
+      localStorage.getItem("token") === null
+        ? null
+        : jwt_decode(localStorage.getItem("token"));
+
     fetch(url + "usuario", {
-      // Define o método que será utilizado
       method: "POST",
-      // Define as informações que são necessárias para o login
       body: JSON.stringify({
         nome: nome,
         email: emailCadastro,
@@ -45,24 +46,20 @@ export default function LoginCadastro() {
         "content-type": "application/json",
       },
     }).then((response) => {
-      // Verifica a resposta, e se for OK mostra um alert informando que o usuário foi cadastrado
       if (response.ok) {
+        console.log(response.json());
+
         alert("Usuario cadastrado.");
-        // Envia o usuário para a página principal
         history.push("/");
       }
     });
   };
 
-  // Faz o login do usuário
   const logar = (event) => {
     event.preventDefault();
 
-    // Faz a conexão com o banco de dados
     fetch(url + "login", {
-      // Define o método que será utilizado
       method: "POST",
-      // Define as informações que são necessárias para o login
       body: JSON.stringify({
         email: email,
         senha: senha,
@@ -81,7 +78,17 @@ export default function LoginCadastro() {
       .then((data) => {
         // Armazena o token
         localStorage.setItem("token", data.token);
-        history.push("/");
+
+        let usuario = jwt_decode(data.token);
+
+        console.log(usuario);
+
+        // Após efetuar login encaminha para uma página
+        // if (usuario.Role === "1") {
+        //   history.push("/");
+        // } else {
+        //   history.push("/");
+        // }
       })
       .catch((err) => console.error(err));
   };
@@ -92,16 +99,12 @@ export default function LoginCadastro() {
 
       <div className="loginCadastro">
         <section id="login">
-          {/* Formulário de login
-          "onSubmit" é para definir o evento que acontecerá quando o formulário for enviado
-          */}
           <Form onSubmit={(event) => logar(event)}>
             <p>Faça o login</p>
             <div className="field">
               <label>Email</label>
               <input
                 type="text"
-                placeholder="Insira seu e-mail"
                 name="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
@@ -111,24 +114,18 @@ export default function LoginCadastro() {
               <label>Senha</label>
               <input
                 type="password"
-                placeholder="Insira sua senha"
                 name="senha"
                 value={senha}
                 onChange={(event) => setSenha(event.target.value)}
               />
             </div>
-            <Button type="submit" className="btnEnviar">
-              Logar
-            </Button>
+            <Button type="submit"  className="btnEnviar">Logar</Button>
           </Form>
         </section>
 
         <hr />
 
         <section id="cadastro">
-          {/* Formulário de cadastro
-          "onSubmit" é para definir o evento que acontecerá quando o formulário for enviado
-          */}
           <Form onSubmit={(event) => cadastrar(event)}>
             <p>Faça o cadastro</p>
             <div className="field">
@@ -136,10 +133,8 @@ export default function LoginCadastro() {
               <input
                 required
                 type="text"
-                placeholder="Nome e Sobrenome"
                 name="nome"
                 value={nome}
-                // "onChange" define o valor do input
                 onChange={(event) => setNome(event.target.value)}
               />
             </div>
@@ -148,7 +143,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="text"
-                placeholder="Insira um e-mail válido"
                 name="email"
                 value={emailCadastro}
                 onChange={(event) => setEmailCadastro(event.target.value)}
@@ -159,7 +153,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="password"
-                placeholder="Insira uma senha"
                 name="senha"
                 value={senhaCadastro}
                 onChange={(event) => setSenhaCadastro(event.target.value)}
@@ -170,7 +163,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="tel"
-                placeholder="(xx) xxxxx-xxxx"
                 name="telefone"
                 value={telefone}
                 onChange={(event) => setTelefone(event.target.value)}
@@ -181,7 +173,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="text"
-                placeholder="xxxxx-xxx"
                 name="cep"
                 value={cep}
                 onChange={(event) => setCep(event.target.value)}
@@ -192,7 +183,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="text"
-                placeholder="Insira sua rua"
                 name="rua"
                 value={rua}
                 onChange={(event) => setRua(event.target.value)}
@@ -203,7 +193,6 @@ export default function LoginCadastro() {
               <input
                 required
                 type="text"
-                placeholder="Número da casa ou prédio"
                 name="numero"
                 value={numero}
                 onChange={(event) => setNumero(event.target.value)}
@@ -212,6 +201,7 @@ export default function LoginCadastro() {
             <div className="Field">
               <label>Complemento</label>
               <input
+                required
                 type="text"
                 name="complemento"
                 value={complemento}
@@ -220,12 +210,72 @@ export default function LoginCadastro() {
               />
             </div>
 
-            <Button type="submit" className="btnEnviar">
-              Cadastrar
-            </Button>
+            <Button type="submit"  className="btnEnviar">Cadastrar</Button>
           </Form>
         </section>
       </div>
+
+      {/* <div className="ContainerGeral">
+        <div className="form" method="post">
+          <fieldset className="FildSet">
+            <div className="ContainerLogin">
+              <h1 className="titulo">Entrar</h1>
+              <label>
+                E-mail
+                <input className="inputEmail" id="email" type="email" />
+              </label>
+              <label>
+                Senha
+                <input className="senha" id="senha" type="password" />
+              </label>
+              <input
+                className="botton"
+                type="submit"
+                name="prosseguir"
+                value="Prosseguir"
+              />
+            </div>
+          </fieldset>
+        </div>
+        <hr className="linha" />
+        <div className="form" method="post">
+          <fieldset className="FildSet">
+            <div className="ContainerLogin">
+              <h1 className="titulo">Cadastre sua conta</h1>
+              <label>
+                Nome
+                <input className="name" id="name" type="text" />
+              </label>
+              <label>
+                E-mail
+                <input className="email" id="email" type="email" />
+              </label>
+              <label>
+                Senha
+                <input className="senha" id="senha" type="password" />
+              </label>
+              <label>
+                Telefone
+                <input className="phone" id="phone" type="number" />
+              </label>
+              <label>
+                CEP
+                <input className="cep" id="cep" type="text" />
+              </label>
+              <label>
+                Complemento
+                <input className="complemento" id="complemento" type="text" />
+              </label>
+              <input
+                className="botton"
+                type="submit"
+                name="cadastrar"
+                value="Cadastrar"
+              />
+            </div>
+          </fieldset>
+        </div>
+      </div> */}
 
       <Footer />
     </div>
