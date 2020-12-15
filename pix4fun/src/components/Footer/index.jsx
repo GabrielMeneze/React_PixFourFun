@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer>
+    <footer id="rodape">
       <div className="container">
         <div className="flex">
           <div className="textFooter">

@@ -13,9 +13,9 @@ export default function Home() {
                 <Header/>
             </div>
 
-            <div className="mainBanner">
+            <div id="inicio" className="mainBanner">
                 <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
-                <a href="/" className="btnMainBanner">CONHEÇA</a>
+                <a href="#summary" className="btnMainBanner" >CONHEÇA</a>
             </div>
 
             <div className="container">
@@ -70,7 +70,7 @@ export default function Home() {
                                 <h4>R$ 17,99</h4>
                             </div>
 
-                            <Link to="/LoginCadastro" className="buyButton">COMPRAR</Link>
+                            <Link to="/LoginCadastro" href="#login" className="buyButton">COMPRAR</Link>
                         </div>
                         <div className="pack2">
                             <h3>PACK COM 12</h3>
