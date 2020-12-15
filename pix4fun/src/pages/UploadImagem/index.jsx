@@ -1,21 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
+import {url} from '../../utils/constants'
 import './index.css';
 
 
 const UploadImagem = () => {
-
-
+  // Parte teste listar--------------------------------------------------------------------------
+  const [token, setToken] = useState('')
+  const [texto, setTexto] = useState('');
+  const [imagem, setImagem] = useState({});
   const [state, setState] = useState('');
+  const [post, setPosts] = useState([]);
 
-  const escolherImg = event => {
-    setState({
-      selectedFile: event.target.files[0]
-    })
-  }
+
+//   useEffect(()=>{
+//     listarimg();
+//     AsyncStorage.getItem('@jwt').then(data => {
+//         var token = data;
+//         setToken(token)
+//     });
+//   }, [])
+
+
+
+//   const listarimg = () => {
+//     fetch(`${url}Dicas`, {
+//       method : 'GET',
+//       headers : {
+//         'Content-Type' : 'application/json',
+//         'Authorization': 'Bearer ' + token 
+//       }
+//     })
+//     .then(response => response.json())
+//     .then(dados => {
+//       console.log(dados.data);
+//       setPosts(dados.data);
+//     })
+//     .catch(err => console.error(err));
+//   }
+
+
+//   let openImagePickerAsync = async () => {
+//     let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+    
+//     if (permissionResult.granted === false) {
+//       alert("Permission to access camera roll is required!");
+//       return;
+//     }
+    
+//     let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    
+//     if (pickerResult.cancelled === true) {
+//       return;
+//     }
+// }
+
+
+// Parte que ja está funcionando-----------------------------------------------------------------------------------
+const escolherImg = event => {
+  setState({
+    selectedFile: event.target.files[0]
+  })
+}
 
   const uparImg = async e => {
+
     const fd = new FormData();
     fd.append('image', state.selectedFile)
     fetch('http://localhost:5000/api/Foto', fd)
@@ -75,7 +125,7 @@ const UploadImagem = () => {
       >Enviar</button>
       
 
-      <Footer />
+      <Footer id="rodape"/>
     </div>
   )
 }

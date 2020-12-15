@@ -62,7 +62,6 @@ export default function Home() {
                                     <p>Polaroid®<br /><br /></p>
                                     <p>•Papel fotográfico</p>
                                     <p>Kodak®<br /><br /></p>
-                                    <p>•Frete FIXO R$10,00</p>
                                 </span>
                             </div>
 
@@ -85,7 +84,6 @@ export default function Home() {
                                     <p>Polaroid®<br /><br /></p>
                                     <p>•Papel fotográfico</p>
                                     <p>Kodak®<br /><br /></p>
-                                    <p>•Frete FIXO R$10,00</p>
                                 </span>
                             </div>
 
@@ -108,7 +106,6 @@ export default function Home() {
                                     <p>Polaroid®<br /><br /></p>
                                     <p>•Papel fotográfico</p>
                                     <p>Kodak®<br /><br /></p>
-                                    <p>•Frete FIXO R$10,00</p>
                                 </span>
                             </div>
 

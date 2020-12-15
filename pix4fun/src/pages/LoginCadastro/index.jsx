@@ -277,7 +277,7 @@ export default function LoginCadastro() {
         </div>
       </div> */}
 
-      <Footer />
+      <Footer id="rodape" />
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function Header() {
           </Nav>
 
           <Nav>
-            <Nav.Link href='#inicio'>Inicio</Nav.Link>
+            <Nav.Link href='/'>Inicio</Nav.Link>
             <Nav.Link href='#buy'>Comprar</Nav.Link>
             <Nav.Link href='#rodape'>Dúvidas </Nav.Link>
             <Nav.Link href='#rodape'>Contatos</Nav.Link>
