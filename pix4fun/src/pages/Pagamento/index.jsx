@@ -1,7 +1,5 @@
-import react from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { req, res, response, doSubmit } from "mercadopago";
 
 export default function Pagamento() {
   // SDK de Mercado Pago
@@ -160,6 +158,8 @@ export default function Pagamento() {
       <script
         src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
         data-preference-id="<%= global.id %>"
+        data-button-label="Paga com Mercado Pago"
+        data-button-type="wallet"
       ></script>
 
       <Footer />
