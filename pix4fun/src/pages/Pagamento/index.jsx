@@ -30,12 +30,11 @@ export default function Pagamento() {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
             },
-            body: JSON.stringify(args)
+            
         })
             .then((data) => {
                 console.log(data)
-                var xml = new XMLParser().parseFromString(data);
-                console.log(xml)
+               
             })
             .then((response) => {
                 console.log(response.json())
@@ -47,31 +46,31 @@ export default function Pagamento() {
     //   });
 
     // SDK de Mercado Pago
-    // const mercadopago = require('mercadopago');
+    const mercadopago = require('mercadopago');
 
-    // // Configura credenciais
-    // mercadopago.configure({
-    //     access_token: 'PROD_ACCESS_TOKEN'
-    // });
+    // Configura credenciais
+    mercadopago.configure({
+        access_token: 'PROD_ACCESS_TOKEN'
+    });
 
-    // // Cria um objeto de preferência
-    // let preference = {
-    //     items: [
-    //         {
-    //             title: 'Pack 1',
-    //             unit_price: 1899,
-    //             quantity: 1,
-    //         }
-    //     ]
-    // };
+    // Cria um objeto de preferência
+    let preference = {
+        items: [
+            {
+                title: 'Pack 1',
+                unit_price: 1899,
+                quantity: 1,
+            }
+        ]
+    };
 
-    // mercadopago.preferences.create(preference)
-    //     .then(function (response) {
-    //         // Este valor substituirá a string "<%= global.id %>" no seu HTML
-    //         global.id = response.body.id;
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     });
+    mercadopago.preferences.create(preference)
+        .then(function (response) {
+            // Este valor substituirá a string "<%= global.id %>" no seu HTML
+            global.id = response.body.id;
+        }).catch(function (error) {
+            console.log(error);
+        });
 
     return (
         <div>
