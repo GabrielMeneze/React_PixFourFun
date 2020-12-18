@@ -36,41 +36,41 @@ export default function Pagamento() {
                 console.log(data)
                
             })
-            .then((response) => {
-                console.log(response.json())
-            })
+            .then(res => {
+                console.log(res)
+            }); 
     }
 
     // calcularPrecoPrazo(args).then((response) => {
     //     console.log(response.json());
     //   });
 
-    // SDK de Mercado Pago
-    const mercadopago = require('mercadopago');
+    // // SDK de Mercado Pago
+    // const mercadopago = require('mercadopago');
 
-    // Configura credenciais
-    mercadopago.configure({
-        access_token: 'PROD_ACCESS_TOKEN'
-    });
+    // // Configura credenciais
+    // mercadopago.configure({
+    //     access_token: 'PROD_ACCESS_TOKEN'
+    // });
 
-    // Cria um objeto de preferência
-    let preference = {
-        items: [
-            {
-                title: 'Pack 1',
-                unit_price: 1899,
-                quantity: 1,
-            }
-        ]
-    };
+    // // Cria um objeto de preferência
+    // let preference = {
+    //     items: [
+    //         {
+    //             title: 'Pack 1',
+    //             unit_price: 1899,
+    //             quantity: 1,
+    //         }
+    //     ]
+    // };
 
-    mercadopago.preferences.create(preference)
-        .then(function (response) {
-            // Este valor substituirá a string "<%= global.id %>" no seu HTML
-            global.id = response.body.id;
-        }).catch(function (error) {
-            console.log(error);
-        });
+    // mercadopago.preferences.create(preference)
+    //     .then(function (response) {
+    //         // Este valor substituirá a string "<%= global.id %>" no seu HTML
+    //         global.id = response.body.id;
+    //     }).catch(function (error) {
+    //         console.log(error);
+    //     });
 
     return (
         <div>
@@ -87,7 +87,7 @@ export default function Pagamento() {
                 src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
                 data-preference-id='<%= global.id %>'>
             </script> */}
-            <Footer />
+            <Footer id="doubt" />
         </div>
     )
 }

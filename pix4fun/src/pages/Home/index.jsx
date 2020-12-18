@@ -27,7 +27,7 @@ export default function Home() {
       <Header />
       <div className="mainBanner">
         <h1>IMPRIMA SUAS MEMÓRIAS COM ESTILO</h1>
-        <a href="/" className="btnMainBanner">
+        <a href="#summary" className="btnMainBanner">
           CONHEÇA
         </a>
       </div>
@@ -210,7 +210,7 @@ export default function Home() {
         </section>
       </div>
       <div>
-        <Footer />
+        <Footer id="doubt"/>
       </div>
     </div>
   );
