@@ -19,23 +19,25 @@ export default function Pagamento() {
         nVlDiametro: "0"
     };
 
-    fetch(correios.calcPreco(args), {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
-        }
-    })
-        .then(result => {
-            console.log(result);
+    const calcularCep = (event) => {
+        event.preventDefault()
+
+        fetch(calcularPrecoPrazo(args), {
+            mode: "cors",
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
+            },
+            
         })
-        .catch(error => {
-            console.log(error);
-        });
-
-
-    // const [cepDestino, setCepDestino] = useState('');
-
-    // const { calcularPrecoPrazo } = require("correios-brasil");
+            .then((data) => {
+                console.log(data)
+               
+            })
+            .then(res => {
+                console.log(res)
+            }); 
+    }
 
     // let args = {
     //     sCepOrigem: "81200100",
