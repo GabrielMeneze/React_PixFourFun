@@ -20,6 +20,7 @@ const UploadImagem = () => {
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
     const [rotation, setRotation] = useState(0)
+    const [fotocropada, setFotocropada] = useState(false)
     const [contador, setContador] = useState(0);
     const [desContador, setDescontador] = useState(18);
 
@@ -64,12 +65,13 @@ const UploadImagem = () => {
     // Componente que escolhe arquivo, e o corta 
     const onSelectFile = (event) => {
         const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]);
-        reader.addEventListener("load", () => {
-            setImage(reader.result);
-        });
-        setState({
-            selectedFile: URL.createObjectURL(event.target.files[0])
+        
+        
+        setFotocropada({
+            ArquivoSelecionado:   reader.readAsDataURL(event.target.files[0]),
+            ArquivoSelecionado: reader.addEventListener("load", () => {
+                setImage(reader.result)
+            })
         })
         console.log(event)
     };
@@ -77,15 +79,13 @@ const UploadImagem = () => {
 
     //Mostra a quantidade de imagens selecionadas
     function AddContador() {
-        if (Salvar == true) {
+        
             setContador(contador + 1)
             setDescontador(desContador - 1)
-        }
+        
     }
 
-    function Salvar() {
-
-    }
+    
 
     return (
 
@@ -111,7 +111,7 @@ const UploadImagem = () => {
                         type="file"
                         ref={inputEscolher}
                         accept='image/*'
-                        onChange={onSelectFile}
+                        onChange={escolherImg}
                         style={{ display: 'none' }}
                         onClick={AddContador}
                     />
@@ -171,13 +171,13 @@ const UploadImagem = () => {
                             <Button
                                 variant="contained"
                                 className="BtnChoseFile"
-                                onClick={Salvar}
+                                onClose={() => setFotocropada}
                             >Salvar</Button>
                         </>
                     ) : null}
                     <div className="itensTable">
                         <div className="imagem">
-                            <img src={state.selectedFile} />
+                            <img src={fotocropada.ArquivoSelecionado} />
                         </div>
                         <div className="container-buttons">
 
@@ -189,6 +189,7 @@ const UploadImagem = () => {
                                 accept='image/*'
                                 style={{ display: 'none' }}
                                 onChange={onSelectFile}
+                                onClick={AddContador}
                             />
                             <Button
                                 variant="contained"
