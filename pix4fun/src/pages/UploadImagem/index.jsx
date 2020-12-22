@@ -4,15 +4,17 @@ import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
+import { url } from '../../utils/constants'
+import { Modal, Form } from 'react-bootstrap';
 
 import './index.css';
-
-
+import { render } from '@testing-library/react';
 
 const UploadImagem = () => {
     const [state, setState] = useState('')
     const [image, setImage] = React.useState(null)
     const [fechar, setFechar] = useState(true)
+    const [frase, setFrase] = useState('')
     const [croppedarea, setCroppedarea] = React.useState(null)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
@@ -91,6 +93,37 @@ const UploadImagem = () => {
     function AddContador() {
         setContador(contador + 1)
         setDescontador(desContador - 1)
+    }
+
+    const [modalShow, setModalShow] = React.useState(false);
+
+    function ModalFrase(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                style={{ fontFamily: "Questrial" }}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Frase da foto
+              </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Digite sua frase abaixo
+                    </p>
+                    <Form onSubmit={event => salvarFrase(event)}></Form>
+                    <input style={{ padding: "0 5px"}} value={frase} onChange={event => setFrase(event.target.value)} type="text" placeholder="Frase"/>
+                    <Button style={{ textTransform: "none", marginLeft: 5}} type="submit">Enviar</Button>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Fechar</Button>
+                </Modal.Footer>
+            </Modal>
+        );
     }
 
     return (
@@ -204,7 +237,16 @@ const UploadImagem = () => {
                             >Cortar</Button>
 
 
-                            <input
+
+                            <Button variant="primary" onClick={() => setModalShow(true)}>
+                                Frase
+                            </Button>
+
+                            <ModalFrase
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                            />
+                            {/* <input
                                 type="text"
                                 ref={inputFrase}
                                 placeholder="Coloque uma frase"
@@ -212,8 +254,9 @@ const UploadImagem = () => {
                             />
                             <Button
                                 variant="contained"
-                                onClick={Frase}
-                            >Frase</Button>
+                                onClick={handleShow()}
+
+                            >Frase</Button> */}
                         </div>
                     </div>
                     <hr />
