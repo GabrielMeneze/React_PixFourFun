@@ -204,7 +204,6 @@ export default function LoginCadastro() {
             <div className="Field">
               <label>Complemento</label>
               <input
-                required
                 type="text"
                 name="complemento"
                 value={complemento}

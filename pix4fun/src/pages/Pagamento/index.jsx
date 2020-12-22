@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { Button, Form } from 'react-bootstrap';
 
 export default function Pagamento() {
-    let Correios = require('node-correios');
-    let correios = new Correios();
+    const { calcularPrecoPrazo } = require("correios-brasil"); 
 
     let args = {
         sCepOrigem: "81200100",
@@ -15,29 +13,23 @@ export default function Pagamento() {
         nVlComprimento: "15",
         nVlAltura: "0",
         nVlLargura: "15",
-        nCdServico: "04014",
+        nCdServico: ["04014"],
         nVlDiametro: "0"
     };
 
-    const calcularCep = (event) => {
-        event.preventDefault()
+    fetch(calcularPrecoPrazo(args), {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
+        }
+    })
+        .then((data) => {
+            console.log(data)
 
-        fetch(calcularPrecoPrazo(args), {
-            mode: "cors",
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
-            },
-            
         })
-            .then((data) => {
-                console.log(data)
-               
-            })
-            .then(res => {
-                console.log(res)
-            }); 
-    }
+        .then(res => {
+            console.log(res)
+        });
 
     // let args = {
     //     sCepOrigem: "81200100",
