@@ -1,35 +1,82 @@
 import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import Button from '@material-ui/core/Button';
 
 export default function Pagamento() {
-    const { calcularPrecoPrazo } = require("correios-brasil"); 
 
-    let args = {
-        sCepOrigem: "81200100",
-        sCepDestino: "05205380",
-        nVlPeso: ".1",
-        nCdFormato: "3",
-        nVlComprimento: "15",
-        nVlAltura: "0",
-        nVlLargura: "15",
-        nCdServico: ["04014"],
-        nVlDiametro: "0"
-    };
 
-    fetch(calcularPrecoPrazo(args), {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
-        }
-    })
-        .then((data) => {
-            console.log(data)
+    // Só um teste
+    const [cupom, setCupom] = useState('')
+    const [valorcupom, setValorcupom] = useState(7)
+    const [valorfinal, setValorfinal] = useState('')
+    // Variavel simulada
+    const [precopack, setPrecopack] = useState(17)
 
-        })
-        .then(res => {
-            console.log(res)
-        });
+    // Define uma porcentagem de desconto(Neste exemplo estou transformando o valor do cupom para 10% do precopack)
+    function CupomPorPorcent() {
+        setValorcupom(precopack / 10)
+    }
+
+
+    function Valida_e_calcula() {
+        // if (inputCupom == cupom) {
+        setValorfinal(precopack - valorcupom)
+        // }
+    }
+
+    const inputCupom = React.useRef();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let Correios = require('node-correios');
+    // let correios = new Correios();
+
+    // let args = {
+    //     sCepOrigem: "81200100",
+    //     sCepDestino: "05205380",
+    //     nVlPeso: ".1",
+    //     nCdFormato: "3",
+    //     nVlComprimento: "15",
+    //     nVlAltura: "0",
+    //     nVlLargura: "15",
+    //     nCdServico: "04014",
+    //     nVlDiametro: "0"
+    // };
+
+    // const calcularCep = (event) => {
+    //     event.preventDefault()
+
+    //     fetch(calcularPrecoPrazo(args), {
+    //         mode: "cors",
+    //         headers: {
+    //             'Access-Control-Allow-Origin': '*',
+    //             'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
+    //         },
+
+    //     })
+    //         .then((data) => {
+    //             console.log(data)
+
+    //         })
+    //         .then(res => {
+    //             console.log(res)
+    //         }); 
+    // }
 
     // let args = {
     //     sCepOrigem: "81200100",
@@ -94,6 +141,27 @@ export default function Pagamento() {
                     <Button type="submit">Calcular</Button>
                 </Form.Group>
             </Form> */}
+
+
+
+            <div className="ContainerCupom">
+                <input
+                    type="text"
+                    value={cupom}
+                    ref={inputCupom}
+                />
+                <Button
+                    variant="contained"
+                    onClick={CupomPorPorcent}
+                    onClick={Valida_e_calcula}
+                >aplicar cupom</Button>
+
+                <h3>Total a pagar: {valorfinal}</h3>
+            </div>
+
+
+
+
 
             <script
                 src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"

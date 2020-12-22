@@ -4,44 +4,23 @@ import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
-import MuiAlert from "@material-ui/lab/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
 
-import { generateDownload } from "../../utils/cropimage";
 import './index.css';
-import { get } from 'jquery';
+
 
 
 const UploadImagem = () => {
-
     const [state, setState] = useState('')
     const [image, setImage] = React.useState(null)
+    const [fechar, setFechar] = useState(true)
     const [croppedarea, setCroppedarea] = React.useState(null)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
-    const [rotation, setRotation] = useState(0)
     const [contador, setContador] = useState(0);
     const [desContador, setDescontador] = useState(18);
 
-    //Seleciona imagem
-    const escolherImg = (event) => {
-        setState({
-            selectedFile: URL.createObjectURL(event.target.files[0])
-        })
+    const [bloco, setBloco] = useState(true)
 
-        console.log(event)
-    }
-
-    // Upa imagem para a api
-    const uparImg = async e => {
-
-        const fd = new FormData();
-        fd.append('image', state.selectedFile)
-        fetch('http://localhost:5000/api/Foto', fd)
-            .then(res => {
-                console.log(res)
-            });
-    }
 
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
@@ -61,37 +40,63 @@ const UploadImagem = () => {
         setCroppedarea(cropPixels)
     }
 
-    // Componente que escolhe arquivo, e o corta 
-    const onSelectFile = (event) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0]);
-        reader.addEventListener("load", () => {
-            setImage(reader.result);
-        });
+    //Seleciona imagem
+    const escolherImg = (event) => {
         setState({
             selectedFile: URL.createObjectURL(event.target.files[0])
+        })
+        console.log(event)
+    }
+
+    const aparecerBloco = () => {
+        if (bloco == true) {
+            return
+
+        }
+    }
+
+
+    // Upa imagem para a api
+    const uparImg = async e => {
+
+        const fd = new FormData();
+        fd.append('image', state.selectedFile)
+        fetch('http://localhost:5000/api/Foto', fd)
+            .then(res => {
+                console.log(res)
+            });
+    }
+
+    // Componente que escolhe arquivo, e o corta 
+    const AbrirCrop = (event) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0])
+        reader.addEventListener("load", () => {
+            setImage(reader.result)
         })
         console.log(event)
     };
 
 
-    //Mostra a quantidade de imagens selecionadas
-    function AddContador() {
-        if (Salvar == true) {
-            setContador(contador + 1)
-            setDescontador(desContador - 1)
-        }
+
+    // Fecha o crop
+    const CloseCrop = () => {
+        setImage({
+            fecharcrop: null
+        })
     }
 
-    function Salvar() {
 
+    //Mostra a quantidade de imagens selecionadas
+    function AddContador() {
+        setContador(contador + 1)
+        setDescontador(desContador - 1)
     }
 
     return (
 
         <div className="ContainerMain">
             <Header />
-
             <div className="ContainerOne">
                 <div className="ContainerTextOne">
                     <h2 className="textOne">
@@ -103,15 +108,12 @@ const UploadImagem = () => {
                         </p>
                     </h2>
                 </div>
-
                 <div className="ContainerBtn">
-
-
                     <input
                         type="file"
                         ref={inputEscolher}
                         accept='image/*'
-                        onChange={onSelectFile}
+                        onChange={escolherImg}
                         style={{ display: 'none' }}
                         onClick={AddContador}
                     />
@@ -122,14 +124,15 @@ const UploadImagem = () => {
                 </div>
             </div>
             <hr className="linha" />
+
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
 
-            <td className="ContainerTwo">
+            <div className="ContainerTwo">
                 <div className="Contador">
                     <h3>Você selecionou: {contador} imagens, ainda pode selecionar {desContador}</h3>
                 </div>
                 <div className="container-cropper">
-                    {image ? (
+                    {fechar ? (
                         <>
                             <div className='cropper'>
                                 {/* Define area a ser cortada */}
@@ -155,26 +158,30 @@ const UploadImagem = () => {
                                     color='secondary'
                                 />
                             </div>
+                            {/* Botão para escolher outra imagem para realizar o crop */}
                             <input
                                 type="file"
                                 ref={inputEscolher}
                                 accept='image/*'
-                                onChange={escolherImg}
+                                onChange={AbrirCrop}
                                 style={{ display: 'none' }}
-                                onClick={AddContador}
                             />
                             <Button
                                 variant="contained"
                                 onClick={refbtnEscolher}
-                            >Escolher outra</Button>
-
+                            >Escolher outra imagem</Button>
+                            {/* Botão para subir imagem para a api */}
                             <Button
                                 variant="contained"
                                 className="BtnChoseFile"
-                                onClick={Salvar}
-                            >Salvar</Button>
+                                onClick={uparImg}
+                            >salvar</Button>
+
                         </>
                     ) : null}
+
+
+
                     <div className="itensTable">
                         <div className="imagem">
                             <img src={state.selectedFile} />
@@ -188,7 +195,8 @@ const UploadImagem = () => {
                                 ref={inputCortar}
                                 accept='image/*'
                                 style={{ display: 'none' }}
-                                onChange={onSelectFile}
+                                onChange={AbrirCrop}
+                                onClick={AddContador}
                             />
                             <Button
                                 variant="contained"
@@ -199,6 +207,7 @@ const UploadImagem = () => {
                             <input
                                 type="text"
                                 ref={inputFrase}
+                                placeholder="Coloque uma frase"
                                 style={{ display: 'none' }}
                             />
                             <Button
@@ -207,11 +216,11 @@ const UploadImagem = () => {
                             >Frase</Button>
                         </div>
                     </div>
+                    <hr />
+
+
                 </div>
-            </td>
-
-
-
+            </div>
             <Footer id="rodape" />
         </div>
     )
@@ -219,9 +228,3 @@ const UploadImagem = () => {
 export default UploadImagem;
 
 
-
-{/* <Button
-    variant="contained"
-    className="BtnChoseFile"
-    onClick={uparImg}
->enviar</Button> */}

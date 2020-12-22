@@ -26,7 +26,6 @@ export default function LoginCadastro() {
     event.preventDefault();
 
     // Faz a conexão com o banco de dados
-
     fetch(url + "usuario", {
       // Define o método que será utilizado
       method: "POST",
