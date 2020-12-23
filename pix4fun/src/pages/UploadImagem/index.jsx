@@ -51,6 +51,8 @@ const UploadImagem = () => {
         console.log(event)
     }
 
+
+
     const aparecerBloco = () => {
         if (bloco == true) {
             return
@@ -181,7 +183,7 @@ const UploadImagem = () => {
                     <h3>Você selecionou: {contador} imagens, ainda pode selecionar {desContador}</h3>
                 </div>
                 <div className="container-cropper">
-                    {fechar ? (
+                    {image ? (
                         <>
                             <div className='cropper'>
                                 {/* Define area a ser cortada */}
