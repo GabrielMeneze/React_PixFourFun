@@ -11,6 +11,7 @@ import './index.css';
 import { render } from '@testing-library/react';
 
 const UploadImagem = () => {
+    const [idFoto, setIdFoto] = useState('')
     const [state, setState] = useState('')
     const [image, setImage] = React.useState(null)
     const [fechar, setFechar] = useState(true)
@@ -95,6 +96,20 @@ const UploadImagem = () => {
         setDescontador(desContador - 1)
     }
 
+    const salvarFrase = (event) => {
+        event.preventDefault()
+
+        fetch(url + 'foto' + 'idFoto', {
+            METHOD: 'POST', 
+            body: JSON.stringify({
+                frase: frase
+            })
+            .then(response => {
+                console.log(response.json())
+            })
+        })
+    }
+
     const [modalShow, setModalShow] = React.useState(false);
 
     function ModalFrase(props) {
@@ -104,6 +119,7 @@ const UploadImagem = () => {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                dialogClassName="modal-40w"
                 style={{ fontFamily: "Questrial" }}
             >
                 <Modal.Header closeButton>
@@ -116,8 +132,8 @@ const UploadImagem = () => {
                         Digite sua frase abaixo
                     </p>
                     <Form onSubmit={event => salvarFrase(event)}></Form>
-                    <input style={{ padding: "0 5px"}} value={frase} onChange={event => setFrase(event.target.value)} type="text" placeholder="Frase"/>
-                    <Button style={{ textTransform: "none", marginLeft: 5}} type="submit">Enviar</Button>
+                    <input style={{ padding: "0 5px" }} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase" />
+                    <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit">Enviar</Button>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Fechar</Button>
