@@ -74,12 +74,16 @@ const UploadImagem = () => {
 
     // Componente que escolhe arquivo, e o corta 
     const AbrirCrop = (event) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(event.target.files[0])
-        reader.addEventListener("load", () => {
-            setImage(reader.result)
-        })
-        console.log(event)
+        const reader = new FileReader();'
+
+        if (event.target.files[0]) {'
+            reader.readAsDataURL(event.target.files[0])
+            reader.addEventListener("load", () => {
+                setImage(reader.result)
+                AddContador()
+            })
+            console.log(event)
+        }
     };
 
 
@@ -102,13 +106,13 @@ const UploadImagem = () => {
         event.preventDefault()
 
         fetch(url + 'foto' + 'idFoto', {
-            METHOD: 'POST', 
+            METHOD: 'POST',
             body: JSON.stringify({
                 frase: frase
             })
-            .then(response => {
-                console.log(response.json())
-            })
+                .then(response => {
+                    console.log(response.json())
+                })
         })
     }
 
@@ -166,7 +170,6 @@ const UploadImagem = () => {
                         accept='image/*'
                         onChange={escolherImg}
                         style={{ display: 'none' }}
-                        onClick={AddContador}
                     />
                     <Button
                         variant="contained"
@@ -247,7 +250,6 @@ const UploadImagem = () => {
                                 accept='image/*'
                                 style={{ display: 'none' }}
                                 onChange={AbrirCrop}
-                                onClick={AddContador}
                             />
                             <Button
                                 variant="contained"
