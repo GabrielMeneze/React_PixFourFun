@@ -50,6 +50,8 @@ const UploadImagem = () => {
         console.log(event)
     }
 
+
+
     const aparecerBloco = () => {
         if (bloco == true) {
             return
@@ -115,8 +117,8 @@ const UploadImagem = () => {
                     <p>
                         Digite sua frase abaixo
                     </p>
-                    <Form onSubmit={event => salvarFrase(event)}></Form>
-                    <input style={{ padding: "0 5px"}} value={frase} onChange={event => setFrase(event.target.value)} type="text" placeholder="Frase"/>
+                    <Form onSubmit={event => (event)}></Form>
+                    <input style={{ padding: "0 5px"}} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase"/>
                     <Button style={{ textTransform: "none", marginLeft: 5}} type="submit">Enviar</Button>
                 </Modal.Body>
                 <Modal.Footer>
@@ -165,7 +167,7 @@ const UploadImagem = () => {
                     <h3>Você selecionou: {contador} imagens, ainda pode selecionar {desContador}</h3>
                 </div>
                 <div className="container-cropper">
-                    {fechar ? (
+                    {image ? (
                         <>
                             <div className='cropper'>
                                 {/* Define area a ser cortada */}
