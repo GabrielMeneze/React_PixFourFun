@@ -3,9 +3,6 @@
     padding: 0;
 }
 
-.ContainerMain{
-    width: 100%;
-}
 .ContainerOne{
     display: flex;
 }
@@ -17,14 +14,9 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(245, 245, 245);
-    text-transform: uppercase;
-    font-weight: bold;
     font-family: "Lulo Clean W01 One Bold";
 }
 
-.ContainerText h2{
-    margin-left: 150px;
-}
 
 .textOne p{
     font-size: 15px;

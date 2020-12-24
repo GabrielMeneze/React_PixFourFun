@@ -4,13 +4,11 @@ import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
-import { url } from '../../utils/constants'
 import { Modal, Form } from 'react-bootstrap';
-
 import './index.css';
 
-
 const UploadImagem = () => {
+    // Variaveis
     const [state, setState] = useState('')
     const [image, setImage] = React.useState(null)
     const [fechar, setFechar] = React.useState(null)
@@ -21,6 +19,7 @@ const UploadImagem = () => {
     const [contador, setContador] = useState(0);
     const [desContador, setDescontador] = useState(18);
     const [bloco2, setBloco2] = useState(null)
+    const [modalShow, setModalShow] = React.useState(false)
 
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
@@ -40,18 +39,15 @@ const UploadImagem = () => {
         setCroppedarea(cropPixels)
     }
 
-    //Seleciona imagem
-    const escolherImg = (event) => {
-        setState({
-            selectedFile: URL.createObjectURL(event.target.files[0])
-        })
-        console.log(event)
-    }
-
+    //Seleciona imagem(esta aqui ainda para utilizar como base para listar imagem)
+    // const escolherImg = (event) => {
+    //     setState({
+    //         selectedFile: URL.createObjectURL(event.target.files[0])
+    //     })
+    // }
 
     // Upa imagem para a api
     const uparImg = async e => {
-
         const fd = new FormData();
         fd.append('image', state.selectedFile)
         fetch('http://localhost:5000/api/Foto', fd)
@@ -76,8 +72,7 @@ const UploadImagem = () => {
         setDescontador(desContador - 1)
     }
 
-    const [modalShow, setModalShow] = React.useState(false);
-
+    // Define frase que acompanhará foto
     function ModalFrase(props) {
         return (
             <Modal
@@ -260,8 +255,10 @@ const UploadImagem = () => {
 
                             </>
                         ) : null}
+
                     </div>
 
+                    {/* Abre bloco 2 */}
                     <div className="btnAbrir">
                         <input
                             type="file"
