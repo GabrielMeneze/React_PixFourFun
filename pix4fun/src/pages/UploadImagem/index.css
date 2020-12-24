@@ -64,19 +64,34 @@
     background-color: rgb(245, 245, 245);
   }
 
-  .linha{
-      width: 100%;
-      height: 1px;
-      background-color: black;
-  }
-
   .ContainerTwo{
     width: 100%;
-    height: 450px;
+    height: 100%;
     background-color: rgb(245, 245, 245);
 }
+.cropper{
+    width: 90%;
+    height: 500px;
+    background-color: black;
+}
 
-.itensTable{
+.blocos{
+    display: flex;
+    width: 60%;
+    height: 100%;
+    flex-direction: row;
+}
+.bloco1{
+    display: flex;
+}
+.bloco2{
+    display: flex;
+    margin-left: 30px;
+}
+.bloco3{
+    display: flex;
+}
+.bloco4{
     display: flex;
 }
 
