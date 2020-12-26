@@ -8,6 +8,12 @@ import { Modal, Form } from 'react-bootstrap';
 import './index.css';
 
 const UploadImagem = () => {
+
+    // Variaveis dos blocos
+    const [bloco1, setBloco1] = useState(null)
+    const [bloco2, setBloco2] = useState(null)
+
+    const [container, setContainer] = React.useState(null)
     // Variaveis do crop
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
@@ -19,10 +25,6 @@ const UploadImagem = () => {
     const [contador, setContador] = useState(0);
     const [desContador, setDescontador] = useState(18);
     const [modalShow, setModalShow] = React.useState(false)
-
-    // Variaveis dos blocos
-    const [bloco1, setBloco1] = useState(null)
-    const [bloco2, setBloco2] = useState(null)
 
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
@@ -118,7 +120,7 @@ const UploadImagem = () => {
                         ref={inputEscolher}
                         accept='image/*'
                         onChange={AbrirCrop}
-                        onClick={() => setBloco1(true)}
+                        onClick={() => setContainer(true)}
                         style={{ display: 'none' }}
                     />
                     <button
@@ -128,136 +130,117 @@ const UploadImagem = () => {
                     >Escolher imagem</button>
                 </div>
             </div>
+            {container ? (
+                <>
             <hr className="lin" id="crop" />
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
-            <div className="ContainerTwo">
-                <div className="container-cropper">
-                    {image ? (
-                        <>
-                            <div className='cropper'>
-                                <Cropper
-                                    image={image}
-                                    crop={crop}
-                                    zoom={zoom}
-                                    aspect={1}
-                                    onCropChange={setCrop}
-                                    onZoomChange={setZoom}
-                                    onCropComplete={onCropComplete}
-                                />
-                            </div>
-
-                            <div className='slider'>
-                                <Slider
-                                    min={1}
-                                    max={6}
-                                    step={0.1}
-                                    value={zoom}
-                                    onChange={(e, zoom) => setZoom(zoom)}
-                                    color='secondary'
-                                />
-                            </div>
-
-                            {/* Salva e lista a imagem */}
-                            <button
-                                variant="contained"
-                                className="Btn"
-                                onClick={() => setImage(false)}
-                            >salvar imagem cortada </button>
-                        </>
-                    ) : null}
-                    
-                </div>
-
-                    <div className="blocos">
-                        {bloco1 ? (
-                            <>
-                                <div className="bloco1">
-                                    <div className="imagem">
-                                        <img src={croppedarea} />
-                                    </div>
-                                    <div className="container-buttons">
-
-                                        <Button variant="contained">Excluir</Button>
-
-                                        <input
-                                            type="file"
-                                            ref={inputCortar}
-                                            accept='image/*'
-                                            style={{ display: 'none' }}
-                                            onChange={AbrirCrop}
-                                            onClick={AddContador}
+            
+                    <div className="ContainerTwo">
+                        <div className="container-cropper">
+                            {image ? (
+                                <>
+                                    <div className='cropper'>
+                                        <Cropper
+                                            image={image}
+                                            crop={crop}
+                                            zoom={zoom}
+                                            aspect={1}
+                                            onCropChange={setCrop}
+                                            onZoomChange={setZoom}
+                                            onCropComplete={onCropComplete}
                                         />
-                                        <Button
-                                            variant="contained"
-                                            onClick={refCortar}
-                                        >Cortar</Button>
+                                    </div>
 
+                                    <div className='slider'>
+                                        <Slider
+                                            min={1}
+                                            max={6}
+                                            step={0.1}
+                                            value={zoom}
+                                            onChange={(e, zoom) => setZoom(zoom)}
+                                            color='secondary'
+                                        />
+                                    </div>
 
+                                    {/* Salva e lista a imagem */}
+                                    <button
+                                        variant="contained"
+                                        className="Btn"
+                                        onClick={() => setImage(false)}
+                                    >salvar imagem cortada </button>
+                                </>
+                            ) : null}
 
-                                        <Button variant="primary" onClick={() => setModalShow(true)}>
-                                            Frase
+                        </div>
+
+                        <div className="blocos">
+                            {bloco1 ? (
+                                <>
+                                    <div className="bloco1">
+                                        <div className="imagem">
+                                            <img src={croppedarea} />
+                                        </div>
+                                        <div className="container-buttons">
+                                            <Button variant="contained">Excluir</Button>
+                                            <input
+                                                type="file"
+                                                ref={inputCortar}
+                                                accept='image/*'
+                                                style={{ display: 'none' }}
+                                                onChange={AbrirCrop}
+                                                onClick={AddContador}
+                                            />
+                                            <Button
+                                                variant="contained"
+                                                onClick={refCortar}
+                                            >Cortar</Button>
+                                            <Button variant="primary" onClick={() => setModalShow(true)}>
+                                                Frase
+                                    </Button>
+                                            <ModalFrase
+                                                show={modalShow}
+                                                onHide={() => setModalShow(false)}
+                                            />
+                                        </div>
+                                    </div>
+                                </>
+                            ) : null}
+
+                            {bloco2 ? (
+                                <>
+                                    <div className="bloco2">
+                                        <div className="imagem">
+                                            <img src={croppedarea} />
+                                        </div>
+                                        <div className="container-buttons">
+                                            <Button variant="contained">Excluir</Button>
+                                            <input
+                                                type="file"
+                                                ref={inputCortar}
+                                                accept='image/*'
+                                                style={{ display: 'none' }}
+                                                onChange={AbrirCrop}
+                                                onClick={AddContador}
+                                            />
+                                            <Button
+                                                variant="contained"
+                                                onClick={refCortar}
+                                            >Cortar</Button>
+                                            <Button variant="primary" onClick={() => setModalShow(true)}>
+                                                Frase
                             </Button>
-
-                                        <ModalFrase
-                                            show={modalShow}
-                                            onHide={() => setModalShow(false)}
-                                        />
+                                            <ModalFrase
+                                                show={modalShow}
+                                                onHide={() => setModalShow(false)}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            </>
-                        ) : null}
-
-                        {bloco2 ? (
-                            <>
-                                <div className="bloco2">
-                                    <div className="imagem">
-                                        <img src={croppedarea} />
-                                    </div>
-                                    <div className="container-buttons">
-                                        <Button variant="contained">Excluir</Button>
-                                        <input
-                                            type="file"
-                                            ref={inputCortar}
-                                            accept='image/*'
-                                            style={{ display: 'none' }}
-                                            onChange={AbrirCrop}
-                                            onClick={AddContador}
-                                        />
-                                        <Button
-                                            variant="contained"
-                                            onClick={refCortar}
-                                        >Cortar</Button>
-                                        <Button variant="primary" onClick={() => setModalShow(true)}>
-                                            Frase
-                            </Button>
-                                        <ModalFrase
-                                            show={modalShow}
-                                            onHide={() => setModalShow(false)}
-                                        />
-                                    </div>
-                                </div>
-
-                            </>
-                        ) : null}
-
+                                </>
+                            ) : null}
+                        </div>
                     </div>
-
-                    {/* Abre bloco 2 */}
-                    <div className="btnAbrir">
-                        <input
-                            type="file"
-                            ref={inputEscollherOutra}
-                            accept='image/*'
-                            onChange={AbrirCrop}
-                            onClick={() => setBloco2(true)}
-                            style={{ display: 'none' }}
-                        />
-                        <Button
-                            variant="contained"
-                            onClick={refEscolherOutra}
-                        >Escolher outra imagem</Button>
-                    </div>
-            </div>
+                </>
+            ) : null}
             <Footer id="rodape" />
         </div>
     )
