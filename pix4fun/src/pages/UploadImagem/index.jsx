@@ -8,30 +8,33 @@ import { Modal, Form } from 'react-bootstrap';
 import './index.css';
 
 const UploadImagem = () => {
-    // Variaveis
-    const [state, setState] = useState('')
-    const [image, setImage] = React.useState(null)
-    const [fechar, setFechar] = React.useState(null)
-    const [frase, setFrase] = useState('')
-    const [croppedarea, setCroppedarea] = React.useState(null)
+    // Variaveis do crop
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
+    const [image, setImage] = React.useState(null)
+    const [croppedarea, setCroppedarea] = React.useState(null)
+
+    // Variaveis referentes aos botões
+    const [frase, setFrase] = useState('')
     const [contador, setContador] = useState(0);
     const [desContador, setDescontador] = useState(18);
-    const [bloco2, setBloco2] = useState(null)
     const [modalShow, setModalShow] = React.useState(false)
+
+    // Variaveis dos blocos
+    const [bloco1, setBloco1] = useState(null)
+    const [bloco2, setBloco2] = useState(null)
 
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
     const refbtnEscolher = () => inputEscolher.current.click();
 
+    //Referencia o input no Botão escolher outra imagem
+    const inputEscollherOutra = React.useRef();
+    const refEscolherOutra = () => inputEscollherOutra.current.click();
+
     //Referencia o input no Botão Cortar
     const inputCortar = React.useRef();
-    const SelectPopUp = () => inputCortar.current.click();
-
-    // Referencia o input no Botão Frase
-    const inputFrase = React.useRef();
-    const Frase = () => inputFrase.current.click();
+    const refCortar = () => inputCortar.current.click();
 
     //Componente que define a area do crop
     const onCropComplete = (cropPorcentagem, cropPixels) => {
@@ -39,18 +42,11 @@ const UploadImagem = () => {
         setCroppedarea(cropPixels)
     }
 
-    //Seleciona imagem(esta aqui ainda para utilizar como base para listar imagem)
-    // const escolherImg = (event) => {
-    //     setState({
-    //         selectedFile: URL.createObjectURL(event.target.files[0])
-    //     })
-    // }
-
     // Upa imagem para a api
     const uparImg = async e => {
         const fd = new FormData();
-        fd.append('image', state.selectedFile)
-        fetch('http://localhost:5000/api/Foto', fd)
+        fd.append('image', croppedarea)
+        fetch('http://localhost:5000/api/Upload', fd)
             .then(res => {
                 console.log(res)
             });
@@ -63,7 +59,7 @@ const UploadImagem = () => {
         reader.addEventListener("load", () => {
             setImage(reader.result)
         })
-        console.log(event)
+
     };
 
     //Mostra a quantidade de imagens selecionadas
@@ -91,7 +87,6 @@ const UploadImagem = () => {
                     <p>
                         Digite sua frase abaixo
                     </p>
-                    <Form onSubmit={event => ('')}></Form>
                     <input style={{ padding: "0 5px" }} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase" />
                     <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit">Enviar</Button>
                 </Modal.Body>
@@ -107,7 +102,7 @@ const UploadImagem = () => {
         <div className="ContainerMain">
             <Header />
             <div className="ContainerOne">
-                <div className="ContainerTextOne">
+                <div className="ContainerA_Text">
                     <h2 className="textOne">
                         Agora é a hora de<br></br> nos enviar suas<br></br> fotos!
           <span className="textGray">Simples e <br></br>rápido.</span>
@@ -117,31 +112,29 @@ const UploadImagem = () => {
                         </p>
                     </h2>
                 </div>
-                <div className="ContainerBtn">
+                <div className="ContainerB_escolher">
                     <input
                         type="file"
                         ref={inputEscolher}
                         accept='image/*'
                         onChange={AbrirCrop}
+                        onClick={() => setBloco1(true)}
                         style={{ display: 'none' }}
                     />
-                    <Button
-                        variant="contained"
+                    <button
+                        className="Btn"
                         onClick={refbtnEscolher}
                         href="#crop"
-                    >Escolher</Button>
+                    >Escolher imagem</button>
                 </div>
             </div>
-            <hr id="crop" />
-
+            <hr className="lin" id="crop" />
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
-
             <div className="ContainerTwo">
                 <div className="container-cropper">
                     {image ? (
                         <>
                             <div className='cropper'>
-                                {/* Define area a ser cortada */}
                                 <Cropper
                                     image={image}
                                     crop={crop}
@@ -154,80 +147,71 @@ const UploadImagem = () => {
                             </div>
 
                             <div className='slider'>
-                                {/* Define o zoom */}
                                 <Slider
                                     min={1}
-                                    max={3}
+                                    max={6}
                                     step={0.1}
                                     value={zoom}
                                     onChange={(e, zoom) => setZoom(zoom)}
                                     color='secondary'
                                 />
                             </div>
-                            {/* Botão para escolher outra imagem para realizar o crop */}
-                            <input
-                                type="file"
-                                ref={inputEscolher}
-                                accept='image/*'
-                                onChange={AbrirCrop}
-                                style={{ display: 'none' }}
-                            />
-                            <Button
+
+                            {/* Salva e lista a imagem */}
+                            <button
                                 variant="contained"
-                                onClick={refbtnEscolher}
-                            >Escolher outra imagem</Button>
-                            {/* Botão para subir imagem para a api */}
-                            <Button
-                                variant="contained"
-                                className="BtnChoseFile"
-                                onClick={uparImg}
-                                onClick={() => setImage(null)}
-                            >salvar</Button>
-                            {/* <h3>Você selecionou: {contador} imagens, ainda pode selecionar {desContador}</h3> */}
+                                className="Btn"
+                                onClick={() => setImage(false)}
+                            >salvar imagem cortada </button>
                         </>
                     ) : null}
+                    
+                </div>
 
                     <div className="blocos">
-                        <div className="bloco1">
-                            <div className="imagem">
-                                <img src={state.selectedFile} />
-                            </div>
-                            <div className="container-buttons">
+                        {bloco1 ? (
+                            <>
+                                <div className="bloco1">
+                                    <div className="imagem">
+                                        <img src={croppedarea} />
+                                    </div>
+                                    <div className="container-buttons">
 
-                                <Button variant="contained">Excluir</Button>
+                                        <Button variant="contained">Excluir</Button>
 
-                                <input
-                                    type="file"
-                                    ref={inputCortar}
-                                    accept='image/*'
-                                    style={{ display: 'none' }}
-                                    onChange={AbrirCrop}
-                                    onClick={AddContador}
-                                />
-                                <Button
-                                    variant="contained"
-                                    onClick={SelectPopUp}
-                                >Cortar</Button>
+                                        <input
+                                            type="file"
+                                            ref={inputCortar}
+                                            accept='image/*'
+                                            style={{ display: 'none' }}
+                                            onChange={AbrirCrop}
+                                            onClick={AddContador}
+                                        />
+                                        <Button
+                                            variant="contained"
+                                            onClick={refCortar}
+                                        >Cortar</Button>
 
 
 
-                                <Button variant="primary" onClick={() => setModalShow(true)}>
-                                    Frase
+                                        <Button variant="primary" onClick={() => setModalShow(true)}>
+                                            Frase
                             </Button>
 
-                                <ModalFrase
-                                    show={modalShow}
-                                    onHide={() => setModalShow(false)}
-                                />
-                            </div>
-                        </div>
-
+                                        <ModalFrase
+                                            show={modalShow}
+                                            onHide={() => setModalShow(false)}
+                                        />
+                                    </div>
+                                </div>
+                            </>
+                        ) : null}
 
                         {bloco2 ? (
                             <>
                                 <div className="bloco2">
                                     <div className="imagem">
-                                        <img src={state.selectedFile} />
+                                        <img src={croppedarea} />
                                     </div>
                                     <div className="container-buttons">
                                         <Button variant="contained">Excluir</Button>
@@ -241,7 +225,7 @@ const UploadImagem = () => {
                                         />
                                         <Button
                                             variant="contained"
-                                            onClick={SelectPopUp}
+                                            onClick={refCortar}
                                         >Cortar</Button>
                                         <Button variant="primary" onClick={() => setModalShow(true)}>
                                             Frase
@@ -262,7 +246,7 @@ const UploadImagem = () => {
                     <div className="btnAbrir">
                         <input
                             type="file"
-                            ref={inputEscolher}
+                            ref={inputEscollherOutra}
                             accept='image/*'
                             onChange={AbrirCrop}
                             onClick={() => setBloco2(true)}
@@ -270,14 +254,9 @@ const UploadImagem = () => {
                         />
                         <Button
                             variant="contained"
-                            onClick={refbtnEscolher}
+                            onClick={refEscolherOutra}
                         >Escolher outra imagem</Button>
                     </div>
-
-                    <hr />
-
-
-                </div>
             </div>
             <Footer id="rodape" />
         </div>
