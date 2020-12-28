@@ -2,38 +2,33 @@
     margin: 0;
     padding: 0;
 }
-
-.ContainerMain{
-    width: 100%;
+.lin{
+    margin: 0;
+    padding: 0;
+    background-color: black;
 }
+
 .ContainerOne{
     display: flex;
 }
 
-.ContainerTextOne{
+.ContainerA_Text{
     width: 50%;
     height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(245, 245, 245);
-    text-transform: uppercase;
-    font-weight: bold;
     font-family: "Lulo Clean W01 One Bold";
 }
-
-.ContainerText h2{
-    margin-left: 150px;
-}
-
 .textOne p{
     font-size: 15px;
 }
-
 .textGray{
     color: gray;
 }
-.ContainerBtn{
+
+.ContainerB_escolher{
     width: 50%;
     height: 450px;
     display: flex;
@@ -42,7 +37,11 @@
     background-color: rgb(245, 245, 245);
 }
 
-.ContainerBtn Button{
+.Btn{
+    width: 200px;
+    height: 50px;
+    font-size: 0.89em;
+    padding: 6px;
     color: var(--color-text-white);
     background-color: var(--secundary-color);
     font-family: "Lulo Clean W01 One Bold";
@@ -51,32 +50,49 @@
     align-items: center;
 }
 
-.BtnChoseFile:hover {
+.Btn:hover {
     transition: 0.5s;
     background-color: var(--main-color-01);
     color: white;
   }
 
-  .ContainerBtn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(245, 245, 245);
-  }
-
-  .linha{
-      width: 100%;
-      height: 1px;
-      background-color: black;
-  }
-
   .ContainerTwo{
     width: 100%;
-    height: 450px;
+    height: 800px;
     background-color: rgb(245, 245, 245);
 }
 
-.itensTable{
+.container-cropper{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    height: 250px;
+    padding: 10px;
+}
+.cropper{
+    width: 90%;
+    height: 500px;
+    background-color: black;
+}
+
+.blocos{
+    display: flex;
+    width: 60%;
+    height: 100%;
+    flex-direction: row;
+}
+.bloco1{
+    display: flex;
+}
+.bloco2{
+    display: flex;
+    margin-left: 30px;
+}
+.bloco3{
+    display: flex;
+}
+.bloco4{
     display: flex;
 }
 
@@ -116,10 +132,6 @@
 	width: 100vw;
 }
 
-.container-cropper {
-	height: 40%;
-	padding: 10px;
-}
 
 .cropper {
     width: 90%;
