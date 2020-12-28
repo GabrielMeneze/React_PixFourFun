@@ -74,9 +74,9 @@ const UploadImagem = () => {
 
     // Componente que escolhe arquivo, e o corta 
     const AbrirCrop = (event) => {
-        const reader = new FileReader();'
+        const reader = new FileReader();
 
-        if (event.target.files[0]) {'
+        if (event.target.files[0]) {
             reader.readAsDataURL(event.target.files[0])
             reader.addEventListener("load", () => {
                 setImage(reader.result)
