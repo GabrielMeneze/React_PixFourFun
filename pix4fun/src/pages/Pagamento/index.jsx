@@ -1,173 +1,54 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Button from '@material-ui/core/Button';
 
 export default function Pagamento() {
+    
+    var correiosBrasil = require("correios-brasil")
 
+    const { consultarCep } = require("correios-brasil");
 
-    // Só um teste
-    const [cupom, setCupom] = useState('')
-    const [valorcupom, setValorcupom] = useState(7)
-    const [valorfinal, setValorfinal] = useState('')
-    // Variavel simulada
-    const [precopack, setPrecopack] = useState(17)
+    // Busca o cep
+    const cep = "08743670 "; // 21770200 , '21770-200', '21770 200'.... qualquer um formato serve
 
-    // Define uma porcentagem de desconto(Neste exemplo estou transformando o valor do cupom para 10% do precopack)
-    function CupomPorPorcent() {
-        setValorcupom(precopack / 10)
+    consultarCep(cep).then((response) => {
+        console.log(response);
+    });
+
+    // Valida o cupom
+    function Validar(cupom) {
+        return new Promise((resolve, reject) => {
+            if (cupom === 'PIX10') {
+                resolve({
+                    sucess: true,
+                    CupomName: cupom,
+                    msg: 'Cupom válido'
+                })
+            } else {
+                reject({
+                    sucess: false,
+                    msg: 'Cupom invalido'
+                })
+            }
+        })
     }
 
-
-    function Valida_e_calcula() {
-        // if (inputCupom == cupom) {
-        setValorfinal(precopack - valorcupom)
-        // }
+    async function doTheJob() {
+        const ValidarResponse = await Validar('PIX10');
+        console.log(ValidarResponse);
     }
 
-    const inputCupom = React.useRef();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // let Correios = require('node-correios');
-    // let correios = new Correios();
-
-    // let args = {
-    //     sCepOrigem: "81200100",
-    //     sCepDestino: "05205380",
-    //     nVlPeso: ".1",
-    //     nCdFormato: "3",
-    //     nVlComprimento: "15",
-    //     nVlAltura: "0",
-    //     nVlLargura: "15",
-    //     nCdServico: "04014",
-    //     nVlDiametro: "0"
-    // };
-
-    // const calcularCep = (event) => {
-    //     event.preventDefault()
-
-    //     fetch(calcularPrecoPrazo(args), {
-    //         mode: "cors",
-    //         headers: {
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
-    //         },
-
-    //     })
-    //         .then((data) => {
-    //             console.log(data)
-
-    //         })
-    //         .then(res => {
-    //             console.log(res)
-    //         }); 
-    // }
-
-    // let args = {
-    //     sCepOrigem: "81200100",
-    //     sCepDestino: cepDestino,
-    //     nVlPeso: ".1",
-    //     nCdFormato: "3",
-    //     nVlComprimento: "15",
-    //     nVlAltura: "0",
-    //     nVlLargura: "15",
-    //     nCdServico: "04014",
-    //     nVlDiametro: "0"
-    // };
-
-    // const calcularCep = (event) => {
-    //     event.preventDefault()
-
-    //     fetch(calcularPrecoPrazo(args), {
-    //         headers: {
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Access-Control-Allow-Headers': 'Origin, X-Request-Width, Content-Type, Accept'
-    //         }
-    //     })
-    //         .then((data) => {
-    //             console.log(data)
-    //         })
-    // }
-
-    // // SDK de Mercado Pago
-    // const mercadopago = require('mercadopago');
-
-    // // Configura credenciais
-    // mercadopago.configure({
-    //     access_token: 'PROD_ACCESS_TOKEN'
-    // });
-
-    // // Cria um objeto de preferência
-    // let preference = {
-    //     items: [
-    //         {
-    //             title: 'Pack 1',
-    //             unit_price: 1899,
-    //             quantity: 1,
-    //         }
-    //     ]
-    // };
-
-    // mercadopago.preferences.create(preference)
-    //     .then(function (response) {
-    //         // Este valor substituirá a string "<%= global.id %>" no seu HTML
-    //         global.id = response.body.id;
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     });
 
     return (
-        <div>
+        doTheJob(),
+        <div className="container">
             <Header />
-            {/* <Form onSubmit={event => calcularCep(event)}>
-                <Form.Group>
-                    <Form.Label>Digite seu CEP</Form.Label>
-                    <Form.Control value={cepDestino} onChange={event => setCepDestino(event.target.value)} type="text" placeholder="Digite aqui seu CEP" />
-                    <Button type="submit">Calcular</Button>
-                </Form.Group>
-            </Form> */}
-
-
-
-            <div className="ContainerCupom">
-                <input
-                    type="text"
-                    value={cupom}
-                    ref={inputCupom}
-                />
-                <Button
-                    variant="contained"
-                    onClick={CupomPorPorcent}
-                    onClick={Valida_e_calcula}
-                >aplicar cupom</Button>
-
-                <h3>Total a pagar: {valorfinal}</h3>
+            <div className="localdeentrega">
+                <h1>Local de entrega</h1>
             </div>
-
-
-
-
-
-            <script
-                src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-                data-preference-id='<%= global.id %>'>
-            </script>
             <Footer />
         </div>
     )
+
+
 }
