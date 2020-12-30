@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
 export default function Pagamento() {
     
-    var correiosBrasil = require("correios-brasil")
+    const [events, setEvents] = useState([]);
+    
 
     const { consultarCep } = require("correios-brasil");
 
@@ -38,6 +39,21 @@ export default function Pagamento() {
         console.log(ValidarResponse);
     }
 
+    console.log(events);
+    const submitHandler = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        fetch('http://localhost:3001/?tracking='+ data.tracking)
+        .then(response => response.json())
+        .then(data => {
+            const events = data.events || [];
+            setEvents(events);
+        })
+        .catch(console.error);
+    };
 
     return (
         doTheJob(),
@@ -45,6 +61,23 @@ export default function Pagamento() {
             <Header />
             <div className="localdeentrega">
                 <h1>Local de entrega</h1>
+
+                <form onSubmit={submitHandler}>
+                    <div className="form-group">
+                        <input 
+                        name="tracking"
+                        type="text"
+                        className="form-control"
+                        />
+
+                        <button
+                        type="submit"
+                        value="Track"
+                        >  Track
+                        </button>
+                    </div>
+                </form>
+
             </div>
             <Footer />
         </div>
