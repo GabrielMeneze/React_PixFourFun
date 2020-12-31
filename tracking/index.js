@@ -12,7 +12,7 @@ const get = (object, path, fallback = null) => {
     return result || fallback;
   };
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { 
     const tracking = get(req, 'query.tracking')
 
 

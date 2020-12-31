@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import TrackingEvents from '../../components/TrackingEvents';
+import './index.css';
 
 export default function Pagamento() {
-    
+
     const [events, setEvents] = useState([]);
-    
+
 
     const { consultarCep } = require("correios-brasil");
 
@@ -39,6 +41,7 @@ export default function Pagamento() {
         console.log(ValidarResponse);
     }
 
+
     console.log(events);
     const submitHandler = (event) => {
         event.preventDefault();
@@ -46,37 +49,39 @@ export default function Pagamento() {
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
-        fetch('http://localhost:3001/?tracking='+ data.tracking)
-        .then(response => response.json())
-        .then(data => {
-            const events = data.events || [];
-            setEvents(events);
-        })
-        .catch(console.error);
+        fetch('http://localhost:3001/?tracking=' + data.tracking)
+            .then(response => response.json())
+            .then(data => {
+                const events = data.events || [];
+                setEvents(events);
+            })
+            .catch(console.error);
     };
 
     return (
         doTheJob(),
-        <div className="container">
+        <div className="bloco">
             <Header />
             <div className="localdeentrega">
-                <h1>Local de entrega</h1>
+                <h1>Rastreamento de pacote:</h1>
 
                 <form onSubmit={submitHandler}>
                     <div className="form-group">
-                        <input 
-                        name="tracking"
-                        type="text"
-                        className="form-control"
+                        <input
+                            name="tracking"
+                            type="text"
+                            className="form-control"
                         />
 
                         <button
-                        type="submit"
-                        value="Track"
+                            type="submit"
+                            value="Track"
                         >  Track
                         </button>
                     </div>
                 </form>
+
+                <TrackingEvents events={events} />
 
             </div>
             <Footer />

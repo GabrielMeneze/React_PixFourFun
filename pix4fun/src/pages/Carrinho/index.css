@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.informacoes{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.itens{
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin: auto;
+}
+.itens h3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.lin{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.imge{
+    position: relative;
+    margin-left: 215px;
+}

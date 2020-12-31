@@ -140,13 +140,12 @@ const UploadImagem = () => {
                     <button
                         className="Btn"
                         onClick={refbtnEscolher}
-                        href="#crop"
                     >Escolher imagem</button>
                 </div>
             </div>
             {container ? (
                 <>
-            <hr className="lin" id="crop" />
+            <hr className="lin"/>
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
             
                     <div className="ContainerTwo">
