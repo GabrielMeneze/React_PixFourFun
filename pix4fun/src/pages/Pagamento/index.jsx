@@ -8,11 +8,12 @@ export default function Pagamento() {
 
     const [events, setEvents] = useState([]);
 
-
+    const { calcularPrecoPrazo } = require("correios-brasil");
     const { consultarCep } = require("correios-brasil");
 
+
     // Busca o cep
-    const cep = "08743670 "; // 21770200 , '21770-200', '21770 200'.... qualquer um formato serve
+    const cep = "08743670 ";
 
     consultarCep(cep).then((response) => {
         console.log(response);
@@ -58,6 +59,21 @@ export default function Pagamento() {
             .catch(console.error);
     };
 
+
+    function calcularHandler(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        fetch('http://localhost:3002/?calcular='+ data.calcular)
+        .then(response => response.json())
+        .then(console.log)
+        .catch(console.error)
+
+        console.log('*** App.subimitHandler.data', data)
+    }
+
     return (
         doTheJob(),
         <div className="bloco">
@@ -83,6 +99,21 @@ export default function Pagamento() {
 
                 <TrackingEvents events={events} />
 
+
+                <form onSubmit={calcularHandler}>
+                    <div className="form-group">
+                        <input
+                        type="text"
+                        name="calcular"
+                        className="form-control"
+                        >
+                        </input>
+                        <button
+                        type="submit"
+                        value="Calcular"
+                        >Calcular</button>
+                    </div>
+                </form>
             </div>
             <Footer />
         </div>

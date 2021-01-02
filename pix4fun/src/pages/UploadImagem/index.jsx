@@ -10,7 +10,7 @@ import './index.css';
 const UploadImagem = () => {
 
     // Variaveis dos blocos
-    const [bloco1, setBloco1] = useState(null)
+    const [bloco1, setBloco1] = useState(true)
     const [bloco2, setBloco2] = useState(null)
 
     const [container, setContainer] = React.useState(null)
