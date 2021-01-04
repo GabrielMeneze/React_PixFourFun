@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import TrackingEvents from '../../components/TrackingEvents';
+import CalcularFrete from '../../components/CalcularFrete';
 import './index.css';
 
 export default function Pagamento() {
 
     const [events, setEvents] = useState([]);
+    const [result, setResult] = useState();
 
     const { calcularPrecoPrazo } = require("correios-brasil");
     const { consultarCep } = require("correios-brasil");
@@ -43,7 +45,7 @@ export default function Pagamento() {
     }
 
 
-    console.log(events);
+
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -53,23 +55,26 @@ export default function Pagamento() {
         fetch('http://localhost:3001/?tracking=' + data.tracking)
             .then(response => response.json())
             .then(data => {
-                const events = data.events || [];
+                const events = data.events;
                 setEvents(events);
             })
             .catch(console.error);
     };
 
-
+    console.log(result)
     function calcularHandler(event) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
-        fetch('http://localhost:3002/?calcular='+ data.calcular)
-        .then(response => response.json())
-        .then(console.log)
-        .catch(console.error)
+        fetch('http://localhost:3002/?calcular=' + data.calcular)
+            .then(response => response.json())
+            .then(data => {
+                const result = data.result || [];
+                setResult(result);
+            })
+            .catch(console.error)
 
         console.log('*** App.subimitHandler.data', data)
     }
@@ -103,18 +108,22 @@ export default function Pagamento() {
                 <form onSubmit={calcularHandler}>
                     <div className="form-group">
                         <input
-                        type="text"
-                        name="calcular"
-                        className="form-control"
+                            type="text"
+                            name="calcular"
+                            className="form-control"
                         >
                         </input>
                         <button
-                        type="submit"
-                        value="Calcular"
+                            type="submit"
+                            value="Calcular"
                         >Calcular</button>
                     </div>
                 </form>
+
+                <CalcularFrete result={result} />
             </div>
+            <div id="contact" />
+            <div id="doubt" />
             <Footer />
         </div>
     )

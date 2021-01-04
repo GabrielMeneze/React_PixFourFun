@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import './index.css';
 
 const UploadImagem = () => {
-
     // Variaveis dos blocos
     const [bloco1, setBloco1] = useState(true)
     const [bloco2, setBloco2] = useState(null)
@@ -22,8 +21,6 @@ const UploadImagem = () => {
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
-    const [contador, setContador] = useState(0);
-    const [desContador, setDescontador] = useState(18);
     const [modalShow, setModalShow] = React.useState(false)
 
     //Referencia o input no Botão escolher imagem
@@ -40,18 +37,18 @@ const UploadImagem = () => {
 
     //Componente que define a area do crop
     const onCropComplete = (cropPorcentagem, cropPixels) => {
-        console.log(cropPorcentagem, cropPixels);
         setCroppedarea(cropPixels)
     }
 
     // Upa imagem para a api
-    const uparImg = async e => {
+    const uparFrase = async e => {
         const fd = new FormData();
-        fd.append('image', croppedarea)
-        fetch('http://localhost:5000/api/Upload', fd)
+        fd.append('FraseFoto', frase)
+        fetch('http://localhost:3000/api/Foto/FraseFoto', fd)
             .then(res => {
                 console.log(res)
             });
+            console.log(e)
     }
 
     // Componente que escolhe arquivo, e o corta 
@@ -62,27 +59,10 @@ const UploadImagem = () => {
             reader.readAsDataURL(event.target.files[0])
             reader.addEventListener("load", () => {
                 setImage(reader.result)
-                AddContador()
             })
             console.log(event)
         }
     };
-
-
-
-    // Fecha o crop
-    const CloseCrop = () => {
-        setImage({
-            fecharcrop: null
-        })
-
-    };
-
-    //Mostra a quantidade de imagens selecionadas
-    function AddContador() {
-        setContador(contador + 1)
-        setDescontador(desContador - 1)
-    }
 
     // Define frase que acompanhará foto
     function ModalFrase(props) {
@@ -104,7 +84,7 @@ const UploadImagem = () => {
                         Digite sua frase abaixo
                     </p>
                     <input style={{ padding: "0 5px" }} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase" />
-                    <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit">Enviar</Button>
+                    <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit" onClick={uparFrase}>Enviar</Button>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Fechar</Button>
@@ -145,9 +125,9 @@ const UploadImagem = () => {
             </div>
             {container ? (
                 <>
-            <hr className="lin"/>
-            {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
-            
+                    <hr className="lin" />
+                    {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
+
                     <div className="ContainerTwo">
                         <div className="container-cropper">
                             {image ? (
@@ -201,7 +181,6 @@ const UploadImagem = () => {
                                                 accept='image/*'
                                                 style={{ display: 'none' }}
                                                 onChange={AbrirCrop}
-                                                onClick={AddContador}
                                             />
                                             <Button
                                                 variant="contained"
@@ -233,7 +212,6 @@ const UploadImagem = () => {
                                                 accept='image/*'
                                                 style={{ display: 'none' }}
                                                 onChange={AbrirCrop}
-                                                onClick={AddContador}
                                             />
                                             <Button
                                                 variant="contained"
@@ -254,7 +232,9 @@ const UploadImagem = () => {
                     </div>
                 </>
             ) : null}
-            <Footer id="rodape" />
+            <div id="contact" />
+            <div id="doubt" />
+            <Footer />
         </div>
     )
 }

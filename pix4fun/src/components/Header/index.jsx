@@ -109,7 +109,7 @@ export default function Header() {
     <div
       style={{
         backgroundColor: "#F8F9FA",
-        fontFamily: "Questrial",
+        fontFamily: "Arial,Helvetica,sans-serif",
         textTransform: "uppercase",
         fontSize: 14,
         fontWeight: 700,

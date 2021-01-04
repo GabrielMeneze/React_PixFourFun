@@ -25,7 +25,7 @@ app.get('/', (req, res) =>{
    
   calcularPrecoPrazo(calcular)
   .then((result) => {
-    res.json({message: "sucess", result})
+    res.json({message: "boia", result})
   })
   .catch((error)=>{
     res.json({message: "error", error})

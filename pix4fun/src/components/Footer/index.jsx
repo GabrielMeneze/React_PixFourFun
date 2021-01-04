@@ -57,7 +57,7 @@ export default function Footer() {
               />
             </div>
 
-            <button className="btnEnviar">Enviar</button>
+            <button className="btnEnviar" onChange={enviarEmail}>Enviar</button>
           </form>
         </div>
 

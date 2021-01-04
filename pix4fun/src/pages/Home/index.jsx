@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
-import { BrowserRouter as Link} from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./index.css";
 
 export default function Home() {
   const token = localStorage.getItem("token");
 
-  const botaoComprar = () => {
+  // Botões que direcionam para pagina de login ou upload
+  const botaoComprar1 = () => {
     if (token === null) {
       return (
         <Link to="/LoginCadastro" className="buyButton">
@@ -22,6 +23,37 @@ export default function Home() {
       );
     }
   };
+  const botaoComprar2 = () => {
+    if (token === null) {
+      return (
+        <Link to="/LoginCadastro" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    } else {
+      return (
+        <Link to="/uploadimagem" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    }
+  };
+  const botaoComprar3 = () => {
+    if (token === null) {
+      return (
+        <Link to="/LoginCadastro" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    } else {
+      return (
+        <Link to="/uploadimagem" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -51,7 +83,7 @@ export default function Home() {
                   edite-as e nos envie.
                 </p>
               </div>
-              </div>
+            </div>
             <div className="textSummary">
               <p className="imgTextSummary3">3</p>
               <div>
@@ -61,7 +93,7 @@ export default function Home() {
                   só aguardar suas fotos chegarem na sua casa.
                 </p>
               </div>
-              </div>
+            </div>
           </div>
         </section>
 
@@ -101,7 +133,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 17,99</h4>
               </div>
-              {botaoComprar()}
+              {botaoComprar1()}
             </div>
             <div className="pack2">
               <h3>PACK COM 12</h3>
@@ -136,7 +168,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 21,99</h4>
               </div>
-              {botaoComprar()}
+              {botaoComprar2()}
             </div>
             <div className="pack3">
               <h3>PACK COM 18</h3>
@@ -171,7 +203,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 26,99</h4>
               </div>
-              {botaoComprar()}
+              {botaoComprar3()}
             </div>
           </div>
         </section>
@@ -210,7 +242,9 @@ export default function Home() {
         </section>
       </div>
       <div>
-        <Footer id="doubt"/>
+        <div id="contact" />
+        <div id="doubt" />
+        <Footer />
       </div>
     </div>
   );

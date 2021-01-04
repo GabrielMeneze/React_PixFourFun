@@ -215,7 +215,9 @@ export default function LoginCadastro() {
           </Form>
         </section>
       </div>
-      <Footer id="doubt" />
+      <div id="contact" />
+      <div id="doubt" />
+      <Footer />
     </div>
   );
 }
