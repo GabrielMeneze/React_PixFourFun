@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, intlTelInput } from "react";
 import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
@@ -6,9 +6,13 @@ import "./index.css";
 
 export default function Home() {
   const token = localStorage.getItem("token");
+  const [valorbotao, setValorbotao] = useState();
+
+  const value = (intlTelInput);
 
   // Botões que direcionam para pagina de login ou upload
   const botaoComprar1 = () => {
+
     if (token === null) {
       return (
         <Link to="/LoginCadastro" className="buyButton">
@@ -17,12 +21,14 @@ export default function Home() {
       );
     } else {
       return (
+        value=6,
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
     }
   };
+  
   const botaoComprar2 = () => {
     if (token === null) {
       return (
@@ -32,6 +38,7 @@ export default function Home() {
       );
     } else {
       return (
+        value="12",
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
@@ -41,12 +48,14 @@ export default function Home() {
   const botaoComprar3 = () => {
     if (token === null) {
       return (
+        value=18,
         <Link to="/LoginCadastro" className="buyButton">
           COMPRAR
         </Link>
       );
     } else {
       return (
+        value=18,
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>

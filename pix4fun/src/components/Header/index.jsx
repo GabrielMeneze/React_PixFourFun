@@ -31,6 +31,7 @@ export default function Header() {
           <Nav.Link href="#buy">Comprar</Nav.Link>
           <Nav.Link href="#doubt">Dúvidas </Nav.Link>
           <Nav.Link href="#contact">Contatos</Nav.Link>
+          <Nav.Link href="#contact">Contatos</Nav.Link>
           <hr />
           <Nav.Link
             href="/logincadastro"
@@ -72,6 +73,7 @@ export default function Header() {
           <Nav.Link href="/#buy">COMPRAR</Nav.Link>
           <Nav.Link href="/#doubt">DÚVIDAS </Nav.Link>
           <Nav.Link href="/#contact">CONTATOS</Nav.Link>
+          <Nav.Link href="/Carrinho">Carrinho</Nav.Link>
           <hr />
           <Dropdown>
             <Dropdown.Toggle

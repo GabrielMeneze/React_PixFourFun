@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import TrackingEvents from '../../components/TrackingEvents';
-import CalcularFrete from '../../components/CalcularFrete';
+import botaoComprar3 from '../../pages/Home'
 import './index.css';
 
 export default function Pagamento() {
 
     const [events, setEvents] = useState([]);
-    const [result, setResult] = useState();
+    const [results, setResults] = useState([]);
 
-    const { calcularPrecoPrazo } = require("correios-brasil");
     const { consultarCep } = require("correios-brasil");
 
 
     // Busca o cep
-    const cep = "08743670 ";
+    // const cep = "08743670 ";
 
-    consultarCep(cep).then((response) => {
-        console.log(response);
-    });
+    // consultarCep(cep).then((response) => {
+    //     console.log(response);
+    // });
+
 
     // Valida o cupom
     function Validar(cupom) {
@@ -38,6 +38,7 @@ export default function Pagamento() {
             }
         })
     }
+
 
     async function doTheJob() {
         const ValidarResponse = await Validar('PIX10');
@@ -61,23 +62,17 @@ export default function Pagamento() {
             .catch(console.error);
     };
 
-    console.log(result)
     function calcularHandler(event) {
         event.preventDefault();
-
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
-
         fetch('http://localhost:3002/?calcular=' + data.calcular)
             .then(response => response.json())
-            .then(data => {
-                const result = data.result || [];
-                setResult(result);
-            })
+            .then(console.log)
             .catch(console.error)
-
         console.log('*** App.subimitHandler.data', data)
     }
+
 
     return (
         doTheJob(),
@@ -120,7 +115,6 @@ export default function Pagamento() {
                     </div>
                 </form>
 
-                <CalcularFrete result={result} />
             </div>
             <div id="contact" />
             <div id="doubt" />
