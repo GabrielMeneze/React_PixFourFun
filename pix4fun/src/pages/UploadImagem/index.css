@@ -147,6 +147,15 @@
 	width: 60%;
 }
 
+.imagem{
+    width: 200px;
+    height: 115px;
+}
+.imagem img{
+    width: 100%;
+    height: 100%;
+}
+
 .container-buttons {
 	display: flex;
 	flex-direction: column;

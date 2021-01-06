@@ -31,7 +31,7 @@ export default function Header() {
           <Nav.Link href="#buy">Comprar</Nav.Link>
           <Nav.Link href="#doubt">Dúvidas </Nav.Link>
           <Nav.Link href="#contact">Contatos</Nav.Link>
-          <Nav.Link href="#contact">Contatos</Nav.Link>
+          <Nav.Link href="/Carrinho">Carrinho</Nav.Link>
           <hr />
           <Nav.Link
             href="/logincadastro"

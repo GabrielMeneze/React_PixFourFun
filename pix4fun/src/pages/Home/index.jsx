@@ -6,9 +6,6 @@ import "./index.css";
 
 export default function Home() {
   const token = localStorage.getItem("token");
-  const [valorbotao, setValorbotao] = useState();
-
-  const value = (intlTelInput);
 
   // Botões que direcionam para pagina de login ou upload
   const botaoComprar1 = () => {
@@ -21,7 +18,6 @@ export default function Home() {
       );
     } else {
       return (
-        value=6,
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
@@ -38,7 +34,6 @@ export default function Home() {
       );
     } else {
       return (
-        value="12",
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
@@ -48,14 +43,12 @@ export default function Home() {
   const botaoComprar3 = () => {
     if (token === null) {
       return (
-        value=18,
         <Link to="/LoginCadastro" className="buyButton">
           COMPRAR
         </Link>
       );
     } else {
       return (
-        value=18,
         <Link to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
@@ -253,6 +246,8 @@ export default function Home() {
       <div>
         <div id="contact" />
         <div id="doubt" />
+        
+        <script src="main.js"></script>
         <Footer />
       </div>
     </div>
