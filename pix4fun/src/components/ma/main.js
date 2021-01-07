@@ -65,6 +65,18 @@ function setItems(produto) {
 }
 
 function custoTotal(produto) {
-    
+    // console.log('o preco é', produto.price);
+
+    let custo = localStorage.getItem('custoTotal');
+    console.log('my cart cost is: ', custo);
+    console.log(typeof custo);
+        
+    if (custo != null) {
+        custo = parseInt(custo);
+        localStorage.setItem('custoTotal', custo + produto.price);
+    } else{
+        localStorage.setItem('custoTotal', produto.price);
+    }
+
 }
 
