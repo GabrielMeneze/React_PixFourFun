@@ -101,6 +101,7 @@ const UploadImagem = () => {
             </Modal>
         );
     }
+    <script src="main.js"></script>
 
     return (
 
@@ -179,7 +180,8 @@ const UploadImagem = () => {
                                     <> */}
                     <div className="bloco1">
                         <div className="imagem">
-                            <img alt="imagem selecionada" src={state.selectedFile} />
+                            <img src={state.selectedFile} />
+                            {/* <div className="verification"/> */}
                         </div>
                         <div className="container-buttons">
                             <Button >Excluir</Button>

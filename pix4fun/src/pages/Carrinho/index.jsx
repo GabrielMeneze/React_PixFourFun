@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import logo from "../../assets/img/LOGO.png";
 import './index.css';
 
+    <script src="main.js"></script>
 
 export default function Pagamento() {
     return (

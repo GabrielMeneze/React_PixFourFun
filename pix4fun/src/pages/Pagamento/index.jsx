@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import TrackingEvents from '../../components/TrackingEvents';
-import botaoComprar3 from '../../pages/Home'
 import './index.css';
 
 export default function Pagamento() {

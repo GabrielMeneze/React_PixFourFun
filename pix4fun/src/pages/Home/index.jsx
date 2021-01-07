@@ -4,57 +4,30 @@ import Footer from "../../components/Footer/index";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./index.css";
 
+<script src="main.js"></script>
+
 export default function Home() {
   const token = localStorage.getItem("token");
 
   // Botões que direcionam para pagina de login ou upload
-  const botaoComprar1 = () => {
+  const botaoComprar = () => {
 
     if (token === null) {
       return (
-        <Link to="/LoginCadastro" className="buyButton">
-          COMPRAR
+        <Link to="/LoginCadastro" className="buyButton" >
+         COMPRAR
         </Link>
       );
     } else {
       return (
-        <Link to="/uploadimagem" className="buyButton">
+        <Link to="#uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
     }
   };
-  
-  const botaoComprar2 = () => {
-    if (token === null) {
-      return (
-        <Link to="/LoginCadastro" className="buyButton">
-          COMPRAR
-        </Link>
-      );
-    } else {
-      return (
-        <Link to="/uploadimagem" className="buyButton">
-          COMPRAR
-        </Link>
-      );
-    }
-  };
-  const botaoComprar3 = () => {
-    if (token === null) {
-      return (
-        <Link to="/LoginCadastro" className="buyButton">
-          COMPRAR
-        </Link>
-      );
-    } else {
-      return (
-        <Link to="/uploadimagem" className="buyButton">
-          COMPRAR
-        </Link>
-      );
-    }
-  };
+
+
 
   return (
     <div>
@@ -135,7 +108,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 17,99</h4>
               </div>
-              {botaoComprar1()}
+              {botaoComprar()}
             </div>
             <div className="pack2">
               <h3>PACK COM 12</h3>
@@ -170,7 +143,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 21,99</h4>
               </div>
-              {botaoComprar2()}
+              {botaoComprar()}
             </div>
             <div className="pack3">
               <h3>PACK COM 18</h3>
@@ -205,7 +178,7 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 26,99</h4>
               </div>
-              {botaoComprar3()}
+              {botaoComprar()}
             </div>
           </div>
         </section>
@@ -246,7 +219,7 @@ export default function Home() {
       <div>
         <div id="contact" />
         <div id="doubt" />
-        
+
         <script src="main.js"></script>
         <Footer />
       </div>
