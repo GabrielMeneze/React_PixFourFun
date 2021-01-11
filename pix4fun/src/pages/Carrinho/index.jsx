@@ -1,31 +1,47 @@
 import React from 'react';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import logo from "../../assets/img/LOGO.png";
-import './index.css';
 
-    <script src="main.js"></script>
+// Valida o cupom
+function Validar(cupom) {
+    return new Promise((resolve, reject) => {
+        if (cupom === 'PIX10') {
+            resolve({
+                sucess: true,
+                CupomName: cupom,
+                msg: 'Cupom válido'
+            })
+        } else {
+            reject({
+                sucess: false,
+                msg: 'Cupom invalido'
+            })
+        }
+    })
+}
 
-export default function Pagamento() {
+async function doTheJob() {
+    const ValidarResponse = await Validar( );
+    console.log(ValidarResponse);
+}
+
+const Carrinho = () => {
+
+    const inputEscolher = React.useRef();
+    const refbtnEscolher = () => inputEscolher.current.click();
+
     return (
-        <div className="bloco">
-            <Header />
-            <div className="informacoes">
-                <h3>Produto</h3>
-                <h3>entrega</h3>
-                <h3>preco</h3>
-            </div>
-            <hr className="lin" />
-            <div className="imge">
-                <img src={logo} alt="Logo pix4fun" width="97" height="25" />
-            </div>
-            <div className="itens">
-                <h3>Pack com 18 fotos</h3>
-                <h3>......</h3>
-                <h3>.......</h3>
-            </div>
-            {/* <hr className="lin"/> */}
-            <Footer />
+        <div className="main">
+            <input
+                ref={inputEscolher}
+            >
+            </input>
+            <button
+                onClick={refbtnEscolher}
+                onChange={Validar}
+            >
+                validar
+            </button>
         </div>
     )
 }
+
+export default Carrinho;

@@ -1,32 +1,78 @@
-import React, { useState, intlTelInput } from "react";
+import React from "react";
 import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./index.css";
-
-<script src="main.js"></script>
 
 export default function Home() {
   const token = localStorage.getItem("token");
+
+  let produtos = [
+    {
+        name: 'Pack com 6 fotos polaroid',
+        price: 17.99,
+        qtd: 6,
+        inCart: 0,
+        frete: 10
+    },
+    {
+        name: 'Pack com 12 fotos polaroid',
+        price: 21.99,
+        qtd: 6,
+        inCart: 0,
+        frete: 10
+    },
+    {
+        name: 'Pack com 18 fotos polaroid',
+        price: 26.99,
+        qtd: 6,
+        inCart: 0,
+        frete: 10
+    }
+]
 
   // Botões que direcionam para pagina de login ou upload
   const botaoComprar = () => {
 
     if (token === null) {
       return (
-        <Link to="/LoginCadastro" className="buyButton" >
+        <Link id="bota" to="#LoginCadastro" className="buyButton" >
          COMPRAR
         </Link>
       );
     } else {
       return (
-        <Link to="#uploadimagem" className="buyButton">
+        <Link id="bota" to="#uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
     }
   };
 
+//  Variavel que pega o class do botão
+let carts = document.querySelectorAll('.buyButton');
+
+// Laço de repetição
+for (let i = 0; i < carts.length; i++) {
+    carts[i].addEventListener('click', () => {
+        cartsnumber(produtos[i]);
+    })
+}
+
+function cartsnumber(produto) {
+  console.log('produto celecionado: ', produto)
+    let productnumber = localStorage.getItem('cartNumber');
+
+    productnumber = parseInt(productnumber);
+
+    if (productnumber) {
+        localStorage.setItem('cartNumber', productnumber + 1);
+    } else {
+        localStorage.setItem('cartNumber', 1);
+    }
+
+    // setItems(produto);
+}
 
 
   return (
@@ -108,7 +154,9 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 17,99</h4>
               </div>
-              {botaoComprar()}
+              <div className="buy buy1">
+                  {botaoComprar()}
+              </div>
             </div>
             <div className="pack2">
               <h3>PACK COM 12</h3>
@@ -143,7 +191,9 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 21,99</h4>
               </div>
+              <div className="buy buy2">
               {botaoComprar()}
+              </div>
             </div>
             <div className="pack3">
               <h3>PACK COM 18</h3>
@@ -178,7 +228,9 @@ export default function Home() {
               <div className="precoPack">
                 <h4>R$ 26,99</h4>
               </div>
+              <div className="buy buy3">
               {botaoComprar()}
+              </div>
             </div>
           </div>
         </section>

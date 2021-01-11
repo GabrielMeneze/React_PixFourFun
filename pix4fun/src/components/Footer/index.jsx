@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
 import "./index.css";
 import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'

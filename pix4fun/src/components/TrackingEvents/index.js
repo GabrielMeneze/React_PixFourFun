@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import './index.css';
 
 function TrackingEvents({ events }) {
-    if (!events || events.lenght === 0) return null;
-
     return (
         <Fragment>
             <h1>Detalhes do envio:</h1>

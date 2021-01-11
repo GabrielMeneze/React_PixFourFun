@@ -9,40 +9,10 @@ export default function Pagamento() {
     const [events, setEvents] = useState([]);
     const [results, setResults] = useState([]);
 
-    const { consultarCep } = require("correios-brasil");
-
-
-    // Busca o cep
-    // const cep = "08743670 ";
-
-    // consultarCep(cep).then((response) => {
-    //     console.log(response);
-    // });
-
-
-    // Valida o cupom
-    function Validar(cupom) {
-        return new Promise((resolve, reject) => {
-            if (cupom === 'PIX10') {
-                resolve({
-                    sucess: true,
-                    CupomName: cupom,
-                    msg: 'Cupom válido'
-                })
-            } else {
-                reject({
-                    sucess: false,
-                    msg: 'Cupom invalido'
-                })
-            }
-        })
-    }
-
-
-    async function doTheJob() {
-        const ValidarResponse = await Validar('PIX10');
-        console.log(ValidarResponse);
-    }
+    // async function doTheJob() {
+    //     const ValidarResponse = await Validar('PIX10');
+    //     console.log(ValidarResponse);
+    // }
 
 
 
@@ -74,7 +44,6 @@ export default function Pagamento() {
 
 
     return (
-        doTheJob(),
         <div className="bloco">
             <Header />
             <div className="localdeentrega">
