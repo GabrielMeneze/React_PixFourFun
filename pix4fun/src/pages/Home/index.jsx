@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -7,37 +7,37 @@ import "./index.css";
 export default function Home() {
   const token = localStorage.getItem("token");
 
+  // array que da valor aos botões comprar
   let produtos = [
     {
-        name: 'Pack com 6 fotos polaroid',
-        price: 17.99,
-        qtd: 6,
-        inCart: 0,
-        frete: 10
+      name: 'Pack com 6 fotos polaroid',
+      price: 17.99,
+      qtd: 6,
+      inCart: 0,
+      frete: 10
     },
     {
-        name: 'Pack com 12 fotos polaroid',
-        price: 21.99,
-        qtd: 6,
-        inCart: 0,
-        frete: 10
+      name: 'Pack com 12 fotos polaroid',
+      price: 21.99,
+      qtd: 6,
+      inCart: 0,
+      frete: 10
     },
     {
-        name: 'Pack com 18 fotos polaroid',
-        price: 26.99,
-        qtd: 6,
-        inCart: 0,
-        frete: 10
+      name: 'Pack com 18 fotos polaroid',
+      price: 26.99,
+      qtd: 6,
+      inCart: 0,
+      frete: 10
     }
-]
+  ]
 
   // Botões que direcionam para pagina de login ou upload
   const botaoComprar = () => {
-
     if (token === null) {
       return (
         <Link id="bota" to="#LoginCadastro" className="buyButton" >
-         COMPRAR
+          COMPRAR
         </Link>
       );
     } else {
@@ -49,29 +49,67 @@ export default function Home() {
     }
   };
 
-//  Variavel que pega o class do botão
-let carts = document.querySelectorAll('.buyButton');
+  //  Variavel que pega o class do botão
+  let carts = document.querySelectorAll('.buyButton');
 
-// Laço de repetição
-for (let i = 0; i < carts.length; i++) {
-    carts[i].addEventListener('click', () => {
-        cartsnumber(produtos[i]);
-    })
-}
+  // Laço de repetição
+  for (let i = 0; i < carts.length; i++) {
+      carts[i].addEventListener('click', () => {
+          cartsnumber(produtos[i]);
+          custoTotal(produtos[i]);
+      })
+  }
+  
+  function cartsnumber(produto) {
+      let productnumber = localStorage.getItem('cartNumber');
+  
+      productnumber = parseInt(productnumber);
+  
+      if (productnumber) {
+          localStorage.setItem('cartNumber', productnumber + 1);
+      } else {
+          localStorage.setItem('cartNumber', 1);
+      }
+  
+      setItems(produto);
+  }
+  
+  //  cria um array co os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
+  function setItems(produto) {
+      let cartItems = localStorage.getItem('produtoinCart');
+      cartItems = JSON.parse(cartItems)
+  
+      if (cartItems != null) {
+          if (cartItems[produto.name] === undefined) {
+              cartItems = {
+                  ...cartItems,
+                  [produto.name]: produto
+              }
+          }
+          cartItems[produto.name].inCart += 1;
+      } else {
+          produto.inCart = 1;
+          cartItems = {
+              [produto.name]: produto
+          }
+      }
+  
+      localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
+  }
 
-function cartsnumber(produto) {
-  console.log('produto celecionado: ', produto)
-    let productnumber = localStorage.getItem('cartNumber');
+  // Calcula o preço total
+  function custoTotal(produto) {
 
-    productnumber = parseInt(productnumber);
+    let custo = localStorage.getItem('custoTotal');
+    console.log(typeof custo);
 
-    if (productnumber) {
-        localStorage.setItem('cartNumber', productnumber + 1);
+    if (custo != null) {
+        custo = parseInt(custo);
+        localStorage.setItem('custoTotal', custo + produto.price);
     } else {
-        localStorage.setItem('cartNumber', 1);
+        localStorage.setItem('custoTotal', produto.price);
     }
 
-    // setItems(produto);
 }
 
 
@@ -155,7 +193,7 @@ function cartsnumber(produto) {
                 <h4>R$ 17,99</h4>
               </div>
               <div className="buy buy1">
-                  {botaoComprar()}
+                {botaoComprar()}
               </div>
             </div>
             <div className="pack2">
@@ -192,7 +230,7 @@ function cartsnumber(produto) {
                 <h4>R$ 21,99</h4>
               </div>
               <div className="buy buy2">
-              {botaoComprar()}
+                {botaoComprar()}
               </div>
             </div>
             <div className="pack3">
@@ -229,7 +267,7 @@ function cartsnumber(produto) {
                 <h4>R$ 26,99</h4>
               </div>
               <div className="buy buy3">
-              {botaoComprar()}
+                {botaoComprar()}
               </div>
             </div>
           </div>

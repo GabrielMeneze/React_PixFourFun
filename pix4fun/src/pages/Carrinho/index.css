@@ -1,15 +1,11 @@
-/* *{
-    margin: 0;
-    padding: 0;
-}
-.container{
+.con{
     max-width: 650px;
     justify-content: space-around;
     margin: 0 auto;
     margin-top: 50px;
 }
 
-.container ion-icon{
+.con ion-icon{
     font-size: 25px;
     color: blue;
     margin-left: 10px;
@@ -67,8 +63,3 @@
     padding: 10px 0;
     border-bottom: 1px solid lavenderblush;
 }
-
-.cupom{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-} */
