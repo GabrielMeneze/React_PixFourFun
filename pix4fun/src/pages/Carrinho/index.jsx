@@ -23,8 +23,6 @@ import './index.css';
 //     const ValidarResponse = await Validar();
 //     console.log(ValidarResponse);
 // }
-    
-<script src="main.js"></script>
 
 const Carrinho = () => {
     return (

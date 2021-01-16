@@ -109,8 +109,31 @@ export default function Home() {
     } else {
         localStorage.setItem('custoTotal', produto.price);
     }
-
 }
+
+// Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
+function displayCart() {
+  let cartItems = localStorage.getItem("produtoinCart");
+  cartItems = JSON.parse(cartItems);
+  let container = document.querySelector(".produtos");
+  console.log(cartItems);
+  if (cartItems && container) {
+      container.innerHTML = '';
+      Object.values(cartItems).map(item => {
+          container.innerHTML += `
+              <div class="produto" >
+              <span>${item.name}</span>
+              </div>
+              <div class="preco"> ${item.price}</div>
+              <div class="quantidade"> ${item.inCart}</div>
+              <div class="total">${item.price + item.frete}</div>
+          
+          `
+      })
+  }
+}
+
+displayCart();
 
 
   return (
