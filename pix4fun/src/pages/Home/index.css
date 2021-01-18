@@ -198,17 +198,18 @@
 .imgPack1,
 .imgPack2,
 .imgPack3 {
-  width: 100%;
-  height: 300px;
+  width: 120%;
+  height: 360px;
   background-image: url("../../assets/img/pack.png");
+  background-repeat: no-repeat;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
 
-.imgPack1:hover,
-.imgPack2:hover,
-.imgPack3:hover {
-  transition: 1s;
-  transform: scale(1.1);
-}
+
+
 
 .packDesc {
   margin-top: 1.3em;
@@ -367,4 +368,41 @@
     font-size: 1.4em;
     text-align: center;
   }
+}
+
+.limitImg{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.limitImg:hover .imgPack1,
+.limitImg:focus .imgPack1{
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.limitImg:hover .imgPack2,
+.limitImg:focus .imgPack2{
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.limitImg:hover .imgPack3,
+.limitImg:focus .imgPack3{
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
 }
