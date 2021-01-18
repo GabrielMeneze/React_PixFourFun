@@ -36,13 +36,13 @@ export default function Home() {
   const botaoComprar = () => {
     if (token === null) {
       return (
-        <Link id="bota" to="#LoginCadastro" className="buyButton" >
+        <Link id="bota" to="/LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
     } else {
       return (
-        <Link id="bota" to="#uploadimagem" className="buyButton">
+        <Link id="bota" to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );

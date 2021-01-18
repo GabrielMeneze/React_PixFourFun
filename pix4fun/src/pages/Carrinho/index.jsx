@@ -36,7 +36,7 @@ const Carrinho = () => {
                 </div>
 
                 <div className="produtos">
-
+                    
                 </div>
             </div>
         </div>
