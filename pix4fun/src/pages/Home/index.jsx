@@ -54,47 +54,47 @@ export default function Home() {
 
   // Laço de repetição
   for (let i = 0; i < carts.length; i++) {
-      carts[i].addEventListener('click', () => {
-          cartsnumber(produtos[i]);
-          custoTotal(produtos[i]);
-      })
+    carts[i].addEventListener('click', () => {
+      cartsnumber(produtos[i]);
+      custoTotal(produtos[i]);
+    })
   }
-  
+
   function cartsnumber(produto) {
-      let productnumber = localStorage.getItem('cartNumber');
-  
-      productnumber = parseInt(productnumber);
-  
-      if (productnumber) {
-          localStorage.setItem('cartNumber', productnumber + 1);
-      } else {
-          localStorage.setItem('cartNumber', 1);
-      }
-  
-      setItems(produto);
+    let productnumber = localStorage.getItem('cartNumber');
+
+    productnumber = parseInt(productnumber);
+
+    if (productnumber) {
+      localStorage.setItem('cartNumber', productnumber + 1);
+    } else {
+      localStorage.setItem('cartNumber', 1);
+    }
+
+    setItems(produto);
   }
-  
-  //  cria um array co os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
+
+  //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
   function setItems(produto) {
-      let cartItems = localStorage.getItem('produtoinCart');
-      cartItems = JSON.parse(cartItems)
-  
-      if (cartItems != null) {
-          if (cartItems[produto.name] === undefined) {
-              cartItems = {
-                  ...cartItems,
-                  [produto.name]: produto
-              }
-          }
-          cartItems[produto.name].inCart += 1;
-      } else {
-          produto.inCart = 1;
-          cartItems = {
-              [produto.name]: produto
-          }
+    let cartItems = localStorage.getItem('produtoinCart');
+    cartItems = JSON.parse(cartItems)
+
+    if (cartItems != null) {
+      if (cartItems[produto.name] === undefined) {
+        cartItems = {
+          ...cartItems,
+          [produto.name]: produto
+        }
       }
-  
-      localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
+      cartItems[produto.name].inCart += 1;
+    } else {
+      produto.inCart = 1;
+      cartItems = {
+        [produto.name]: produto
+      }
+    }
+
+    localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
   }
 
   // Calcula o preço total
@@ -104,23 +104,23 @@ export default function Home() {
     console.log(typeof custo);
 
     if (custo != null) {
-        custo = parseInt(custo);
-        localStorage.setItem('custoTotal', custo + produto.price);
+      custo = parseInt(custo);
+      localStorage.setItem('custoTotal', custo + produto.price);
     } else {
-        localStorage.setItem('custoTotal', produto.price);
+      localStorage.setItem('custoTotal', produto.price);
     }
-}
+  }
 
-// Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
-function displayCart() {
-  let cartItems = localStorage.getItem("produtoinCart");
-  cartItems = JSON.parse(cartItems);
-  let container = document.querySelector(".produtos");
-  console.log(cartItems);
-  if (cartItems && container) {
+  // Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
+  function displayCart() {
+    let cartItems = localStorage.getItem("produtoinCart");
+    cartItems = JSON.parse(cartItems);
+    let container = document.querySelector(".produtos");
+    console.log(cartItems);
+    if (cartItems && container) {
       container.innerHTML = '';
       Object.values(cartItems).map(item => {
-          container.innerHTML += `
+        container.innerHTML += `
               <div class="produto" >
               <span>${item.name}</span>
               </div>
@@ -130,10 +130,10 @@ function displayCart() {
           
           `
       })
+    }
   }
-}
 
-displayCart();
+  displayCart();
 
 
   return (
@@ -184,7 +184,9 @@ displayCart();
           <div className="packs">
             <div className="pack1">
               <h3>PACK COM 6</h3>
-              <div className="imgPack1" />
+              <div className="limitImg">
+                <div className="imgPack1" />
+              </div>
               <div className="packDesc">
                 <p>
                   <span>•TAMANHOS</span>
@@ -221,7 +223,9 @@ displayCart();
             </div>
             <div className="pack2">
               <h3>PACK COM 12</h3>
-              <div className="imgPack2" />
+              <div className="limitImg">
+                <div className="imgPack2" />
+              </div>
               <div className="packDesc">
                 <p>
                   <span>•TAMANHOS</span>
@@ -258,7 +262,9 @@ displayCart();
             </div>
             <div className="pack3">
               <h3>PACK COM 18</h3>
-              <div className="imgPack3" />
+              <div className="limitImg">
+                <div className="imgPack3" />
+              </div>
               <div className="packDesc">
                 <p>
                   <span>•TAMANHOS</span>
