@@ -3,7 +3,6 @@ import Header from "../../components/Header/index";
 import Footer from "../../components/Footer/index";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./index.css";
-
 export default function Home() {
   const token = localStorage.getItem("token");
 
@@ -36,7 +35,7 @@ export default function Home() {
   const botaoComprar = () => {
     if (token === null) {
       return (
-        <Link id="bota" to="/LoginCadastro" className="buyButton" >
+        <Link id="bota" to="#LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
@@ -111,29 +110,29 @@ export default function Home() {
     }
   }
 
-  // Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
-  function displayCart() {
-    let cartItems = localStorage.getItem("produtoinCart");
-    cartItems = JSON.parse(cartItems);
-    let container = document.querySelector(".produtos");
-    console.log(cartItems);
-    if (cartItems && container) {
-      container.innerHTML = '';
-      Object.values(cartItems).map(item => {
-        container.innerHTML += `
-              <div class="produto" >
-              <span>${item.name}</span>
-              </div>
-              <div class="preco"> ${item.price}</div>
-              <div class="quantidade"> ${item.inCart}</div>
-              <div class="total">${item.price + item.frete}</div>
+  // // Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
+  // function displayCart() {
+  //   let cartItems = localStorage.getItem("produtoinCart");
+  //   cartItems = JSON.parse(cartItems);
+  //   let container = document.querySelectorAll(".produtos");
+  //   console.log(cartItems);
+  //   if (cartItems && container) {
+  //     container.innerHTML = '';
+  //     Object.values(cartItems).map(item => {
+  //       container.innerHTML += `
+  //             <div class="produto" >
+  //             <span>${item.name}</span>
+  //             </div>
+  //             <div class="preco"> ${item.price}</div>
+  //             <div class="quantidade"> ${item.inCart}</div>
+  //             <div class="total">${item.price + item.frete}</div>
           
-          `
-      })
-    }
-  }
+  //         `
+  //     })
+  //   }
+  // }
 
-  displayCart();
+  // displayCart();
 
 
   return (
@@ -338,8 +337,6 @@ export default function Home() {
       <div>
         <div id="contact" />
         <div id="doubt" />
-
-        <script src="main.js"></script>
         <Footer />
       </div>
     </div>

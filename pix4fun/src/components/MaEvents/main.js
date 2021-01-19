@@ -31,7 +31,6 @@ let carts = document.querySelectorAll('.btn');
 for (let i = 0; i < carts.length; i++) {
     carts[i].addEventListener('click', () => {
         cartsnumber(produtos[i]);
-
     })
 }
 
@@ -73,7 +72,6 @@ function setItems(produto) {
 
 function custoTotal(produto) {
     // console.log('o preco é', produto.price);
-
     let custo = localStorage.getItem('custoTotal');
     console.log('my cart cost is: ', custo);
     console.log(typeof custo);

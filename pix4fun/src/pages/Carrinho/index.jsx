@@ -1,5 +1,7 @@
 import React from 'react';
+import Header from '../../components/Header'
 import './index.css';
+import Footer from '../../components/Footer';
 
 // // Valida o cupom
 // function Validar(cupom) {
@@ -27,6 +29,7 @@ import './index.css';
 const Carrinho = () => {
     return (
         <div className="mai">
+            <Header/>
             <div className="con">
                 <div className="produto-h">
                     <h5 className="titulo">Produto</h5>
@@ -34,11 +37,11 @@ const Carrinho = () => {
                     <h5 className="quantidade">quantidade</h5>
                     <h5 className="total">total</h5>
                 </div>
-
-                <div className="produtos">
-                    
-                </div>
             </div>
+            <div className="produtos">
+
+            </div>
+            <Footer/>
         </div>
 
     )
