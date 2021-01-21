@@ -6,15 +6,11 @@ import './index.css';
 
 export default function Pagamento() {
 
+  
+
+    // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
+
     const [events, setEvents] = useState([]);
-    const [results, setResults] = useState([]);
-
-    // async function doTheJob() {
-    //     const ValidarResponse = await Validar('PIX10');
-    //     console.log(ValidarResponse);
-    // }
-
-
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -39,7 +35,6 @@ export default function Pagamento() {
             .then(response => response.json())
             .then(console.log)
             .catch(console.error)
-        console.log('*** App.subimitHandler.data', data)
     }
 
 

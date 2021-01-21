@@ -25,17 +25,17 @@ const UploadImagem = () => {
     console.log(qtdImgs)
 
 
-    const keys = qtdImgs.split(' ')
+    const keys = qtdImgs.split('')
 
     const limitFotos = () => {
         var pack6 = 6;
         var pack12 = 12;
         var pack18 = 18;
 
-        if (keys[6] == 6) {
+        if (keys[85] == 6) {
             setContador(contador + pack6)
             
-        }else if(keys[6] == 12){
+        }else if(keys[85] == 12){
             setContador(contador + pack12);
          }else{
              setContador(contador + pack18);
