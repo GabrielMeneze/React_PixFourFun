@@ -18,14 +18,14 @@ export default function Home() {
     {
       name: 'Pack com 12 fotos polaroid',
       price: 21.99,
-      qtd: 6,
+      qtd: 12,
       inCart: 0,
       frete: 10
     },
     {
       name: 'Pack com 18 fotos polaroid',
       price: 26.99,
-      qtd: 6,
+      qtd: 18,
       inCart: 0,
       frete: 10
     }
