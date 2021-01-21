@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header'
 import './index.css';
 import Footer from '../../components/Footer';
+import Home from '../Home/index.jsx';
 
 // // Valida o cupom
 // function Validar(cupom) {
@@ -27,9 +28,29 @@ import Footer from '../../components/Footer';
 // }
 
 const Carrinho = () => {
+
+    const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
+    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
+
+    const keys = listarImgs.split('"')
+
+    const custo = () => {
+        setCustoTotal('custoTotal', keys[8] * keys[12] + keys[14])
+    }
+
+    console.log(custoTotal)
+
+    // const ListalImagens(){
+    //     return(
+    //         <div>
+
+    //         </div>
+    //     );
+    // }
+
     return (
         <div className="mai">
-            <Header/>
+            <Header />
             <div className="con">
                 <div className="produto-h">
                     <h5 className="titulo">Produto</h5>
@@ -38,10 +59,16 @@ const Carrinho = () => {
                     <h5 className="total">total</h5>
                 </div>
             </div>
-            <div className="produtos">
-
+            <div className="con">
+                <div className="produto-carrinho">
+                    {<p className="nome">{keys[1]}</p>}
+                    {<p className="preco-b">{keys[8]}</p>}
+                    {<p className="quantidade-b">{keys[12]}</p>}
+                    {<p className="custo">{custoTotal}</p>}
+                </div>
             </div>
-            <Footer/>
+
+            <Footer />
         </div>
 
     )
