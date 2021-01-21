@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Header from '../../components/Header'
 import './index.css';
 import Footer from '../../components/Footer';
-import Home from '../Home/index.jsx';
 
-// // Valida o cupom
+// Valida o cupom
 // function Validar(cupom) {
 //     return new Promise((resolve, reject) => {
 //         if (cupom === 'PIX10') {
@@ -27,6 +26,27 @@ import Home from '../Home/index.jsx';
 //     console.log(ValidarResponse);
 // }
 
+
+function Validar(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+   if (data.Cupom) {
+    if (data.Cupom === 'PIX10') {
+        console.log('ok')
+    }else{
+        console.log('cupom não é valido')
+    }
+   }else{
+       console.log('é necessario preencher o campo')
+   }
+}
+
+
+
+
+
 const Carrinho = () => {
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
@@ -39,15 +59,6 @@ const Carrinho = () => {
     }
 
     console.log(custoTotal)
-
-    // const ListalImagens(){
-    //     return(
-    //         <div>
-
-    //         </div>
-    //     );
-    // }
-
     return (
         <div className="mai">
             <Header />
@@ -67,6 +78,20 @@ const Carrinho = () => {
                     {<p className="custo">{custoTotal}</p>}
                 </div>
             </div>
+            <form onSubmit={Validar}>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        name="Cupom"
+                        className="form-control"
+                    >
+                    </input>
+                    <button
+                        type="submit"
+                        value="vcupom"
+                    >OK</button>
+                </div>
+            </form>
 
             <Footer />
         </div>

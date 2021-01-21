@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
-import Home from '../Home/index.jsx'
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
 
 const UploadImagem = () => {
@@ -41,12 +41,6 @@ const UploadImagem = () => {
              setContador(contador + pack18);
          }
     }
-
-    console.log(keys)
-
-    console.log(limitFotos)
-
-    console.log(contador)
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
@@ -165,7 +159,6 @@ const UploadImagem = () => {
                         ref={inputEscolher}
                         accept='image/*'
                         onChange={escolherImg}
-                        onChange={limitFotos}
                         onClick={() => setBloco1(true)}
                         style={{ display: 'none' }}
                     />
@@ -255,7 +248,7 @@ const UploadImagem = () => {
                             <div className="container-buttons botaosalvar">
 
                                 {<p>Você ainda pode escolher {contador} imagens</p>}
-                                <Button className="btn" type="submit" onClick={uparImg}>Salvar e enviar</Button>
+                                <Button className="btn" type="submit"  onClick={uparImg}>Salvar e enviar</Button>
                             </div>
 
                         </>
