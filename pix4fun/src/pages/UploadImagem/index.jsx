@@ -7,19 +7,46 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
+import Home from '../Home/index.jsx'
 import './index.css';
 
 const UploadImagem = () => {
 
     const [state, setState] = useState('')
-    const [contador, setContador] = useState(6)
-    const [des, setDes] = useState(-1)
+    const [contador, setContador] = useState(0)
+    const [des, setDes] = useState(-13)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
     const [image, setImage] = React.useState(null)
     const [bloco1, setBloco1] = React.useState(null)
     const [croppedarea, setCroppedarea] = React.useState(null)
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
 
+    console.log(qtdImgs)
+
+
+    const keys = qtdImgs.split('')
+
+    const limitFotos = () => {
+        var pack6 = 6;
+        var pack12 = 12;
+        var pack18 = 18;
+
+        if (keys[85] == 6) {
+            setContador(contador + pack6)
+            
+        }else if(keys[85] == 12){
+            setContador(contador + pack12);
+         }else{
+             setContador(contador + pack18);
+         }
+    }
+
+    console.log(keys)
+
+    console.log(limitFotos)
+
+    console.log(contador)
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
@@ -79,10 +106,10 @@ const UploadImagem = () => {
         }
     };
 
-    const Qtd = () =>{
+    const Qtd = () => {
         if (contador === 0) {
             <p>Você não pode mais selecionar imagens</p>
-        }else{
+        } else {
             setContador(contador + des);
         }
     }
@@ -138,6 +165,7 @@ const UploadImagem = () => {
                         ref={inputEscolher}
                         accept='image/*'
                         onChange={escolherImg}
+                        onChange={limitFotos}
                         onClick={() => setBloco1(true)}
                         style={{ display: 'none' }}
                     />
@@ -225,8 +253,8 @@ const UploadImagem = () => {
                             </div>
 
                             <div className="container-buttons botaosalvar">
-                                
-                            {<p>Você ainda pode escolher {contador} imagens</p>}
+
+                                {<p>Você ainda pode escolher {contador} imagens</p>}
                                 <Button className="btn" type="submit" onClick={uparImg}>Salvar e enviar</Button>
                             </div>
 
