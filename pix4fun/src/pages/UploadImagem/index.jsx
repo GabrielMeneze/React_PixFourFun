@@ -13,7 +13,7 @@ import './index.css';
 const UploadImagem = () => {
 
     const [state, setState] = useState('')
-    const [contador, setContador] = useState(0)
+    const [contador, setContador] = useState(5)
     const [des, setDes] = useState(-13)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
@@ -34,12 +34,12 @@ const UploadImagem = () => {
 
         if (keys[6] == 6) {
             setContador(contador + pack6)
-            
-        }else if(keys[6] == 12){
+
+        } else if (keys[6] == 12) {
             setContador(contador + pack12);
-         }else{
-             setContador(contador + pack18);
-         }
+        } else {
+            setContador(contador + pack18);
+        }
     }
 
     console.log(keys)
@@ -77,10 +77,16 @@ const UploadImagem = () => {
     }
 
     // componente que escolhe a imagem
-    const escolherImg = event => {
-        setState({
-            selectedFile: URL.createObjectURL(event.target.files[0])
-        })
+    const escolherImg = (event) => {
+
+        if (contador > 0) {
+            setState({
+                selectedFile: URL.createObjectURL(event.target.files[0])
+            })   
+        } else {
+            alert("Você não pode mais selecionar imagens")
+        }
+
     }
 
     // Upa imagem para a api
@@ -164,8 +170,9 @@ const UploadImagem = () => {
                         type="file"
                         ref={inputEscolher}
                         accept='image/*'
+                        //faz o laço de repetição do contador funcionar de acordo com o produto
+                        //onChange={limitFotos}
                         onChange={escolherImg}
-                        onChange={limitFotos}
                         onClick={() => setBloco1(true)}
                         style={{ display: 'none' }}
                     />
@@ -255,7 +262,7 @@ const UploadImagem = () => {
                             <div className="container-buttons botaosalvar">
 
                                 {<p>Você ainda pode escolher {contador} imagens</p>}
-                                <Button className="btn" type="submit" onClick={uparImg}>Salvar e enviar</Button>
+                                <Button className="btn" type="submit" onClick={uparImg} onChange={limitFotos}>Salvar e enviar</Button>
                             </div>
 
                         </>
