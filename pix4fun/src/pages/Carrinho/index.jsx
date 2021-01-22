@@ -3,51 +3,25 @@ import Header from '../../components/Header'
 import './index.css';
 import Footer from '../../components/Footer';
 
-// Valida o cupom
-// function Validar(cupom) {
-//     return new Promise((resolve, reject) => {
-//         if (cupom === 'PIX10') {
-//             resolve({
-//                 sucess: true,
-//                 CupomName: cupom,
-//                 msg: 'Cupom válido'
-//             })
-//         } else {
-//             reject({
-//                 sucess: false,
-//                 msg: 'Cupom invalido'
-//             })
-//         }
-//     })
-// }
-
-// async function doTheJob() {
-//     const ValidarResponse = await Validar();
-//     console.log(ValidarResponse);
-// }
-
-
-function Validar(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-   if (data.Cupom) {
-    if (data.Cupom === 'PIX10') {
-        console.log('ok')
-    }else{
-        console.log('cupom não é valido')
-    }
-   }else{
-       console.log('é necessario preencher o campo')
-   }
-}
-
-
-
-
 
 const Carrinho = () => {
+
+    function Validar(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        if (data.Cupom) {
+            if (data.Cupom === 'PIX10') {
+                let desconto = (custoTotal / 10 - custoTotal);
+                console.log('novo valor com 10% de desconto: ', desconto)
+            } else {
+                console.log('cupom não é valido')
+            }
+        } else {
+            console.log('é necessario preencher o campo')
+        }
+    }
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
     const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
@@ -58,7 +32,6 @@ const Carrinho = () => {
         setCustoTotal('custoTotal', keys[8] * keys[12] + keys[14])
     }
 
-    console.log(custoTotal)
     return (
         <div className="mai">
             <Header />
