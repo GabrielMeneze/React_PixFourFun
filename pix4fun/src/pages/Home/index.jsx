@@ -35,7 +35,7 @@ export default function Home() {
   const botaoComprar = () => {
     if (token === null) {
       return (
-        <Link id="bota" to="/LoginCadastro" className="buyButton" >
+        <Link id="bota" to="/#LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
