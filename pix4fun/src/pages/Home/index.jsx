@@ -79,7 +79,7 @@ export default function Home() {
     cartItems = JSON.parse(cartItems)
 
     if (cartItems != null) {
-      if (cartItems[produto.name] === undefined) {
+      if (cartItems[produto.name] === null) {
         cartItems = {
           ...cartItems,
           [produto.name]: produto
