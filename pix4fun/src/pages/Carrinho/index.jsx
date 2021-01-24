@@ -14,7 +14,7 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoTotal / 10 - custoTotal);
-                console.log('novo valor com 10% de desconto: ', desconto)
+                console.log('novo valor com 10% de desconto: ', desconto);
             } else {
                 console.log('cupom não é valido')
             }
@@ -22,12 +22,11 @@ const Carrinho = () => {
             console.log('é necessario preencher o campo')
         }
     }
-
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
     const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
+    const [msg, setMsg] = useState(null)
 
-    const keys = listarImgs.split('"')
-
+    
     const custo = () => {
         setCustoTotal('custoTotal', keys[8] * keys[12] + keys[14])
     }
@@ -63,6 +62,13 @@ const Carrinho = () => {
                         type="submit"
                         value="vcupom"
                     >OK</button>
+                    {msg ? (
+                        <>
+
+                        <p>Cupom valido</p>
+
+                        </>
+                    ) : null}
                 </div>
             </form>
 

@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
 
 const UploadImagem = () => {
@@ -24,7 +23,6 @@ const UploadImagem = () => {
 
     console.log(qtdImgs)
 
-
     const keys = qtdImgs.split('')
 
     const limitFotos = () => {
@@ -32,14 +30,14 @@ const UploadImagem = () => {
         var pack12 = 12;
         var pack18 = 18;
 
-        if (keys[85] == 6) {
+        if (keys[85] === 6) {
             setContador(contador + pack6)
-            
-        }else if(keys[85] == 12){
+
+        } else if (keys[85] === 12) {
             setContador(contador + pack12);
-         }else{
-             setContador(contador + pack18);
-         }
+        } else {
+            setContador(contador + pack18);
+        }
     }
 
     // Variaveis referentes aos botões
@@ -60,7 +58,7 @@ const UploadImagem = () => {
         console.log(cropPorcentagem, croppedarea)
     }
 
-    // Upa imagem para a api
+    // Upa frase para a api
     const uparFrase = () => {
         const fd = new FormData();
         fd.append('FraseFoto', frase)
@@ -248,7 +246,7 @@ const UploadImagem = () => {
                             <div className="container-buttons botaosalvar">
 
                                 {<p>Você ainda pode escolher {contador} imagens</p>}
-                                <Button className="btn" type="submit"  onClick={uparImg}>Salvar e enviar</Button>
+                                <Button className="btn" type="submit" onClick={uparImg}>Salvar e enviar</Button>
                             </div>
 
                         </>
