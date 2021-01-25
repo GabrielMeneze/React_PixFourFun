@@ -30,11 +30,8 @@ const Carrinho = () => {
 
     console.log(keys)
 
-    const custo = () => {
-        setCustoTotal('custoTotal', keys[8] * keys[12] + keys[14])
-    }
-
     return (
+
         <div className="mai">
             <Header />
             <div className="produto-detalhes">
@@ -48,7 +45,7 @@ const Carrinho = () => {
                 </div>
                 <div className="con">
                     <div className="produto-carrinho">
-                        {<p className="nome">{keys[1]}</p>}
+                        {<p className="nome" >{keys[1]}</p>}
                         {<p className="preco-b">{keys[8]}</p>}
                         {<p className="quantidade-b">{keys[12]}</p>}
                         {<p className="custo">{custoTotal}</p>}

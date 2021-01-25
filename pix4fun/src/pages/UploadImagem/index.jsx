@@ -26,30 +26,6 @@ const UploadImagem = () => {
 
     console.log(keys)
 
-    const limitFotos = () => {
-        var pack6 = 5;
-        var pack12 = 11;
-        var pack18 = 17;
-
-      
-            if (contador == 0) {
-                if (keys[6] == 6) {
-                    setContador(contador + pack6)
-    
-                } else if (keys[6] == 12) {
-                    setContador(contador + pack12);
-                } else {
-                    setContador(contador + pack18);
-                }
-            }else{
-                setContador(contador + des)
-            }    
-
-        
-        
-
-
-    }
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
@@ -85,14 +61,35 @@ const UploadImagem = () => {
 
     // componente que escolhe a imagem
     const escolherImg = event => {
-        if(contador > 0){
+
+        var pack6 = 5;
+        var pack12 = 11;
+        var pack18 = 17;
+
+
+        if (contador == 0) {
+            if (keys[6] == 6) {
+                setContador(contador + pack6)   
+            }
+             else if (keys[6] == 12) {
+                setContador(contador + pack12);
+            } 
+            else {
+                setContador(contador + pack18);
+            }
+        } else {
+            setContador(contador + des)
+        }
+
+        if (contador == 0) {
             setState({
                 selectedFile: URL.createObjectURL(event.target.files[0])
             })
-        }else{
-            alert("Você não pode selecionar mais imagens")
+        } else {
+            alert("Você não pode mais selecionar imagens")
         }
-        
+
+
     }
 
     // Upa imagem para a api
@@ -117,6 +114,7 @@ const UploadImagem = () => {
             })
         }
     };
+
 
 
 
@@ -261,10 +259,9 @@ const UploadImagem = () => {
                                 {<p>Você ainda pode escolher {contador} imagens</p>}
                                 <div className="container-salvar">
                                     <input
-                                    href="#ContainerT"
-                                    ref={inputLimit}
-                                    onChange={limitFotos}
-                                    style={{ display: 'none' }}
+                                        href="#ContainerT"
+                                        ref={inputLimit}
+                                        style={{ display: 'none' }}
                                     ></input>
                                     <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
                                 </div>
