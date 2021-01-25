@@ -13,7 +13,7 @@ const UploadImagem = () => {
 
     const [state, setState] = useState('')
     const [contador, setContador] = useState(0)
-    const [des, setDes] = useState(-13)
+    const [des, setDes] = useState(-1)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
     const [image, setImage] = React.useState(null)
@@ -21,23 +21,26 @@ const UploadImagem = () => {
     const [croppedarea, setCroppedarea] = React.useState(null)
     const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
 
-    console.log(qtdImgs)
+    const keys = qtdImgs.split(' ')
 
-    const keys = qtdImgs.split('')
+    console.log(keys)
 
-    const limitFotos = () => {
-        var pack6 = 6;
-        var pack12 = 12;
-        var pack18 = 18;
+    var pack6 = 5;
+    var pack12 = 11;
+    var pack18 = 17;
 
-        if (keys[85] === 6) {
+
+    if (contador === 0) {
+        if (keys[6] == 6) {
             setContador(contador + pack6)
 
-        } else if (keys[85] === 12) {
+        } else if (keys[6] == 12) {
             setContador(contador + pack12);
         } else {
             setContador(contador + pack18);
         }
+    } else {
+        setContador(contador + des)
     }
 
     // Variaveis referentes aos botões
@@ -47,6 +50,10 @@ const UploadImagem = () => {
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
     const refbtnEscolher = () => inputEscolher.current.click();
+
+    //referencia o limitador de fotos
+    const inputLimit = React.useRef();
+    const refLimit = () => inputLimit.current.click();
 
     //Referencia o input no Botão Cortar
     const inputCortar = React.useRef();
@@ -77,12 +84,13 @@ const UploadImagem = () => {
 
     // Upa imagem para a api
     const uparImg = (event) => {
-        const fd = new FormData();
-        fd.append('FraseFoto', frase)
-        fetch('http://localhost:3000/api/Upload', fd)
-            .then(res => {
-                console.log(res)
-            });
+        if (contador > 0) {
+            setState({
+                selectedFile: URL.createObjectURL(event.target.files[0])
+            })
+        } else {
+            alert("Você não pode selecionar mais imagens")
+        }
     }
 
 
@@ -97,14 +105,6 @@ const UploadImagem = () => {
             })
         }
     };
-
-    const Qtd = () => {
-        if (contador === 0) {
-            <p>Você não pode mais selecionar imagens</p>
-        } else {
-            setContador(contador + des);
-        }
-    }
 
     // Define frase que acompanhará foto
     function ModalFrase(props) {
@@ -225,7 +225,6 @@ const UploadImagem = () => {
                                         accept='image/*'
                                         style={{ display: 'none' }}
                                         onChange={AbrirCrop}
-                                        onClick={Qtd}
                                     />
                                     <Button
                                         onClick={refCortar}
@@ -246,7 +245,15 @@ const UploadImagem = () => {
                             <div className="container-buttons botaosalvar">
 
                                 {<p>Você ainda pode escolher {contador} imagens</p>}
-                                <Button className="btn" type="submit" onClick={uparImg}>Salvar e enviar</Button>
+                                <div className="container-salvar">
+                                    <input
+                                        href="#ContainerT"
+                                        ref={inputLimit}
+                                        onChange={limitFotos}
+                                        style={{ display: 'none' }}
+                                    ></input>
+                                    <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
+                                </div>
                             </div>
 
                         </>
