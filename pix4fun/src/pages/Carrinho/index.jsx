@@ -3,9 +3,47 @@ import Header from '../../components/Header'
 import './index.css';
 import Footer from '../../components/Footer';
 import { keys } from '@material-ui/core/styles/createBreakpoints';
+import { preferences } from 'mercadopago';
+import { Button } from 'bootstrap';
+
 
 
 const Carrinho = () => {
+
+    // SDK de Mercado Pago
+    const mercadopago = require('mercadopago');
+
+    // Configura credenciais
+    mercadopago.configure({
+        access_token: 'PROD_ACCESS_TOKEN'
+    });
+
+    // Cria um objeto de preferência
+    class MercadopagoController{
+        async mercadopago({request}){
+            let preference = {
+                items: [
+                    {
+                        title: 'Meu produto',
+                        unit_price: 100,
+                        quantity: 1,
+                    }
+                ]
+            };
+
+            const res = await mercadopago.preferences.create(preference);
+
+            return res;
+        }
+    }
+
+    // mercadopago.preferences.create(preference)
+    //     .then(function (response) {
+    //         // Este valor substituirá a string "<%= global.id %>" no seu HTML
+    //         global.id = response.body.id;
+    //     }).catch(function (error) {
+    //         console.log(error);
+    //     });
 
     function Validar(event) {
         event.preventDefault();
@@ -15,12 +53,13 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoTotal / 10 - custoTotal);
-                console.log('novo valor com 10% de desconto: ', desconto)
+                alert('Cupom válido')
+                console.log(desconto)
             } else {
-                console.log('cupom não é valido')
+                alert('cupom não é válido')
             }
         } else {
-            console.log('é necessario preencher o campo')
+            alert('é necessario preencher o campo')
         }
     }
 

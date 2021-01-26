@@ -249,7 +249,6 @@ const UploadImagem = () => {
                                     <input
                                         href="#ContainerT"
                                         ref={inputLimit}
-                                        onChange={limitFotos}
                                         style={{ display: 'none' }}
                                     ></input>
                                     <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
