@@ -6,6 +6,9 @@ import Footer from '../../components/Footer';
 
 const Carrinho = () => {
 
+    const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
+    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
+
     function Validar(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -13,7 +16,7 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custoTotal / 10 - custoTotal);
+                let desconto = (custoTotal* 0.9);
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
                 console.log('cupom não é valido')
@@ -21,14 +24,17 @@ const Carrinho = () => {
         } else {
             console.log('é necessario preencher o campo')
         }
-    }
-
-    const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
-    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
-
+    }                    
     const keys = listarImgs.split('"')
 
     console.log(keys)
+
+    const custoFrete = () =>{
+        var frete = 10.00
+        setCustoTotal(custoTotal + frete)
+    }
+
+    console.log(custoTotal)
 
     return (
 
@@ -37,7 +43,8 @@ const Carrinho = () => {
             <div className="produto-detalhes">
                 <div className="con">
                     <div className="produto-h">
-                        <h5 className="titulo">Produto</h5>
+                        <h5 className="titulo">p
+                        roduto</h5>
                         <h5 className="preco">preço</h5>
                         <h5 className="quantidade">quantidade</h5>
                         <h5 className="total">total</h5>
@@ -76,6 +83,7 @@ const Carrinho = () => {
                                 <button
                                     type="submit"
                                     value="vcupom"
+                                    onClick={custoFrete}
                                 >OK</button>
                             </div>
                         </form>
@@ -85,7 +93,7 @@ const Carrinho = () => {
 
                     <div className="resumo-detalhes">
                         <strong>total</strong>
-                        <strong>{keys[8]}</strong>
+                        <strong>{custoTotal}</strong>
                     </div>
                     <div className="buy-area">
                         <button className="buy-button">
