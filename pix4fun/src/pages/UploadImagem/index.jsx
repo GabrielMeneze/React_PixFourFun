@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
 
 const UploadImagem = () => {
@@ -25,23 +26,6 @@ const UploadImagem = () => {
 
     console.log(keys)
 
-    var pack6 = 5;
-    var pack12 = 11;
-    var pack18 = 17;
-
-
-    if (contador === 0) {
-        if (keys[6] == 6) {
-            setContador(contador + pack6)
-
-        } else if (keys[6] == 12) {
-            setContador(contador + pack12);
-        } else {
-            setContador(contador + pack18);
-        }
-    } else {
-        setContador(contador + des)
-    }
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
@@ -51,13 +35,13 @@ const UploadImagem = () => {
     const inputEscolher = React.useRef();
     const refbtnEscolher = () => inputEscolher.current.click();
 
-    //referencia o limitador de fotos
-    const inputLimit = React.useRef();
-    const refLimit = () => inputLimit.current.click();
-
     //Referencia o input no Botão Cortar
     const inputCortar = React.useRef();
     const refCortar = () => inputCortar.current.click();
+
+    //Referencia o limitador de fotos
+    const inputLimit = React.useRef();
+    const refLimit = () => inputLimit.current.click();
 
     //Componente que define a area do crop
     const onCropComplete = (cropPorcentagem, cropPixels) => {
@@ -65,7 +49,7 @@ const UploadImagem = () => {
         console.log(cropPorcentagem, croppedarea)
     }
 
-    // Upa frase para a api
+    // Upa imagem para a api
     const uparFrase = () => {
         const fd = new FormData();
         fd.append('FraseFoto', frase)
@@ -77,20 +61,45 @@ const UploadImagem = () => {
 
     // componente que escolhe a imagem
     const escolherImg = event => {
-        setState({
-            selectedFile: URL.createObjectURL(event.target.files[0])
-        })
-    }
 
-    // Upa imagem para a api
-    const uparImg = (event) => {
-        if (contador > 0) {
+        var pack6 = 5;
+        var pack12 = 11;
+        var pack18 = 17;
+
+
+        if (contador == 0) {
+            if (keys[6] == 6) {
+                setContador(contador + pack6)   
+            }
+             else if (keys[6] == 12) {
+                setContador(contador + pack12);
+            } 
+            else {
+                setContador(contador + pack18);
+            }
+        } else {
+            setContador(contador + des)
+        }
+
+        if (contador == 0) {
             setState({
                 selectedFile: URL.createObjectURL(event.target.files[0])
             })
         } else {
-            alert("Você não pode selecionar mais imagens")
+            alert("Você não pode mais selecionar imagens")
         }
+
+
+    }
+
+    // Upa imagem para a api
+    const uparImg = (event) => {
+        const fd = new FormData();
+        fd.append('FraseFoto', frase)
+        fetch('http://localhost:3000/api/Upload', fd)
+            .then(res => {
+                console.log(res)
+            });
     }
 
 
@@ -105,6 +114,9 @@ const UploadImagem = () => {
             })
         }
     };
+
+
+
 
     // Define frase que acompanhará foto
     function ModalFrase(props) {
@@ -253,6 +265,7 @@ const UploadImagem = () => {
                                     ></input>
                                     <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
                                 </div>
+
                             </div>
 
                         </>

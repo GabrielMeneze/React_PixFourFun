@@ -95,7 +95,7 @@ export default function Home() {
 
     localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
   }
-
+  
   // Calcula o preço total
   function custoTotal(produto) {
 

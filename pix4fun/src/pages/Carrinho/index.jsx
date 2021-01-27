@@ -2,48 +2,12 @@ import React, { useState } from 'react';
 import Header from '../../components/Header'
 import './index.css';
 import Footer from '../../components/Footer';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
-import { preferences } from 'mercadopago';
-import { Button } from 'bootstrap';
-
 
 
 const Carrinho = () => {
 
-    // SDK de Mercado Pago
-    const mercadopago = require('mercadopago');
-
-    // Configura credenciais
-    mercadopago.configure({
-        access_token: 'PROD_ACCESS_TOKEN'
-    });
-
-    // Cria um objeto de preferência
-    class MercadopagoController{
-        async mercadopago({request}){
-            let preference = {
-                items: [
-                    {
-                        title: 'Meu produto',
-                        unit_price: 100,
-                        quantity: 1,
-                    }
-                ]
-            };
-
-            const res = await mercadopago.preferences.create(preference);
-
-            return res;
-        }
-    }
-
-    // mercadopago.preferences.create(preference)
-    //     .then(function (response) {
-    //         // Este valor substituirá a string "<%= global.id %>" no seu HTML
-    //         global.id = response.body.id;
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     });
+    const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
+    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
 
     function Validar(event) {
         event.preventDefault();
@@ -52,35 +16,35 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custoTotal / 10 - custoTotal);
-                alert('Cupom válido')
-                console.log(desconto)
+                let desconto = (custoTotal* 0.9);
+                console.log('novo valor com 10% de desconto: ', desconto)
             } else {
-                alert('cupom não é válido')
+                console.log('cupom não é valido')
             }
         } else {
-            alert('é necessario preencher o campo')
+            console.log('é necessario preencher o campo')
         }
-    }
-
-    const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
-    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
-
+    }                    
     const keys = listarImgs.split('"')
-
-    const custo = () => {
-        setCustoTotal('custoTotal', keys[8] * keys[12] + keys[14])
-    }
 
     console.log(keys)
 
+    const custoFrete = () =>{
+        var frete = 10.00
+        setCustoTotal(custoTotal + frete)
+    }
+
+    console.log(custoTotal)
+
     return (
+
         <div className="mai">
             <Header />
             <div className="produto-detalhes">
                 <div className="con">
                     <div className="produto-h">
-                        <h5 className="titulo">Produto</h5>
+                        <h5 className="titulo">p
+                        roduto</h5>
                         <h5 className="preco">preço</h5>
                         <h5 className="quantidade">quantidade</h5>
                         <h5 className="total">total</h5>
@@ -88,13 +52,14 @@ const Carrinho = () => {
                 </div>
                 <div className="con">
                     <div className="produto-carrinho">
-                        {<p className="nome">{keys[1]}</p>}
+                        {<p className="nome" >{keys[1]}</p>}
                         {<p className="preco-b">{keys[8]}</p>}
                         {<p className="quantidade-b">{keys[12]}</p>}
                         {<p className="custo">{custoTotal}</p>}
                     </div>
                 </div>
             </div>
+
             <div className="resumo-pedido">
                 <div className="limit-div">
                     <h5>Resumo pedido</h5>
@@ -118,6 +83,7 @@ const Carrinho = () => {
                                 <button
                                     type="submit"
                                     value="vcupom"
+                                    onClick={custoFrete}
                                 >OK</button>
                             </div>
                         </form>
@@ -127,15 +93,18 @@ const Carrinho = () => {
 
                     <div className="resumo-detalhes">
                         <strong>total</strong>
-                        <strong>{keys[8]}</strong>
+                        <strong>{custoTotal}</strong>
                     </div>
                     <div className="buy-area">
                         <button className="buy-button">
                             COMPRAR
                         </button>
                     </div>
+
+
                 </div>
             </div>
+
             <Footer />
         </div>
 
