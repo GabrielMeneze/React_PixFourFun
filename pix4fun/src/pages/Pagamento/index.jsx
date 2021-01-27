@@ -6,7 +6,7 @@ import './index.css';
 
 export default function Pagamento() {
 
-  
+
 
     // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
 
@@ -37,6 +37,33 @@ export default function Pagamento() {
             .catch(console.error)
     }
 
+
+    // SDK de Mercado Pago
+    const mercadopago = require('mercadopago');
+
+    // Configura credenciais
+    mercadopago.configure({
+        access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
+    });
+
+    // Cria um objeto de preferência
+    let preference = {
+        items: [
+            {
+                title: 'Meu produto',
+                unit_price: 100,
+                quantity: 1,
+            }
+        ]
+    };
+
+    mercadopago.preferences.create(preference)
+        .then(function (response) {
+            // Este valor substituirá a string "<%= global.id %>" no seu HTML
+            global.id = response.body.id;
+        }).catch(function (error) {
+            console.log(error);
+        });
 
     return (
         <div className="bloco">
@@ -77,7 +104,10 @@ export default function Pagamento() {
                         >Calcular</button>
                     </div>
                 </form>
-
+                <script
+                    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                    data-preference-id='<%= global.id %>'>
+                </script>
             </div>
             <div id="contact" />
             <div id="doubt" />

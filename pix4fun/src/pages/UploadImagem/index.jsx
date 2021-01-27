@@ -68,38 +68,41 @@ const UploadImagem = () => {
 
 
         if (contador == 0) {
-            if (keys[6] == 6) {
-                setContador(contador + pack6)   
-            }
-             else if (keys[6] == 12) {
-                setContador(contador + pack12);
-            } 
-            else {
-                setContador(contador + pack18);
-            }
-        } else {
-            setContador(contador + des)
-        }
-
-        if (contador == 0) {
             setState({
                 selectedFile: URL.createObjectURL(event.target.files[0])
             })
+            if (keys[6] == 6) {
+                setContador(contador + pack6)
+            }
+            else if (keys[6] == 12) {
+                setContador(contador + pack12);
+            }
+            else if (keys[6] == 18) {
+                setContador(contador + pack18);
+            }
         } else {
-            alert("Você não pode mais selecionar imagens")
+            setState({
+                selectedFile: URL.createObjectURL(event.target.files[0])
+            })
+            setContador(contador + des)
+            if (contador == 1) {
+                alert('Pronto! agora basta enviar as fotos')
+            }
         }
-
-
     }
 
     // Upa imagem para a api
     const uparImg = (event) => {
-        const fd = new FormData();
-        fd.append('FraseFoto', frase)
-        fetch('http://localhost:3000/api/Upload', fd)
-            .then(res => {
-                console.log(res)
-            });
+        if (contador > 0) {
+            alert('você ainda pode selecionar mais fotos')
+        } else {
+            const fd = new FormData();
+            fd.append('FraseFoto', frase)
+            fetch('http://localhost:3000/api/Upload', fd)
+                .then(res => {
+                    console.log(res)
+                });
+        }
     }
 
 
