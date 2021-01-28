@@ -57,8 +57,35 @@ export default function Header() {
             eventKey="disabled"
             disabled
           >
-            Bem-Vindo {jwtDecode(token).nameid}
           </Nav.Link>
+          <Dropdown>
+            <Dropdown.Toggle
+              className="dropdownToggle"
+              style={{
+                backgroundColor: "#F8F9FA",
+                border: "none",
+                color: "#7c7c7c",
+                textTransform: "uppercase",
+                fontSize: 14,
+                fontWeight: 700,
+              }}
+              id="dropdown-basic"
+            >
+              BEM-VINDO {jwtDecode(token).nameid}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                style={{
+                  color: "#7c7c7c",
+                  fontSize: 14,
+                  fontWeight: 700,
+                }}
+                onClick={(event) => sair(event)}
+              >
+                Sair
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Nav>
       );
     } else {

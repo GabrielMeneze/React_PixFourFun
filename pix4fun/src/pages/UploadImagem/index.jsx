@@ -69,7 +69,7 @@ const UploadImagem = () => {
 
         if (contador == 0) {
             setState({
-                selectedFile: URL.createObjectURL(event.target.files[0])
+                selectedFile: [URL.createObjectURL(event.target.files[0])]
             })
             if (keys[6] == 6) {
                 setContador(contador + pack6)
@@ -121,166 +121,166 @@ const UploadImagem = () => {
 
 
 
-    // Define frase que acompanhará foto
-    function ModalFrase(props) {
-        return (
-            <Modal
-                {...props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                style={{ fontFamily: "Questrial" }}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Frase da foto
-              </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>
-                        Digite sua frase abaixo
-                    </p>
-                    <input style={{ padding: "0 5px" }} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase" />
-                    <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit" onClick={uparFrase}>Enviar</Button>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={props.onHide}>Fechar</Button>
-                </Modal.Footer>
-            </Modal>
-        );
-    }
-
+// Define frase que acompanhará foto
+function ModalFrase(props) {
     return (
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            style={{ fontFamily: "Questrial" }}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Frase da foto
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>
+                    Digite sua frase abaixo
+                    </p>
+                <input style={{ padding: "0 5px" }} value={frase} onChange={event => setFrase(event.target.frase)} type="text" placeholder="Frase" />
+                <Button style={{ textTransform: "none", marginLeft: 5 }} type="submit" onClick={uparFrase}>Enviar</Button>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Fechar</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 
-        <div className="ContainerMain">
-            <Header />
-            <div className="ContainerOne">
-                <div className="ContainerA_Text">
-                    <h2 className="textOne">
-                        Agora é a hora de<br></br> nos enviar suas<br></br> fotos!
+return (
+
+    <div className="ContainerMain">
+        <Header />
+        <div className="ContainerOne">
+            <div className="ContainerA_Text">
+                <h2 className="textOne">
+                    Agora é a hora de<br></br> nos enviar suas<br></br> fotos!
           <span className="textGray">Simples e <br></br>rápido.</span>
-                        <p>Selecione suas fotos favoritas, recorte<br></br>
+                    <p>Selecione suas fotos favoritas, recorte<br></br>
                             no formato em que deseja e clique e<br></br> enviar. Pronto!
                             Receberemos um aviso e<br></br> suas fotos começarão a ser impressas.
                         </p>
-                    </h2>
-                </div>
-                <div className="ContainerB_escolher">
-                    <input
-                        href="#ContainerT"
-                        type="file"
-                        ref={inputEscolher}
-                        accept='image/*'
-                        onChange={escolherImg}
-                        onClick={() => setBloco1(true)}
-                        style={{ display: 'none' }}
-                    />
-                    <button
-                        className="Btn"
-                        onClick={refbtnEscolher}
-                    >Escolher imagem</button>
-                </div>
+                </h2>
             </div>
-
-            <hr className="lin" id="ContainerT" />
-            {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
-
-            <div className="ContainerTwo">
-                <div className="container-cropper" >
-                    {image ? (
-                        <>
-                            <div className='cropper'>
-                                <Cropper
-                                    image={image}
-                                    crop={crop}
-                                    zoom={zoom}
-                                    aspect={1}
-                                    onCropChange={setCrop}
-                                    onZoomChange={setZoom}
-                                    onCropComplete={onCropComplete}
-                                />
-                            </div>
-
-                            <div className='slider'>
-                                <Slider
-                                    min={1}
-                                    max={6}
-                                    step={0.1}
-                                    value={zoom}
-                                    onChange={(e, zoom) => setZoom(zoom)}
-                                    color='secondary'
-                                />
-                            </div>
-
-                            {/* Salva e lista a imagem */}
-                            <Button
-                                className="Btn"
-                                onClick={() => setImage(false)}
-                            >salvar imagem cortada </Button>
-                        </>
-                    ) : null}
-
-                </div>
-
-                <div className="blocos">
-                    {bloco1 ? (
-                        <>
-                            <div className="bloco1">
-                                <div className="imagem">
-                                    <img src={state.selectedFile} />
-                                    {/* <div className="verification"/> */}
-                                </div>
-                                <div className="container-buttons">
-                                    <Button >Excluir</Button>
-
-                                    {/* Abre o crop de imagem */}
-                                    <input
-                                        type="file"
-                                        ref={inputCortar}
-                                        accept='image/*'
-                                        style={{ display: 'none' }}
-                                        onChange={AbrirCrop}
-                                    />
-                                    <Button
-                                        onClick={refCortar}
-                                    >Cortar</Button>
-
-                                    {/* Abre o input para a frase da foto */}
-                                    <Button
-                                        onClick={() => setModalShow(true)}>
-                                        Frase
-                                    </Button>
-                                    <ModalFrase
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="container-buttons botaosalvar">
-
-                                {<p>Você ainda pode escolher {contador} imagens</p>}
-                                <div className="container-salvar">
-                                    <input
-                                        href="#ContainerT"
-                                        ref={inputLimit}
-                                        style={{ display: 'none' }}
-                                    ></input>
-                                    <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
-                                </div>
-
-                            </div>
-
-                        </>
-                    ) : null}
-                </div>
+            <div className="ContainerB_escolher">
+                <input
+                    href="#ContainerT"
+                    type="file"
+                    ref={inputEscolher}
+                    accept='image/*'
+                    onChange={escolherImg}
+                    onClick={() => setBloco1(true)}
+                    style={{ display: 'none' }}
+                />
+                <button
+                    className="Btn"
+                    onClick={refbtnEscolher}
+                >Escolher imagem</button>
             </div>
-
-            <div id="contact" />
-            <div id="doubt" />
-            <Footer />
         </div>
-    )
+
+        <hr className="lin" id="ContainerT" />
+        {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
+
+        <div className="ContainerTwo">
+            <div className="container-cropper" >
+                {image ? (
+                    <>
+                        <div className='cropper'>
+                            <Cropper
+                                image={image}
+                                crop={crop}
+                                zoom={zoom}
+                                aspect={1}
+                                onCropChange={setCrop}
+                                onZoomChange={setZoom}
+                                onCropComplete={onCropComplete}
+                            />
+                        </div>
+
+                        <div className='slider'>
+                            <Slider
+                                min={1}
+                                max={6}
+                                step={0.1}
+                                value={zoom}
+                                onChange={(e, zoom) => setZoom(zoom)}
+                                color='secondary'
+                            />
+                        </div>
+
+                        {/* Salva e lista a imagem */}
+                        <Button
+                            className="Btn"
+                            onClick={() => setImage(false)}
+                        >salvar imagem cortada </Button>
+                    </>
+                ) : null}
+
+            </div>
+
+            <div className="blocos">
+                {bloco1 ? (
+                    <>
+                        <div className="bloco1">
+                            <div className="imagem">
+                                <img src={state.selectedFile} />
+                                {/* <div className="verification"/> */}
+                            </div>
+                            <div className="container-buttons">
+                                <Button >Excluir</Button>
+
+                                {/* Abre o crop de imagem */}
+                                <input
+                                    type="file"
+                                    ref={inputCortar}
+                                    accept='image/*'
+                                    style={{ display: 'none' }}
+                                    onChange={AbrirCrop}
+                                />
+                                <Button
+                                    onClick={refCortar}
+                                >Cortar</Button>
+
+                                {/* Abre o input para a frase da foto */}
+                                <Button
+                                    onClick={() => setModalShow(true)}>
+                                    Frase
+                                    </Button>
+                                <ModalFrase
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="container-buttons botaosalvar">
+
+                            {<p>Você ainda pode escolher {contador} imagens</p>}
+                            <div className="container-salvar">
+                                <input
+                                    href="#ContainerT"
+                                    ref={inputLimit}
+                                    style={{ display: 'none' }}
+                                ></input>
+                                <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
+                            </div>
+
+                        </div>
+
+                    </>
+                ) : null}
+            </div>
+        </div>
+
+        <div id="contact" />
+        <div id="doubt" />
+        <Footer />
+    </div>
+)
 }
 export default UploadImagem;
 

@@ -106,7 +106,7 @@ export default function Pagamento() {
                 </form>
                 <script
                     src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                    data-preference-id='<%= global.id %>'>
+                    data-preference-id='TEST-99dc7658-aafe-4a21-b88b-1f2cc48a70a1'>
                 </script>
             </div>
             <div id="contact" />
