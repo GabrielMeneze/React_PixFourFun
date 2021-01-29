@@ -14,6 +14,7 @@
     "cheerio": "^1.0.0-rc.5",
     "correios-brasil": "^2.1.0",
     "cors": "^2.8.5",
+    "emailjs-com": "^2.6.4",
     "expo-image-picker": "^9.2.1",
     "frete": "^0.3.1",
     "get-orientation": "^1.1.2",

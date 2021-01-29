@@ -3,18 +3,26 @@ import "./index.css";
 import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'
 import logoPT from '../../assets/img/003-pinterest.svg'
+import emailjs from 'emailjs-com';
 
 
 export default function Footer() {
-    
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
 
-  const enviarEmail = () => {
-    return nome;
-  };
+  function sendEmail(e) {
+    e.preventDefault();
 
+    emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
+      .then((result) => {
+        console.log(result.text);
+        alert('Menssagem enviada')
+      }, (error) => {
+        console.log(error.text);
+      });
+  }
   return (
     <footer id="rodape">
       <div className="container">
@@ -25,38 +33,15 @@ export default function Footer() {
             <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@PIX4FUN.COM.BR</a>
           </div>
 
-          <form method="post" className="contato">
-            <p>Entre em contato conosco</p>
-            <div className="field">
-              <input
-                type="text"
-                name="nome"
-                value={nome}
-                onChange={(event) => setNome(event.target.value)}
-                placeholder="Nome"
-              />
-            </div>
-            <div className="field">
-              <input
-                type="text"
-                name="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="Email"
-              />
-            </div>
-            <div className="field">
-              <textarea
-                rows="3"
-                cols="35"
-                name="nome"
-                value={mensagem}
-                onChange={(event) => setMensagem(event.target.value)}
-                placeholder="Mensagem"
-              />
-            </div>
-
-            <button className="btnEnviar" onChange={enviarEmail}>Enviar</button>
+          <form className="contact-form" onSubmit={sendEmail}>
+            <input type="hidden" name="contact_number" />
+            <label>Name</label>
+            <input type="text" name="user_name" />
+            <label>Email</label>
+            <input type="email" name="user_email" />
+            <label>Message</label>
+            <textarea name="message" />
+            <input type="submit" value="Send" />
           </form>
         </div>
 
@@ -67,9 +52,9 @@ export default function Footer() {
         </div>
 
         <div className="links">
-            <a href="https://instagram.com/pix4funphoto"><img src={logoIN} alt="Logo com link para o Instagram do pix4fun"/></a>
-            <a href="https://www.facebook.com/pix4funphoto"><img src={logoFB} alt="Logo com link para o Facebook do pix4fun"/></a>
-            <a href="https://www.pinterest.com/"><img src={logoPT} alt="Logo com link para o Pinterest do pix4fun"/></a>
+          <a href="https://instagram.com/pix4funphoto"><img src={logoIN} alt="Logo com link para o Instagram do pix4fun" /></a>
+          <a href="https://www.facebook.com/pix4funphoto"><img src={logoFB} alt="Logo com link para o Facebook do pix4fun" /></a>
+          <a href="https://www.pinterest.com/"><img src={logoPT} alt="Logo com link para o Pinterest do pix4fun" /></a>
         </div>
 
         {

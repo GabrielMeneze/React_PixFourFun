@@ -13,7 +13,7 @@ import './index.css';
 const UploadImagem = () => {
 
     const [state, setState] = useState('')
-    const [contador, setContador] = useState(0)
+    const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
@@ -66,26 +66,27 @@ const UploadImagem = () => {
         var pack12 = 11;
         var pack18 = 17;
 
-
-        if (contador == 0) {
+        // Verificação para limitar quantidade de fotos escolhidas
+        if (limitador == 0) {
+            // seleciona a foto
             setState({
-                selectedFile: [URL.createObjectURL(event.target.files[0])]
+                selectedFile: URL.createObjectURL(event.target.files[0])
             })
             if (keys[6] == 6) {
-                setContador(contador + pack6)
+                setLimitador(limitador + pack6)
             }
             else if (keys[6] == 12) {
-                setContador(contador + pack12);
+                setLimitador(limitador + pack12);
             }
             else if (keys[6] == 18) {
-                setContador(contador + pack18);
+                setLimitador(limitador + pack18);
             }
         } else {
             setState({
                 selectedFile: URL.createObjectURL(event.target.files[0])
             })
-            setContador(contador + des)
-            if (contador == 1) {
+            setLimitador(limitador + des)
+            if (limitador == 1) {
                 alert('Pronto! agora basta enviar as fotos')
             }
         }
@@ -93,8 +94,9 @@ const UploadImagem = () => {
 
     // Upa imagem para a api
     const uparImg = (event) => {
-        if (contador > 0) {
+        if (limitador > 0) {
             alert('você ainda pode selecionar mais fotos')
+            setLimitador(limitador == -1)
         } else {
             const fd = new FormData();
             fd.append('FraseFoto', frase)
@@ -225,15 +227,16 @@ return (
             <div className="blocos">
                 {bloco1 ? (
                     <>
-                        <div className="bloco1">
+                        <div className="bloco">
                             <div className="imagem">
+                                {/* lista a imagem no bloco */}
                                 <img src={state.selectedFile} />
-                                {/* <div className="verification"/> */}
                             </div>
                             <div className="container-buttons">
+                                {/* botão excluir */}
                                 <Button >Excluir</Button>
 
-                                {/* Abre o crop de imagem */}
+                                {/* Abre o cortar imagem */}
                                 <input
                                     type="file"
                                     ref={inputCortar}
@@ -244,7 +247,6 @@ return (
                                 <Button
                                     onClick={refCortar}
                                 >Cortar</Button>
-
                                 {/* Abre o input para a frase da foto */}
                                 <Button
                                     onClick={() => setModalShow(true)}>
@@ -257,9 +259,11 @@ return (
                             </div>
                         </div>
 
+                        
+
                         <div className="container-buttons botaosalvar">
 
-                            {<p>Você ainda pode escolher {contador} imagens</p>}
+                            {<p>Você ainda pode escolher {limitador} imagens</p>}
                             <div className="container-salvar">
                                 <input
                                     href="#ContainerT"

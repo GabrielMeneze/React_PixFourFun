@@ -82,20 +82,10 @@
     height: 100%;
     flex-direction: row;
 }
-.bloco1{
+.bloco{
     display: flex;
     position: relative;
     margin-left: 30px;
-}
-.bloco2{
-    display: flex;
-    margin-left: 30px;
-}
-.bloco3{
-    display: flex;
-}
-.bloco4{
-    display: flex;
 }
 
 .imagem{
