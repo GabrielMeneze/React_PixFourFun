@@ -17,7 +17,6 @@ const routing = (
       <Route exact path="/" component={Home} />
       <Route path="/LoginCadastro" component={LoginCadastro} />
       <Route path="/UploadImagem" component={UploadImagem} />
-      
       <Route path="/Carrinho" component={Carrinho} />
       <Route path="/Pagamento" component={Pagamento} />
     </Switch>

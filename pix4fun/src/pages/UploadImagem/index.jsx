@@ -12,7 +12,8 @@ import './index.css';
 
 const UploadImagem = () => {
 
-    const [state, setState] = useState('')
+    const [state, setState] = useState([])
+    const [imagens, setImagens] = useState([])
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
@@ -69,9 +70,11 @@ const UploadImagem = () => {
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0) {
             // seleciona a foto
-            setState({
-                selectedFile: URL.createObjectURL(event.target.files[0])
-            })
+            imagens.push(URL.createObjectURL(event.target.files[0]))
+            setImagens(
+                imagens
+            );
+            console.log(imagens)
             if (keys[6] == 6) {
                 setLimitador(limitador + pack6)
             }
@@ -82,9 +85,11 @@ const UploadImagem = () => {
                 setLimitador(limitador + pack18);
             }
         } else {
-            setState({
-                selectedFile: URL.createObjectURL(event.target.files[0])
-            })
+            imagens.push(URL.createObjectURL(event.target.files[0]))
+            setImagens(
+                imagens
+            );
+            
             setLimitador(limitador + des)
             if (limitador == 1) {
                 alert('Pronto! agora basta enviar as fotos')
@@ -96,7 +101,6 @@ const UploadImagem = () => {
     const uparImg = (event) => {
         if (limitador > 0) {
             alert('você ainda pode selecionar mais fotos')
-            setLimitador(limitador == -1)
         } else {
             const fd = new FormData();
             fd.append('FraseFoto', frase)
@@ -225,12 +229,12 @@ return (
             </div>
 
             <div className="blocos">
-                {bloco1 ? (
-                    <>
+                {imagens.map(item => {
+                    return(
                         <div className="bloco">
                             <div className="imagem">
                                 {/* lista a imagem no bloco */}
-                                <img src={state.selectedFile} />
+                                <img src={item} />
                             </div>
                             <div className="container-buttons">
                                 {/* botão excluir */}
@@ -258,25 +262,9 @@ return (
                                 />
                             </div>
                         </div>
-
-                        
-
-                        <div className="container-buttons botaosalvar">
-
-                            {<p>Você ainda pode escolher {limitador} imagens</p>}
-                            <div className="container-salvar">
-                                <input
-                                    href="#ContainerT"
-                                    ref={inputLimit}
-                                    style={{ display: 'none' }}
-                                ></input>
-                                <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
-                            </div>
-
-                        </div>
-
-                    </>
-                ) : null}
+                    )
+                })}
+               
             </div>
         </div>
 
