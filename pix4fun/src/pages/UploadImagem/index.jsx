@@ -97,12 +97,12 @@ const UploadImagem = () => {
         if (limitador > 0) {
             alert('você ainda pode selecionar mais fotos')
         } else {
-        const fd = new FormData();
-        fd.append('imagens', imagens, imagens.blob)
-        fetch('http://localhost:5000/api/Foto', fd)
-            .then(res => {
-                console.log(res)
-            });
+            const fd = new FormData();
+            fd.append('imagens', imagens, imagens.blob)
+            fetch('http://localhost:5000/api/Foto', fd)
+                .then(res => {
+                    console.log(res)
+                });
         }
     }
 
@@ -262,12 +262,27 @@ const UploadImagem = () => {
                 </div>
                 <div className="container-subimit">
                     {<p>Você ainda pode escolher {limitador} imagens</p>}
+                    <div className="container-newImage">
+                    <input
+                        href="#ContainerT"
+                        type="file"
+                        ref={inputEscolher}
+                        accept='image/*'
+                        onChange={escolherImg}
+                        onClick={() => setBloco1(true)}
+                        style={{ display: 'none' }}
+                    />
+                    </div>
                     <div className="container-salvar">
                         <input
                             href="#ContainerT"
                             ref={inputLimit}
                             style={{ display: 'none' }}
                         ></input>
+                        <button
+                            className="Btn-2"
+                            onClick={refbtnEscolher}
+                        >ESCOLHER IMAGEM</button>
                         <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
                     </div>
                 </div>
@@ -275,7 +290,6 @@ const UploadImagem = () => {
 
             <div id="contact" />
             <div id="doubt" />
-            <Footer />
         </div>
     )
 }
