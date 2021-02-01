@@ -25,6 +25,7 @@ export default function Footer() {
             <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@PIX4FUN.COM.BR</a>
           </div>
 
+<<<<<<< Updated upstream
           <form method="post" className="contato">
             <p>Entre em contato conosco</p>
             <div className="field">
@@ -57,6 +58,17 @@ export default function Footer() {
             </div>
 
             <button className="btnEnviar" onChange={enviarEmail}>Enviar</button>
+=======
+          <form className="contact-form" onSubmit={sendEmail}>
+            <input type="hidden" name="contact_number" />
+            <label>Name</label>
+            <input type="text" name="user_name" />
+            <label>Email</label>
+            <input type="email" name="user_email" />
+            <label>Message</label>
+            <textarea name="message" />
+            <input className="btnEnviar" type="submit" value="Send" />
+>>>>>>> Stashed changes
           </form>
         </div>
 
