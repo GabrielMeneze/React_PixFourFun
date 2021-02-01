@@ -105,7 +105,7 @@
 }
 
 .container-subimit {
-    margin-top: -50vh;
+    margin-top: -30, vh;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -144,8 +144,8 @@
 /* ESTILO DO CROP */
 
 .ContainerTwo {
-    height: 250vh;
-    width: 100vw;
+    height: auto;
+    width: 100%;
 }
 
 .cropper {

@@ -97,11 +97,11 @@ const UploadImagem = () => {
         if (limitador > 0) {
             alert('você ainda pode selecionar mais fotos')
         } else {
-                const fd = new FormData();
-                fd.append('image', imagens)
-                fetch('http://localhost:5000/api/Foto', fd)
-                .then(res =>{
-                  console.log(res)
+            const fd = new FormData();
+            fd.append('image', imagens)
+            fetch('http://localhost:5000/api/Foto', fd)
+                .then(res => {
+                    console.log(res)
                 });
         }
     }
@@ -187,41 +187,6 @@ const UploadImagem = () => {
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
 
             <div className="ContainerTwo">
-                <div className="container-cropper" >
-                    {image ? (
-                        <>
-                            <div className='cropper'>
-                                <Cropper
-                                    image={image}
-                                    crop={crop}
-                                    zoom={zoom}
-                                    aspect={1}
-                                    onCropChange={setCrop}
-                                    onZoomChange={setZoom}
-                                    onCropComplete={onCropComplete}
-                                />
-                            </div>
-
-                            <div className='slider'>
-                                <Slider
-                                    min={1}
-                                    max={6}
-                                    step={0.1}
-                                    value={zoom}
-                                    onChange={(e, zoom) => setZoom(zoom)}
-                                    color='secondary'
-                                />
-                            </div>
-
-                            {/* Salva e lista a imagem */}
-                            <Button
-                                className="Btn"
-                                onClick={() => setImage(false)}
-                            >salvar imagem cortada </Button>
-                        </>
-                    ) : null}
-
-                </div>
 
                 <div className="container_bloco">
                     {imagens.map(item => {
@@ -260,18 +225,56 @@ const UploadImagem = () => {
                         )
                     })}
                 </div>
+
+                <div className="container-cropper" >
+                    {image ? (
+                        <>
+                            <div className='cropper'>
+                                <Cropper
+                                    image={image}
+                                    crop={crop}
+                                    zoom={zoom}
+                                    aspect={1}
+                                    onCropChange={setCrop}
+                                    onZoomChange={setZoom}
+                                    onCropComplete={onCropComplete}
+                                />
+                            </div>
+
+                            <div className='slider'>
+                                <Slider
+                                    min={1}
+                                    max={6}
+                                    step={0.1}
+                                    value={zoom}
+                                    onChange={(e, zoom) => setZoom(zoom)}
+                                    color='secondary'
+                                />
+                            </div>
+
+                            {/* Salva e lista a imagem */}
+                            <Button
+                                className="Btn"
+                                onClick={() => setImage(false)}
+                            >salvar imagem cortada </Button>
+                        </>
+                    ) : null}
+
+                </div>
+
+
                 <div className="container-subimit">
                     {<p>Você ainda pode escolher {limitador} imagens</p>}
                     <div className="container-newImage">
-                    <input
-                        href="#ContainerT"
-                        type="file"
-                        ref={inputEscolher}
-                        accept='image/*'
-                        onChange={escolherImg}
-                        onClick={() => setBloco1(true)}
-                        style={{ display: 'none' }}
-                    />
+                        <input
+                            href="#ContainerT"
+                            type="file"
+                            ref={inputEscolher}
+                            accept='image/*'
+                            onChange={escolherImg}
+                            onClick={() => setBloco1(true)}
+                            style={{ display: 'none' }}
+                        />
                     </div>
                     <div className="container-salvar">
                         <input
@@ -283,14 +286,14 @@ const UploadImagem = () => {
                             className="Btn"
                             onClick={refbtnEscolher}
                         >ESCOLHER IMAGEM</button>
-                        <Button className="Btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
+                        <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
                     </div>
                 </div>
             </div>
 
             <div id="contact" />
             <div id="doubt" />
-            <Footer/>
+            <Footer />
         </div>
     )
 }
