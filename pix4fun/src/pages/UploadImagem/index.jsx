@@ -98,7 +98,7 @@ const UploadImagem = () => {
             alert('você ainda pode selecionar mais fotos')
         } else {
                 const fd = new FormData();
-                fd.append('image', state.selectedFile, state.selectedFile.name)
+                fd.append('image', imagens)
                 fetch('http://localhost:5000/api/Foto', fd)
                 .then(res =>{
                   console.log(res)
