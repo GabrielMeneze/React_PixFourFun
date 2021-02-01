@@ -17,6 +17,7 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoTotal* 0.9);
+                setCustoTotal(desconto);
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
                 console.log('cupom não é valido')
@@ -24,8 +25,10 @@ const Carrinho = () => {
         } else {
             console.log('é necessario preencher o campo')
         }
-    }                    
-    const keys = listarImgs.split('"')
+    }   
+    
+    var separadores = ['"',':' , ',', '}' ]
+    const keys = listarImgs.split(new RegExp('('+separadores.join('|')+')'))
 
     console.log(keys)
 
@@ -43,8 +46,7 @@ const Carrinho = () => {
             <div className="produto-detalhes">
                 <div className="con">
                     <div className="produto-h">
-                        <h5 className="titulo">p
-                        roduto</h5>
+                        <h5 className="titulo">produto</h5>
                         <h5 className="preco">preço</h5>
                         <h5 className="quantidade">quantidade</h5>
                         <h5 className="total">total</h5>
@@ -52,9 +54,9 @@ const Carrinho = () => {
                 </div>
                 <div className="con">
                     <div className="produto-carrinho">
-                        {<p className="nome" >{keys[1]}</p>}
-                        {<p className="preco-b">{keys[8]}</p>}
-                        {<p className="quantidade-b">{keys[12]}</p>}
+                        {<p className="nome" >{keys[2]}</p>}
+                        {<p className="preco-b">{keys[24]}</p>}
+                        {<p className="quantidade-b">{keys[40]}</p>}
                         {<p className="custo">{custoTotal}</p>}
                     </div>
                 </div>
@@ -64,12 +66,12 @@ const Carrinho = () => {
                 <div className="limit-div">
                     <h5>Resumo pedido</h5>
                     <div className="resumo-detalhes">
-                        {<p>{keys[12]} produto(s)</p>}
-                        {<p>R${keys[8]}</p>}
+                        {<p>{keys[40]} produto(s)</p>}
+                        {<p>R${keys[24]}</p>}
                     </div>
                     <div className="resumo-detalhes">
                         {<p>frete</p>}
-                        {<p>{keys[14]}</p>}
+                        {<p>{keys[48]}</p>}
                     </div>
                     <div className="resumo-detalhes">
                         <form className="form-cupom" onSubmit={Validar}>

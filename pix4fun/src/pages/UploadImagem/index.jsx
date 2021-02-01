@@ -280,10 +280,10 @@ const UploadImagem = () => {
                             style={{ display: 'none' }}
                         ></input>
                         <button
-                            className="Btn-2"
+                            className="Btn"
                             onClick={refbtnEscolher}
                         >ESCOLHER IMAGEM</button>
-                        <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
+                        <Button className="Btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
                     </div>
                 </div>
             </div>

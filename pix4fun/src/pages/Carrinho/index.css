@@ -1,55 +1,126 @@
-.quantidade-b{
-    margin-right: 40px;
-}
-
-.resumo-pedido{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40vh;
-    height: 45vh;
-    background-color: #f0f0f0;
-    margin-left: 150vh;
-    margin-top: -20vh;
-    margin-bottom: 10vh;
-}
-
-.limit-div{
-    width: 35vh;
-    height: 40vh;
-}
-
-.resumo-detalhes{
-    display: flex;
-    justify-content: space-between;
-}
-
-.input-cupom{
-    width: 15vh;
-    height: 3vh;
-}
-
-.form-cupom{
-    display: flex;
-    justify-content: space-between;
-}
-
-.buy-button{
-    width: 20vh;
-    height: 5vh;
-    background-color: #EB9A3D;
-    border: none;
-    color: white;
-    border-radius: 0.2rem;
-  
-}
-
-.buy-area{
-    display: flex;
-    justify-content: center;
-    margin-top: 4vh;
-}
-
-.produto-detalhes{
-    margin-left: -50vh;
-}
+    .con {
+        max-width: 650px;
+        justify-content: space-around;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    
+    .con ion-icon {
+        font-size: 25px;
+        color: blue;
+        margin-left: 10px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    
+    .cari {
+        background-color: rgb(223, 221, 221);
+        border-radius: initial;
+        width: 100%;
+        height: 70px;
+    }
+    
+    .produto-h {
+        width: 100%;
+        max-width: 650px;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 4px solid lavenderblush;
+        margin: 0 auto;
+    }
+    
+    .titulo {
+        width: 45%;
+    }
+    
+    .preco {
+        width: 15%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .quantidade {
+        width: 30%;
+        border-bottom: 1px solid lavenderblush;
+        display: flex;
+        align-items: center;
+    }
+    
+    .total {
+        width: 10%;
+        border-bottom: 1px solid lavenderblush;
+        display: flex;
+        align-items: center;
+    }
+    
+    .produtos {
+        width: 100%;
+        max-width: 650px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid lavenderblush;
+    }
+    
+    .produto-carrinho {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .preco-b {}
+    
+    .quantidade-b {
+        margin-right: 40px;
+    }
+    
+    .resumo-pedido {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40vh;
+        height: 45vh;
+        background-color: #f0f0f0;
+        margin-left: 150vh;
+        margin-top: -20vh;
+        margin-bottom: 10vh;
+    }
+    
+    .limit-div {
+        width: 35vh;
+        height: 40vh;
+    }
+    
+    .resumo-detalhes {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .input-cupom {
+        width: 15vh;
+        height: 3vh;
+    }
+    
+    .form-cupom {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .buy-button {
+        width: 20vh;
+        height: 5vh;
+        background-color: #EB9A3D;
+        border: none;
+        color: white;
+        border-radius: 0.2rem;
+    }
+    
+    .buy-area {
+        display: flex;
+        justify-content: center;
+        margin-top: 4vh;
+    }
+    
+    .produto-detalhes {
+        margin-left: -50vh;
+    }

@@ -51,6 +51,7 @@ footer .field {
 
 footer input[type="text"],
 footer input[type="password"],
+footer input[type="email"],
 footer textarea {
     width: 100%;
     color: #707070;
