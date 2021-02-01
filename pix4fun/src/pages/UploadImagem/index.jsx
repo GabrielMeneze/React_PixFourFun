@@ -97,11 +97,11 @@ const UploadImagem = () => {
         if (limitador > 0) {
             alert('você ainda pode selecionar mais fotos')
         } else {
-            const fd = new FormData();
-            fd.append('imagens', imagens, imagens.blob)
-            fetch('http://localhost:5000/api/Foto', fd)
-                .then(res => {
-                    console.log(res)
+                const fd = new FormData();
+                fd.append('image', state.selectedFile, state.selectedFile.name)
+                fetch('http://localhost:5000/api/Foto', fd)
+                .then(res =>{
+                  console.log(res)
                 });
         }
     }
@@ -290,6 +290,7 @@ const UploadImagem = () => {
 
             <div id="contact" />
             <div id="doubt" />
+            <Footer/>
         </div>
     )
 }
