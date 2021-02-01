@@ -58,7 +58,7 @@
 
   .ContainerTwo{
     width: 100%;
-    height: 800px;
+    height: 100%;
     background-color: rgb(245, 245, 245);
 }
 
@@ -76,16 +76,12 @@
     background-color: black;
 }
 
-.blocos{
+.container_bloco{
     display: flex;
-    width: 60%;
+    align-items: center;
+    width: 50%;
     height: 100%;
-    flex-direction: row;
-}
-.bloco{
-    display: flex;
-    position: relative;
-    margin-left: 30px;
+    flex-direction: column;
 }
 
 .imagem{
@@ -101,6 +97,19 @@
     display: flex;
     align-items: center;
     margin-right: 40px;
+}
+
+.container-subimit {
+    width: 50%;
+    height: 100%;
+}
+.bloco{
+    display: flex;
+    padding: 20px;
+}
+.container-buttons{
+    display: flex;
+    flex-direction: column;
 }
 
 .container-buttons Button{
@@ -149,20 +158,6 @@
     height: 100%;
 }
 
-.verification{
-    width: 15px;
-    height: 15px;
-    background-color: rgb(129, 185, 45);
-}
 
-.container-buttons {
-	display: flex;
-	flex-direction: column;
-}
-.botaosalvar{
-    display: flex;
-    position: relative;
-    margin-left: 300px;
-    margin-top: 50px;
-}
+
 
