@@ -38,32 +38,7 @@ export default function Pagamento() {
     }
 
 
-    // SDK de Mercado Pago
-    const mercadopago = require('mercadopago');
-
-    // Configura credenciais
-    mercadopago.configure({
-        access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
-    });
-
-    // Cria um objeto de preferência
-    let preference = {
-        items: [
-            {
-                title: 'Meu produto',
-                unit_price: 100,
-                quantity: 1,
-            }
-        ]
-    };
-
-    mercadopago.preferences.create(preference)
-        .then(function (response) {
-            // Este valor substituirá a string "<%= global.id %>" no seu HTML
-            global.id = response.body.id;
-        }).catch(function (error) {
-            console.log(error);
-        });
+   
 
     return (
         <div className="bloco">

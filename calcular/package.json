@@ -12,6 +12,7 @@
   "dependencies": {
     "correios-brasil": "^2.1.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mercadopago": "^1.5.3"
   }
 }

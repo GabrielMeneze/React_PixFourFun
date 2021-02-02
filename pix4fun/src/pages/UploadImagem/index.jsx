@@ -18,7 +18,7 @@ const UploadImagem = () => {
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
     const [image, setImage] = React.useState(null)
-    const [bloco1, setBloco1] = React.useState(null)
+    const [container2, setContainer2] = React.useState(null)
     const [croppedarea, setCroppedarea] = React.useState(null)
     const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
 
@@ -35,10 +35,6 @@ const UploadImagem = () => {
     //Referencia o input no Botão Cortar
     const inputCortar = React.useRef();
     const refCortar = () => inputCortar.current.click();
-
-    //Referencia o limitador de fotos
-    const inputLimit = React.useRef();
-    const refLimit = () => inputLimit.current.click();
 
     //Componente que define a area do crop
     const onCropComplete = (cropPorcentagem, cropPixels) => {
@@ -178,7 +174,7 @@ const UploadImagem = () => {
                         ref={inputEscolher}
                         accept='image/*'
                         onChange={escolherImg}
-                        onClick={() => setBloco1(true)}
+                        onClick={() => setContainer2(true)}
                         style={{ display: 'none' }}
                     />
                     <button
@@ -221,83 +217,72 @@ const UploadImagem = () => {
                                         onClick={() => setModalShow(true)}>
                                         Frase
                                     </Button>
-                                    <ModalFrase
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
+                                            <ModalFrase
+                                                show={modalShow}
+                                                onHide={() => setModalShow(false)}
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className="man">
+                            <div className="container-subimit">
+                            {<p>Você ainda pode escolher {limitador} imagens</p>}
+                                <div className="escolherdnv">
+                                    <button
+                                        className="Btn"
+                                        onClick={refbtnEscolher}
+                                    >ESCOLHER OUTRA IMAGEM</button>
+                                    <button
+                                        className="Btn"
+                                        onClick={uparImg}
+                                    >SALVAR E ENVIAR</button>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
+                        </div>
 
-                <div className="container-cropper" >
-                    {image ? (
-                        <>
-                            <div className='cropper'>
-                                <Cropper
-                                    image={image}
-                                    crop={crop}
-                                    zoom={zoom}
-                                    aspect={1}
-                                    onCropChange={setCrop}
-                                    onZoomChange={setZoom}
-                                    onCropComplete={onCropComplete}
-                                />
-                            </div>
+                        <div className="container-cropper" >
+                            {image ? (
+                                <>
+                                    <div className='cropper'>
+                                        <Cropper
+                                            image={image}
+                                            crop={crop}
+                                            zoom={zoom}
+                                            aspect={1}
+                                            onCropChange={setCrop}
+                                            onZoomChange={setZoom}
+                                            onCropComplete={onCropComplete}
+                                        />
+                                    </div>
 
-                            <div className='slider'>
-                                <Slider
-                                    min={1}
-                                    max={6}
-                                    step={0.1}
-                                    value={zoom}
-                                    onChange={(e, zoom) => setZoom(zoom)}
-                                    color='secondary'
-                                />
-                            </div>
+                                    <div className='slider'>
+                                        <Slider
+                                            min={1}
+                                            max={6}
+                                            step={0.1}
+                                            value={zoom}
+                                            onChange={(e, zoom) => setZoom(zoom)}
+                                            color='secondary'
+                                        />
+                                    </div>
 
-                            {/* Salva e lista a imagem */}
-                            <Button
-                                className="Btn"
-                                onClick={() => setImage(false)}
-                            >salvar imagem cortada </Button>
-                        </>
-                    ) : null}
+                                    {/* Salva e lista a imagem */}
+                                    <Button
+                                        className="Btn"
+                                        onClick={() => setImage(false)}
+                                    >salvar imagem cortada </Button>
+                                </>
+                            ) : null}
 
-                </div>
-
-
-                <div className="container-subimit">
-                    {<p>Você ainda pode escolher {limitador} imagens</p>}
-                    <div className="container-newImage">
-                        <input
-                            href="#ContainerT"
-                            type="file"
-                            ref={inputEscolher}
-                            accept='image/*'
-                            onChange={escolherImg}
-                            onClick={() => setBloco1(true)}
-                            style={{ display: 'none' }}
-                        />
+                        </div>
                     </div>
-                    <div className="container-salvar">
-                        <input
-                            href="#ContainerT"
-                            ref={inputLimit}
-                            style={{ display: 'none' }}
-                        ></input>
-                        <button
-                            className="Btn"
-                            onClick={refbtnEscolher}
-                        >ESCOLHER IMAGEM</button>
-                        <Button className="btn" type="submit" onClick={uparImg} onChange={refLimit}>Salvar e enviar</Button>
-                    </div>
-                </div>
-            </div>
 
-            <div id="contact" />
-            <div id="doubt" />
+                    <div id="contact" />
+                    <div id="doubt" />
+                </div>
+            ) : null}
             <Footer />
         </div>
     )

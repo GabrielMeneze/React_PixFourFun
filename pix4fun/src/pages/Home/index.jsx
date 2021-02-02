@@ -32,7 +32,8 @@ export default function Home() {
   ]
 
   // Botões que direcionam para pagina de login ou upload
-  const botaoComprar = () => {
+  const botaoComprar = (prod) => {
+    console.log(prod)
     if (token === null) {
       return (
         <Link id="bota" to="#LoginCadastro" className="buyButton" >
@@ -79,7 +80,7 @@ export default function Home() {
     cartItems = JSON.parse(cartItems)
 
     if (cartItems != null) {
-      if (cartItems[produto.name] === null) {
+      if (cartItems[produto.name] === undefined) {
         cartItems = {
           ...cartItems,
           [produto.name]: produto
@@ -95,7 +96,7 @@ export default function Home() {
 
     localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
   }
-  
+
   // Calcula o preço total
   function custoTotal(produto) {
 
@@ -126,7 +127,7 @@ export default function Home() {
   //             <div class="preco"> ${item.price}</div>
   //             <div class="quantidade"> ${item.inCart}</div>
   //             <div class="total">${item.price + item.frete}</div>
-          
+
   //         `
   //     })
   //   }
@@ -217,7 +218,13 @@ export default function Home() {
                 <h4>R$ 17,99</h4>
               </div>
               <div className="buy buy1">
-                {botaoComprar()}
+                {botaoComprar([{
+                  name: 'Pack com 6 fotos polaroid',
+                  price: 17.99,
+                  qtd: 6,
+                  inCart: 0,
+                  frete: 10
+                }])}
               </div>
             </div>
             <div className="pack2">
