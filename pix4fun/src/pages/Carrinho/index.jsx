@@ -30,14 +30,47 @@ const Carrinho = () => {
     var separadores = ['"',':' , ',', '}' ]
     const keys = listarImgs.split(new RegExp('('+separadores.join('|')+')'))
 
-    console.log(keys)
-
     const custoFrete = () =>{
         var frete = 10.00
         setCustoTotal(custoTotal + frete)
     }
 
-    console.log(custoTotal)
+    // function pagamentoHandler(event) {
+    //     event.preventDefault();
+    //     const formData = new FormData(event.target);
+    //     const data = Object.fromEntries(formData);
+    //     fetch('http://localhost:3003/?pago=' + data.pago)
+    //         .then(response => response.json())
+    //         .then(console.log)
+    //         .catch(console.error)
+    // }
+
+    // SDK de Mercado Pago
+    const mercadopago = require('mercadopago');
+
+    // Configura credenciais
+    mercadopago.configure({
+        access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
+    });
+
+    // Cria um objeto de preferência
+    let preference = {
+        items: [
+            {
+                title: 'Meu produto',
+                unit_price: 100,
+                quantity: 1,
+            }
+        ]
+    };
+
+    mercadopago.preferences.create(preference)
+        .then(function (response) {
+            // Este valor substituirá a string "<%= global.id %>" no seu HTML
+            global.id = response.body.id;
+        }).catch(function (error) {
+            console.log(error);
+        });
 
     return (
 
@@ -106,7 +139,24 @@ const Carrinho = () => {
 
                 </div>
             </div>
-
+            {/* <form onSubmit={pagamentoHandler}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            name="pago"
+                            className="form-control"
+                        >
+                        </input>
+                        <button
+                            type="submit"
+                            value="Pago"
+                        >mercado</button>
+                    </div>
+                </form> */}
+                <script
+                    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                    data-preference-id='TEST-99dc7658-aafe-4a21-b88b-1f2cc48a70a1'>
+                </script>
             <Footer />
         </div>
 
