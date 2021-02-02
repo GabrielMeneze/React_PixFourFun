@@ -103,8 +103,10 @@ const UploadImagem = () => {
         }
     }
 
-    const excluirImg = (index) =>{       
-        bloco1.splice(index, 1)
+    function excluirImg(id) {
+        const list = imagens.filter((item) => item.id !== id)
+
+        setImagens(list)
     }
 
 
@@ -199,7 +201,7 @@ const UploadImagem = () => {
                                 </div>
                                 <div className="container-buttons">
                                     {/* botão excluir */}
-                                    <Button onClick={excluirImg} >Excluir</Button>
+                                    <Button onClick={() => excluirImg(item.id) } >Excluir</Button>
 
                                     {/* Abre o cortar imagem */}
                                     <input
@@ -217,74 +219,72 @@ const UploadImagem = () => {
                                         onClick={() => setModalShow(true)}>
                                         Frase
                                     </Button>
-                                            <ModalFrase
-                                                show={modalShow}
-                                                onHide={() => setModalShow(false)}
-                                            />
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        <div className="man">
-                            <div className="container-subimit">
-                            {<p>Você ainda pode escolher {limitador} imagens</p>}
-                                <div className="escolherdnv">
-                                    <button
-                                        className="Btn"
-                                        onClick={refbtnEscolher}
-                                    >ESCOLHER OUTRA IMAGEM</button>
-                                    <button
-                                        className="Btn"
-                                        onClick={uparImg}
-                                    >SALVAR E ENVIAR</button>
+                                    <ModalFrase
+                                        show={modalShow}
+                                        onHide={() => setModalShow(false)}
+                                    />
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="container-cropper" >
-                            {image ? (
-                                <>
-                                    <div className='cropper'>
-                                        <Cropper
-                                            image={image}
-                                            crop={crop}
-                                            zoom={zoom}
-                                            aspect={1}
-                                            onCropChange={setCrop}
-                                            onZoomChange={setZoom}
-                                            onCropComplete={onCropComplete}
-                                        />
-                                    </div>
-
-                                    <div className='slider'>
-                                        <Slider
-                                            min={1}
-                                            max={6}
-                                            step={0.1}
-                                            value={zoom}
-                                            onChange={(e, zoom) => setZoom(zoom)}
-                                            color='secondary'
-                                        />
-                                    </div>
-
-                                    {/* Salva e lista a imagem */}
-                                    <Button
-                                        className="Btn"
-                                        onClick={() => setImage(false)}
-                                    >salvar imagem cortada </Button>
-                                </>
-                            ) : null}
-
+                        )
+                    })}
+                </div>
+                <div className="man">
+                    <div className="container-subimit">
+                        {<p>Você ainda pode escolher {limitador} imagens</p>}
+                        <div className="escolherdnv">
+                            <button
+                                className="Btn"
+                                onClick={refbtnEscolher}
+                            >ESCOLHER OUTRA IMAGEM</button>
+                            <button
+                                className="Btn"
+                                onClick={uparImg}
+                            >SALVAR E ENVIAR</button>
                         </div>
                     </div>
-
-                    <div id="contact" />
-                    <div id="doubt" />
                 </div>
-            ) : null}
+
+                <div className="container-cropper" >
+                    {image ? (
+                        <>
+                            <div className='cropper'>
+                                <Cropper
+                                    image={image}
+                                    crop={crop}
+                                    zoom={zoom}
+                                    aspect={1}
+                                    onCropChange={setCrop}
+                                    onZoomChange={setZoom}
+                                    onCropComplete={onCropComplete}
+                                />
+                            </div>
+
+                            <div className='slider'>
+                                <Slider
+                                    min={1}
+                                    max={6}
+                                    step={0.1}
+                                    value={zoom}
+                                    onChange={(e, zoom) => setZoom(zoom)}
+                                    color='secondary'
+                                />
+                            </div>
+
+                            {/* Salva e lista a imagem */}
+                            <Button
+                                className="Btn"
+                                onClick={() => setImage(false)}
+                            >salvar imagem cortada </Button>
+                        </>
+                    ) : null}
+
+                </div>
+            </div>
+
+            <div id="contact" />
+            <div id="doubt" />
             <Footer />
-        </div>
+        </div >
     )
 }
 export default UploadImagem;
