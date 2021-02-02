@@ -9,6 +9,7 @@ import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
+import { event } from 'jquery';
 
 const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
@@ -106,6 +107,10 @@ const UploadImagem = () => {
         }
     }
 
+    const excluirImg = (index) =>{       
+        bloco1.splice(index, 1)
+    }
+
 
     // Componente que escolhe a imagem e o corta 
     const AbrirCrop = (event, props) => {
@@ -198,7 +203,7 @@ const UploadImagem = () => {
                                 </div>
                                 <div className="container-buttons">
                                     {/* botão excluir */}
-                                    <Button >Excluir</Button>
+                                    <Button onClick={excluirImg} >Excluir</Button>
 
                                     {/* Abre o cortar imagem */}
                                     <input
