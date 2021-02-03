@@ -218,13 +218,7 @@ export default function Home() {
                 <h4>R$ 17,99</h4>
               </div>
               <div className="buy buy1">
-                {botaoComprar([{
-                  name: 'Pack com 6 fotos polaroid',
-                  price: 17.99,
-                  qtd: 6,
-                  inCart: 0,
-                  frete: 10
-                }])}
+                {botaoComprar()}
               </div>
             </div>
             <div className="pack2">

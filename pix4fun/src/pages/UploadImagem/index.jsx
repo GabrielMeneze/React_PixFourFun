@@ -105,8 +105,8 @@ const UploadImagem = () => {
 
     function excluirImg(id) {
         const list = imagens.filter((item) => item.id !== id)
-
         setImagens(list)
+        setLimitador(limitador - des)
     }
 
 
