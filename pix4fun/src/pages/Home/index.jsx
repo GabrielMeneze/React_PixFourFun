@@ -30,10 +30,10 @@ export default function Home() {
       frete: 10
     }
   ]
-
+  let prod = produtos;
+  console.log(prod)
   // Botões que direcionam para pagina de login ou upload
-  const botaoComprar = (prod) => {
-    console.log(prod)
+  const botaoComprar = () => {
     if (token === null) {
       return (
         <Link id="bota" to="#LoginCadastro" className="buyButton" >
