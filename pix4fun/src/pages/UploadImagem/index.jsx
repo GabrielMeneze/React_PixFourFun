@@ -103,10 +103,17 @@ const UploadImagem = () => {
         }
     }
 
-    function excluirImg(id) {
-        const list = imagens.filter((item) => item.id != id)
 
-        setImagens(list)
+    function excluirImg(target, index) {
+
+        var i = 1
+
+        const list = Array.from(imagens)
+        list.splice(index, 1);
+
+        setImagens(list);
+
+        setLimitador(limitador + i);
     }
 
 
@@ -201,7 +208,7 @@ const UploadImagem = () => {
                                 </div>
                                 <div className="container-buttons">
                                     {/* botão excluir */}
-                                    <Button onClick={() => excluirImg(item.id) } >Excluir</Button>
+                                    <Button onClick={() => excluirImg(item.id)} >Excluir</Button>
 
                                     {/* Abre o cortar imagem */}
                                     <input
