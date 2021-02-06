@@ -15,9 +15,9 @@ const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
+    const [li, setLi] = useState('oi')
     const [crop, setCrop] = React.useState({ x: 0, y: 0 })
     const [zoom, setZoom] = React.useState(1)
-    const [image, setImage] = React.useState(null)
     const [container2, setContainer2] = React.useState(null)
     const [croppedarea, setCroppedarea] = React.useState(null)
     const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
@@ -26,7 +26,11 @@ const UploadImagem = () => {
 
     // Variaveis referentes aos botões
     const [frase, setFrase] = useState('')
+    const [image, setImage] = React.useState(null)
+
+    //variaveis do modal
     const [modalShow, setModalShow] = React.useState(false)
+    const [modalcrop, setModalcrop] = React.useState(false)
 
     //Referencia o input no Botão escolher imagem
     const inputEscolher = React.useRef();
@@ -60,7 +64,7 @@ const UploadImagem = () => {
         var pack18 = 17;
 
         // Verificação para limitar quantidade de fotos escolhidas
-        if (limitador == 0) {
+        if (limitador == 0 && li == 'oi') {
             // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
             setImagens(
@@ -76,16 +80,20 @@ const UploadImagem = () => {
             else if (keys[6] == 18) {
                 setLimitador(limitador + pack18);
             }
-        } else {
+        } else if (li == 'oi') {
             imagens.push(URL.createObjectURL(event.target.files[0]))
             setImagens(
                 imagens
             );
 
             setLimitador(limitador + des)
+
             if (limitador == 1) {
                 alert('Pronto! agora basta enviar as fotos')
+                setLi('hoje');
             }
+        } else if (li == 'hoje') {
+            alert('voce não pode mais selecionar imagens')
         }
     }
 
@@ -105,14 +113,12 @@ const UploadImagem = () => {
 
 
     function excluirImg(target, index) {
-
         var i = 1
-
         const list = Array.from(imagens)
         list.splice(index, 1);
 
         setImagens(list);
-
+        setLi('oi')
         setLimitador(limitador + i);
     }
 
@@ -129,7 +135,52 @@ const UploadImagem = () => {
         }
     };
 
+    function ModalCrop(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                style={{ fontFamily: "Questrial" }}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Recorte a imagem
+              </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="container-cropper" >
+                        <div className='cropper'>
+                            <Cropper
+                                image={image}
+                                crop={crop}
+                                zoom={zoom}
+                                aspect={1}
+                                onCropChange={setCrop}
+                                onZoomChange={setZoom}
+                                onCropComplete={onCropComplete}
+                            />
+                        </div>
 
+                        <div className='slider'>
+                            <Slider
+                                min={1}
+                                max={6}
+                                step={0.1}
+                                value={zoom}
+                                onChange={(e, zoom) => setZoom(zoom)}
+                                color='secondary'
+                            />
+                        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Fechar</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    }
 
 
     // Define frase que acompanhará foto
@@ -211,16 +262,13 @@ const UploadImagem = () => {
                                     <Button onClick={() => excluirImg(item.id)} >Excluir</Button>
 
                                     {/* Abre o cortar imagem */}
-                                    <input
-                                        type="file"
-                                        ref={inputCortar}
-                                        accept='image/*'
-                                        style={{ display: 'none' }}
-                                        onChange={AbrirCrop}
-                                    />
                                     <Button
-                                        onClick={refCortar}
+                                        onClick={() => setModalcrop(true)}
                                     >Cortar</Button>
+                                    <ModalCrop
+                                        show={modalcrop}
+                                        onHide={() => setModalcrop(false)}
+                                    />
                                     {/* Abre o input para a frase da foto */}
                                     <Button
                                         onClick={() => setModalShow(true)}>
@@ -251,39 +299,8 @@ const UploadImagem = () => {
                     </div>
                 </div>
 
-                <div className="container-cropper" >
-                    {image ? (
-                        <>
-                            <div className='cropper'>
-                                <Cropper
-                                    image={image}
-                                    crop={crop}
-                                    zoom={zoom}
-                                    aspect={1}
-                                    onCropChange={setCrop}
-                                    onZoomChange={setZoom}
-                                    onCropComplete={onCropComplete}
-                                />
-                            </div>
+                <div  >
 
-                            <div className='slider'>
-                                <Slider
-                                    min={1}
-                                    max={6}
-                                    step={0.1}
-                                    value={zoom}
-                                    onChange={(e, zoom) => setZoom(zoom)}
-                                    color='secondary'
-                                />
-                            </div>
-
-                            {/* Salva e lista a imagem */}
-                            <Button
-                                className="Btn"
-                                onClick={() => setImage(false)}
-                            >salvar imagem cortada </Button>
-                        </>
-                    ) : null}
 
                 </div>
             </div>
