@@ -9,7 +9,7 @@ import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
-import { event } from 'jquery';
+import { event, get } from 'jquery';
 
 const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
@@ -67,9 +67,6 @@ const UploadImagem = () => {
         if (limitador == 0 && li == 'oi') {
             // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagens(
-                imagens
-            );
             console.log(imagens)
             if (keys[6] == 6) {
                 setLimitador(limitador + pack6)
@@ -82,9 +79,6 @@ const UploadImagem = () => {
             }
         } else if (li == 'oi') {
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagens(
-                imagens
-            );
 
             setLimitador(limitador + des)
 
@@ -124,17 +118,19 @@ const UploadImagem = () => {
 
 
     // Componente que escolhe a imagem e o corta 
-    const AbrirCrop = (event, props) => {
-        const reader = new FileReader();
+    // const AbrirCrop = (event, props) => {
 
-        if (event.target.files[0]) {
-            reader.readAsDataURL(event.target.files[0])
-            reader.addEventListener("load", () => {
-                setImage(reader.result)
-            })
-        }
-    };
+    //     const reader = new FileReader();
 
+    //     if (event.target.files[0]) {
+    //         reader.readAsDataURL(event.target.files[0])
+    //         reader.addEventListener("load", () => {
+    //             setImage(reader.result)
+    //         })
+    //     }
+    // };
+
+        
     function ModalCrop(props) {
         return (
             <Modal
@@ -150,10 +146,11 @@ const UploadImagem = () => {
               </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="container-cropper" >
+                        <div className="container-cropper" >
                         <div className='cropper'>
                             <Cropper
                                 image={image}
+                                // imagens={imagens}
                                 crop={crop}
                                 zoom={zoom}
                                 aspect={1}
@@ -299,10 +296,12 @@ const UploadImagem = () => {
                     </div>
                 </div>
 
-                <div  >
-
-
-                </div>
+                <input
+                    ref={inputCortar}
+                    style={{ display: 'none' }}
+                />
+                <Button
+                    onClick={refCortar}>cortar</Button>
             </div>
 
             <div id="contact" />

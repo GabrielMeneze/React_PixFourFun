@@ -5,6 +5,32 @@ import Footer from '../../components/Footer';
 
 
 const Carrinho = () => {
+        // SDK de Mercado Pago
+        const mercadopago = require('mercadopago');
+
+        // Configura credenciais
+        mercadopago.configure({
+            access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
+        });
+    
+        // Cria um objeto de preferência
+        let preference = {
+            items: [
+                {
+                    title: 'Meu produto',
+                    unit_price: 100,
+                    quantity: 1,
+                }
+            ]
+        };
+    
+        mercadopago.preferences.create(preference)
+            .then(function (response) {
+                // Este valor substituirá a string "<%= global.id %>" no seu HTML
+                global.id = response.body.id;
+            }).catch(function (error) {
+                console.log(error);
+            });
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
     const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
@@ -116,9 +142,9 @@ const Carrinho = () => {
                         >mercado</button>
                     </div>
                 </form> */}
-                <script
+                 <script
                     src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                    data-preference-id='TEST-99dc7658-aafe-4a21-b88b-1f2cc48a70a1'>
+                    data-preference-id='<%= global.id %>'>
                 </script>
             <Footer />
         </div>
