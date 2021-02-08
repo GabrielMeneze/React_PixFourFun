@@ -30,19 +30,28 @@ export default function Home() {
       frete: 10
     }
   ]
-  let prod = produtos;
-  console.log(prod)
+
   // Botões que direcionam para pagina de login ou upload
-  const botaoComprar = () => {
+  function botaoComprar() {
     if (token === null) {
       return (
-        <Link id="bota" to="#LoginCadastro" className="buyButton" >
+        <Link 
+        //  onClick={(i) => {
+        //   cartsnumber(produtos[i]);
+        //   custoTotal(produtos[i]);
+        //  }} 
+        id="bota" to="#LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
     } else {
       return (
-        <Link id="bota" to="#uploadimagem" className="buyButton">
+         <Link 
+        // onClick={(i) => {
+        //   cartsnumber(produtos[i]);
+        //   custoTotal(produtos[i]);
+        // }} 
+        id="bota" to="#uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
