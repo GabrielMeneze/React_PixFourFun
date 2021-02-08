@@ -36,10 +36,10 @@ export default function Home() {
     if (token === null) {
       return (
         <Link 
-        //  onClick={(i) => {
-        //   cartsnumber(produtos[i]);
-        //   custoTotal(produtos[i]);
-        //  }} 
+         onClick={(i) => {
+          cartsnumber(produtos[i]);
+          custoTotal(produtos[i]);
+         }} 
         id="bota" to="#LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
@@ -47,10 +47,10 @@ export default function Home() {
     } else {
       return (
          <Link 
-        // onClick={(i) => {
-        //   cartsnumber(produtos[i]);
-        //   custoTotal(produtos[i]);
-        // }} 
+        onClick={(i) => {
+          cartsnumber(produtos[i]);
+          custoTotal(produtos[i]);
+        }} 
         id="bota" to="#uploadimagem" className="buyButton">
           COMPRAR
         </Link>
@@ -59,15 +59,15 @@ export default function Home() {
   };
 
   //  Variavel que pega o class do botão
-  let carts = document.querySelectorAll('.buyButton');
+  // let carts = document.querySelectorAll('.buyButton');
 
-  // Laço de repetição
-  for (let i = 0; i < carts.length; i++) {
-    carts[i].addEventListener('click', () => {
-      cartsnumber(produtos[i]);
-      custoTotal(produtos[i]);
-    })
-  }
+  // // Laço de repetição
+  // for (let i = 0; i < carts.length; i++) {
+  //   carts[i].addEventListener('click', () => {
+  //     cartsnumber(produtos[i]);
+  //     custoTotal(produtos[i]);
+  //   })
+  // }
 
   function cartsnumber(produto) {
     let productnumber = localStorage.getItem('cartNumber');
@@ -79,8 +79,7 @@ export default function Home() {
     } else {
       localStorage.setItem('cartNumber', 1);
     }
-
-    setItems(produto);
+    setItems(produtos)
   }
 
   //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
@@ -89,17 +88,17 @@ export default function Home() {
     cartItems = JSON.parse(cartItems)
 
     if (cartItems != null) {
-      if (cartItems[produto.name] === undefined) {
+      if (cartItems[produtos.name] === undefined) {
         cartItems = {
           ...cartItems,
-          [produto.name]: produto
+          [produtos.name]: produtos
         }
       }
       cartItems[produto.name].inCart += 1;
     } else {
-      produto.inCart = 1;
+      produtos.inCart = 1;
       cartItems = {
-        [produto.name]: produto
+        [produtos.name]: produtos
       }
     }
 
@@ -114,9 +113,9 @@ export default function Home() {
 
     if (custo != null) {
       custo = parseInt(custo);
-      localStorage.setItem('custoTotal', custo + produto.price);
+      localStorage.setItem('custoTotal', custo + produtos.price);
     } else {
-      localStorage.setItem('custoTotal', produto.price);
+      localStorage.setItem('custoTotal', produtos.price);
     }
   }
 
