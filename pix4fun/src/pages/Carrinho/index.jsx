@@ -5,35 +5,36 @@ import Footer from '../../components/Footer';
 
 
 const Carrinho = () => {
-        // SDK de Mercado Pago
-        const mercadopago = require('mercadopago');
+    // SDK de Mercado Pago
+    const mercadopago = require('mercadopago');
 
-        // Configura credenciais
-        mercadopago.configure({
-            access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
+    // Configura credenciais
+    mercadopago.configure({
+        access_token: 'TEST-1605680289481240-012320-53dbb9ecc09e7e7ef91c0ebf42e213cc-540136132'
+    });
+
+    // Cria um objeto de preferência
+    let preference = {
+        items: [
+            {
+                title: 'Meu produto',
+                unit_price: 100,
+                quantity: 1,
+            }
+        ]
+    };
+
+    mercadopago.preferences.create(preference)
+        .then(function (response) {
+            // Este valor substituirá a string "<%= global.id %>" no seu HTML
+            global.id = response.body.id;
+        }).catch(function (error) {
+            console.log(error);
         });
-    
-        // Cria um objeto de preferência
-        let preference = {
-            items: [
-                {
-                    title: 'Meu produto',
-                    unit_price: 100,
-                    quantity: 1,
-                }
-            ]
-        };
-    
-        mercadopago.preferences.create(preference)
-            .then(function (response) {
-                // Este valor substituirá a string "<%= global.id %>" no seu HTML
-                global.id = response.body.id;
-            }).catch(function (error) {
-                console.log(error);
-            });
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
     const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
+    const [cartNumber, setCartNumber] = React.useState(localStorage.getItem("cartNumber"))
 
     function Validar(event) {
         event.preventDefault();
@@ -42,7 +43,7 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custoTotal* 0.9);
+                let desconto = (custoTotal * 0.9);
                 setCustoTotal(desconto);
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
@@ -51,12 +52,13 @@ const Carrinho = () => {
         } else {
             console.log('é necessario preencher o campo')
         }
-    }   
-    
-    var separadores = ['"',':' , ',', '}' ]
-    const keys = listarImgs.split(new RegExp('('+separadores.join('|')+')'))
+    }
 
-    const custoFrete = () =>{
+    var separadores = ['"', ':', ',', '}']
+    const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
+    console.log(keys)
+
+    const custoFrete = () => {
         var frete = 10.00
         setCustoTotal(custoTotal + frete)
     }
@@ -76,58 +78,58 @@ const Carrinho = () => {
                 </div>
                 <div className="con">
                     <div className="produto-carrinho">
-                        {<p className="nome" >{keys[2]}</p>}
+                        {<p className="nome" >{keys[14]}</p>}
                         {<p className="preco-b">{keys[24]}</p>}
-                        {<p className="quantidade-b">{keys[40]}</p>}
-                        {<p className="custo">{custoTotal}</p>}
+                        {<p className="quantidade-b">{cartNumber}</p>}
+                        {<p className="custo">{keys[24]}</p>}
                     </div>
                 </div>
             </div>
+            <section className="container-resumo">
+                <div className="resumo-pedido">
+                    <div className="limit-div">
+                        <h5>Resumo pedido</h5>
+                        <div className="resumo-detalhes">
+                            {<p>{cartNumber} produto(s)</p>}
+                            {<p>R${keys[24]}</p>}
+                        </div>
+                        <div className="resumo-detalhes">
+                            {<p>frete</p>}
+                            {<p>{keys[48]}</p>}
+                        </div>
+                        <div className="resumo-detalhes">
+                            <form className="form-cupom" onSubmit={Validar}>
+                                <div className="form-cupom">
+                                    <input
+                                        type="text"
+                                        name="Cupom"
+                                        className="input-cupom"
+                                    >
+                                    </input>
+                                    <button
+                                        type="submit"
+                                        value="vcupom"
+                                        onClick={custoFrete}
+                                    >OK</button>
+                                </div>
+                            </form>
+                        </div>
 
-            <div className="resumo-pedido">
-                <div className="limit-div">
-                    <h5>Resumo pedido</h5>
-                    <div className="resumo-detalhes">
-                        {<p>{keys[40]} produto(s)</p>}
-                        {<p>R${keys[24]}</p>}
-                    </div>
-                    <div className="resumo-detalhes">
-                        {<p>frete</p>}
-                        {<p>{keys[48]}</p>}
-                    </div>
-                    <div className="resumo-detalhes">
-                        <form className="form-cupom" onSubmit={Validar}>
-                            <div className="form-cupom">
-                                <input
-                                    type="text"
-                                    name="Cupom"
-                                    className="input-cupom"
-                                >
-                                </input>
-                                <button
-                                    type="submit"
-                                    value="vcupom"
-                                    onClick={custoFrete}
-                                >OK</button>
-                            </div>
-                        </form>
-                    </div>
+                        <hr />
 
-                    <hr />
-
-                    <div className="resumo-detalhes">
-                        <strong>total</strong>
-                        <strong>{custoTotal}</strong>
-                    </div>
-                    <div className="buy-area">
-                        <button className="buy-button">
-                            COMPRAR
+                        <div className="resumo-detalhes">
+                            <strong>total</strong>
+                            <strong>{custoTotal}</strong>
+                        </div>
+                        <div className="buy-area">
+                            <button className="buy-button">
+                                COMPRAR
                         </button>
+                        </div>
                     </div>
-
-
                 </div>
-            </div>
+            </section>
+
             {/* <form onSubmit={pagamentoHandler}>
                     <div className="form-group">
                         <input
@@ -142,10 +144,10 @@ const Carrinho = () => {
                         >mercado</button>
                     </div>
                 </form> */}
-                 <script
-                    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                    data-preference-id='<%= global.id %>'>
-                </script>
+            <script
+                src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                data-preference-id='<%= global.id %>'>
+            </script>
             <Footer />
         </div>
 

@@ -79,9 +79,7 @@
         width: 40vh;
         height: 45vh;
         background-color: #f0f0f0;
-        margin-left: 150vh;
-        margin-top: -20vh;
-        margin-bottom: 10vh;
+        margin-right: 3vh;
     }
     
     .limit-div {
@@ -121,4 +119,47 @@
     
     .produto-detalhes {
         margin-left: -50vh;
+    }
+    
+    .container-resumo {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -20vh;
+        margin-bottom: 10vh;
+    }
+    
+    @media(max-width:1110px) {
+        .container-resumo {
+            margin-top: 7vh;
+            justify-content: center;
+        }
+        .produto-detalhes {
+            margin-left: 0;
+            width: 75%;
+            margin-left: 7.5vh;
+        }
+    }
+    
+    @media(max-width: 350px) {
+        .produto-detalhes {
+            font-size: small;
+            margin-left: 4vh;
+        }
+        .titulo {
+            width: 25%;
+            overflow: hidden;
+        }
+        .preco {
+            width: 20%;
+        }
+        .quantidade {
+            width: 25%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .total {
+            width: 10%;
+        }
     }
