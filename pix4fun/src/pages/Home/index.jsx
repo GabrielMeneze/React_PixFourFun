@@ -40,7 +40,7 @@ export default function Home() {
           cartsnumber(produtos[i]);
           custoTotal(produtos[i]);
          }} 
-        id="bota" to="#LoginCadastro" className="buyButton" >
+        id="bota" to="/LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
@@ -51,25 +51,14 @@ export default function Home() {
           cartsnumber(produtos[i]);
           custoTotal(produtos[i]);
         }} 
-        id="bota" to="#uploadimagem" className="buyButton">
+        id="bota" to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
     }
   };
 
-  //  Variavel que pega o class do botão
-  // let carts = document.querySelectorAll('.buyButton');
-
-  // // Laço de repetição
-  // for (let i = 0; i < carts.length; i++) {
-  //   carts[i].addEventListener('click', () => {
-  //     cartsnumber(produtos[i]);
-  //     custoTotal(produtos[i]);
-  //   })
-  // }
-
-  function cartsnumber(produto) {
+  function cartsnumber() {
     let productnumber = localStorage.getItem('cartNumber');
 
     productnumber = parseInt(productnumber);
@@ -83,7 +72,7 @@ export default function Home() {
   }
 
   //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
-  function setItems(produto) {
+  function setItems() {
     let cartItems = localStorage.getItem('produtoinCart');
     cartItems = JSON.parse(cartItems)
 
@@ -94,7 +83,7 @@ export default function Home() {
           [produtos.name]: produtos
         }
       }
-      cartItems[produto.name].inCart += 1;
+      cartItems[produtos.name].inCart += 1;
     } else {
       produtos.inCart = 1;
       cartItems = {
@@ -106,7 +95,7 @@ export default function Home() {
   }
 
   // Calcula o preço total
-  function custoTotal(produto) {
+  function custoTotal() {
 
     let custo = localStorage.getItem('custoTotal');
     console.log(typeof custo);
@@ -118,30 +107,6 @@ export default function Home() {
       localStorage.setItem('custoTotal', produtos.price);
     }
   }
-
-  // // Lista o item no carrinho(não ta funfando pq n pega o produtos no queryselector)
-  // function displayCart() {
-  //   let cartItems = localStorage.getItem("produtoinCart");
-  //   cartItems = JSON.parse(cartItems);
-  //   let container = document.querySelectorAll(".produtos");
-  //   console.log(cartItems);
-  //   if (cartItems && container) {
-  //     container.innerHTML = '';
-  //     Object.values(cartItems).map(item => {
-  //       container.innerHTML += `
-  //             <div class="produto" >
-  //             <span>${item.name}</span>
-  //             </div>
-  //             <div class="preco"> ${item.price}</div>
-  //             <div class="quantidade"> ${item.inCart}</div>
-  //             <div class="total">${item.price + item.frete}</div>
-
-  //         `
-  //     })
-  //   }
-  // }
-
-  // displayCart();
 
 
   return (
