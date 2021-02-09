@@ -6,11 +6,12 @@ const { calcularPrecoPrazo } = require("correios-brasil");
 const PORT = 3002;
 app.get('/', (req, res) => {
 
+  const {calcular} = req.query
 
-  const calcular = {
+  const Calcular = {
     // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
     sCepOrigem: "81200100",
-    sCepDestino: "21770200",
+    sCepDestino:  calcular,
     nVlPeso: "1",
     nCdFormato: "1",
     nVlComprimento: "20",
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
   };
 
 
-  calcularPrecoPrazo(calcular)
+  calcularPrecoPrazo(Calcular)
     .then((result) => {
       res.json({ message: "sucess", result })
     })
