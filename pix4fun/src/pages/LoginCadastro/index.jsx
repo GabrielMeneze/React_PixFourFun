@@ -50,7 +50,7 @@ export default function LoginCadastro() {
         console.log(response.json());
 
         alert("Usuario cadastrado.");
-        history.push("/");
+        history.push("/uploadimagem");
       }
     });
   };
@@ -81,7 +81,7 @@ export default function LoginCadastro() {
 
         let usuario = jwt_decode(data.token);
 
-        history.push("/");
+        history.push("/uploadimagem");
 
       })
       .catch((err) => console.error(err));
