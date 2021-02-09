@@ -33,8 +33,9 @@ const Carrinho = () => {
         });
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
-    const [custoTotal, setCustoTotal] = React.useState(localStorage.getItem("custoTotal"))
+    const [custoTotal, setCustoTotal] = useState(0)
     const [cartNumber, setCartNumber] = React.useState(localStorage.getItem("cartNumber"))
+    const [fretePreco, setFrete] = React.useState(localStorage.getItem("frete"))
 
     function Validar(event) {
         event.preventDefault();
@@ -43,8 +44,8 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custoTotal * 0.9);
-                setCustoTotal(desconto);
+                let desconto = (custoeFrete * 0.9);
+                setCustoTotal(desconto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
                 console.log('cupom não é valido')
@@ -56,12 +57,17 @@ const Carrinho = () => {
 
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
-    console.log(keys)
 
-    const custoFrete = () => {
-        var frete = 10.00
-        setCustoTotal(custoTotal + frete)
-    }
+    let custo = parseFloat(keys[24])
+    let frete = parseFloat(fretePreco)
+    let custoeFrete = (custo + frete)
+
+    const custoTot = () => (
+        setCustoTotal(custoeFrete.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}))
+    )
+
+    //setCustoTotal(custo + frete)
+    
 
     return (
 
@@ -95,7 +101,7 @@ const Carrinho = () => {
                         </div>
                         <div className="resumo-detalhes">
                             {<p>frete</p>}
-                            {<p>{keys[48]}</p>}
+                            {<p>R${fretePreco}</p>}
                         </div>
                         <div className="resumo-detalhes">
                             <form className="form-cupom" onSubmit={Validar}>
@@ -109,7 +115,7 @@ const Carrinho = () => {
                                     <button
                                         type="submit"
                                         value="vcupom"
-                                        onClick={custoFrete}
+                                        onClick={custoTot}
                                     >OK</button>
                                 </div>
                             </form>
