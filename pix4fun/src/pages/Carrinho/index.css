@@ -35,14 +35,12 @@
     
     .preco {
         width: 15%;
-        display: flex;
         align-items: center;
     }
     
     .quantidade {
         width: 30%;
         border-bottom: 1px solid lavenderblush;
-        display: flex;
         align-items: center;
     }
     
@@ -139,27 +137,36 @@
             width: 75%;
             margin-left: 7.5vh;
         }
+        .pack-nome{
+            width: 25%;
+        }
+        .titulo{
+            width: 25%;
+        }
     }
     
-    @media(max-width: 350px) {
+    @media(max-width: 375px) {
         .produto-detalhes {
             font-size: small;
             margin-left: 4vh;
         }
         .titulo {
-            width: 25%;
             overflow: hidden;
+            text-overflow: ellipsis;
         }
         .preco {
             width: 20%;
         }
         .quantidade {
             width: 25%;
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         .total {
             width: 10%;
         }
+        .resumo-pedido{
+            margin-right: 0;
+        }
+        
     }

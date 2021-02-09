@@ -78,7 +78,7 @@ const Carrinho = () => {
                 </div>
                 <div className="con">
                     <div className="produto-carrinho">
-                        {<p className="nome" >{keys[14]}</p>}
+                        {<p className="pack-nome" >{keys[14]}</p>}
                         {<p className="preco-b">{keys[24]}</p>}
                         {<p className="quantidade-b">{cartNumber}</p>}
                         {<p className="custo">{keys[24]}</p>}
