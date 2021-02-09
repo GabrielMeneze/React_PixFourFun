@@ -1,182 +1,217 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-.lin {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-}
-
-.ContainerOne {
-    display: flex;
-}
-
-.ContainerA_Text {
-    width: 50%;
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(245, 245, 245);
-    font-family: "Lulo Clean W01 One Bold";
-}
-
-.textOne p {
-    font-size: 15px;
-}
-
-.textGray {
-    color: gray;
-}
-
-.ContainerB_escolher {
-    width: 50%;
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(245, 245, 245);
-}
-
-.Btn {
-    width: 200px;
-    height: 50px;
-    font-size: 0.89em;
-    padding: 6px;
-    color: var(--color-text-white);
-    background-color: var(--secundary-color);
-    font-family: "Lulo Clean W01 One Bold";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Btn:hover {
-    transition: 0.5s;
-    background-color: var(--main-color-01);
-    color: white;
-}
-
-.ContainerTwo {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(245, 245, 245);
-}
-
-.container-cropper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-    height: 350px;
-    padding: 10px;
-}
-
-.cropper {
-    width: 90%;
-    height: 500px;
-    background-color: black;
-}
-
-
-.container_bloco {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-    flex-direction: column;
-}
-
-.imagem {
-    width: 200px;
-    height: 115px;
-}
-
-.imagem img {
-    width: 100%;
-    height: 100%;
-}
-
-.itensTable p {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
-}
-
-.man{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.container-subimit {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.escolherdnv{
-    padding: 20px;
-}
-
-.bloco {
-    display: flex;
-    padding: 20px;
-}
-
-.container-buttons {
-    display: flex;
-    flex-direction: column;
-}
-
-.container-buttons Button {
-    font-size: 0.95em;
-    padding: 6px;
-    font-weight: 400;
-    color: var(--color-text-white);
-    background-color: var(--secundary-color);
-    font-family: "Lulo Clean W01 One Bold";
-    transform-style: initial;
-}
-
-.container-buttons Button:hover {
-    transition: 0.5s;
-    background-color: var(--main-color-01);
-    color: white;
-}
-
-
-/* ESTILO DO CROP */
-
-.ContainerTwo {
-    height: auto;
-    width: 100%;
-}
-
-.cropper {
-    width: 90%;
-    height: 90%;
-    position: relative;
-}
-
-.slider {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 60%;
-}
-
-.imagem {
-    width: 200px;
-    height: 112px;
-    display: flex;
-}
-
-.imagem img {
-    width: 100%;
-    height: 100%;
-}
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .lin {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+    }
+    
+    .ContainerOne {
+        display: flex;
+    }
+    
+    .ContainerA_Text {
+        width: 50%;
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(245, 245, 245);
+        font-family: "Lulo Clean W01 One Bold";
+    }
+    
+    .textOne p {
+        font-size: 15px;
+    }
+    
+    .textGray {
+        color: gray;
+    }
+    
+    .ContainerB_escolher {
+        width: 50%;
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(245, 245, 245);
+    }
+    
+    .Btn {
+        width: 200px;
+        height: 50px;
+        font-size: 0.89em;
+        padding: 6px;
+        color: var(--color-text-white);
+        background-color: var(--secundary-color);
+        font-family: "Lulo Clean W01 One Bold";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Btn:hover {
+        transition: 0.5s;
+        background-color: var(--main-color-01);
+        color: white;
+    }
+    
+    .ContainerTwo {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(245, 245, 245);
+    }
+    
+    .container-cropper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+        height: 350px;
+        padding: 10px;
+    }
+    
+    .cropper {
+        width: 90%;
+        height: 500px;
+        background-color: black;
+    }
+    
+    .container_bloco {
+        display: flex;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        flex-direction: column;
+    }
+    
+    .imagem {
+        width: 200px;
+        height: 115px;
+    }
+    
+    .imagem img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .itensTable p {
+        display: flex;
+        align-items: center;
+        margin-right: 40px;
+    }
+    
+    .man {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+    }
+    
+    .container-subimit {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .escolherdnv {
+        padding: 20px;
+    }
+    
+    .bloco {
+        display: flex;
+        padding: 20px;
+    }
+    
+    .container-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .container-buttons Button {
+        font-size: 0.95em;
+        padding: 6px;
+        font-weight: 400;
+        color: var(--color-text-white);
+        background-color: var(--secundary-color);
+        font-family: "Lulo Clean W01 One Bold";
+        transform-style: initial;
+    }
+    
+    .container-buttons Button:hover {
+        transition: 0.5s;
+        background-color: var(--main-color-01);
+        color: white;
+    }
+    /* ESTILO DO CROP */
+    
+    .ContainerTwo {
+        height: auto;
+        width: 100%;
+    }
+    
+    .cropper {
+        width: 90%;
+        height: 90%;
+        position: relative;
+    }
+    
+    .slider {
+        height: 10%;
+        display: flex;
+        align-items: center;
+        margin: auto;
+        width: 60%;
+    }
+    
+    .imagem {
+        width: 200px;
+        height: 112px;
+        display: flex;
+    }
+    
+    .imagem img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    @media(max-width: 1000px) {
+        .ContainerA_Text {
+            width: 100%;
+            height: 300px;
+        }
+        .ContainerB_escolher {
+            width: 100%;
+            height: 300px;
+        }
+        .ContainerOne {
+            flex-direction: column;
+        }
+        .container_bloco {
+            width: 100%;
+        }
+        .man {
+            width: 100%;
+        }
+    }
+    
+    @media(max-width: 560px) {
+        .textOne {
+            font-size: 20px;
+        }
+        .textOne p {
+            font-size: 10px;
+        }
+        .ContainerA_Text {
+            height: 200px;
+        }
+        .ContainerB_escolher {
+            height: 200px;
+        }
+    }
