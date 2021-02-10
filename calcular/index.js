@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
   const Calcular = {
     // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
-    sCepOrigem: "81200100",
+    sCepOrigem: "06540040",
     sCepDestino:  calcular,
     nVlPeso: "1",
     nCdFormato: "1",
