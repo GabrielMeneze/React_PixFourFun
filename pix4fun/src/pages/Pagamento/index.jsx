@@ -33,8 +33,14 @@ export default function Pagamento() {
         const data = Object.fromEntries(formData);
         fetch('http://localhost:3002/?calcular=' + data.calcular)
             .then(response => response.json())
-            .then(console.log)
+            .then(r => {
+                return (
+                    console.log(r),
+                    localStorage.setItem('frete', r.result[1].Valor)
+                )          
+            })
             .catch(console.error)
+            
     }
 
 

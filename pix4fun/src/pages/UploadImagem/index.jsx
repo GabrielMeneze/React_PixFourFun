@@ -249,7 +249,7 @@ const UploadImagem = () => {
                 <div className="container_bloco">
                     {imagens.map(item => {
                         return (
-                            <div className="bloco">
+                            <div className="bloco-imagem">
                                 <div className="imagem">
                                     {/* lista a imagem no bloco */}
                                     <img src={item} />
