@@ -44,8 +44,14 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custoeFrete * 0.9);
-                setCustoTotal(desconto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+                let desconto = (custo * 0.9);
+                if (frete) {
+                    console.log('e')
+                    setCustoTotal(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                }else{
+                    console.log('s')
+                    setCustoTotal(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                }
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
                 console.log('cupom não é valido')
@@ -55,19 +61,41 @@ const Carrinho = () => {
         }
     }
 
+    function calcularHandler(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+        fetch('http://localhost:3002/?calcular=' + data.calcular)
+            .then(response => response.json())
+            .then(r => {
+                return (
+                    console.log(r),
+                    localStorage.setItem('frete', r.result[1].Valor)
+                )
+            })
+            .catch(console.error)
+
+            if (frete) {
+                setCustoTotal(custoTotal + custoeFrete)
+            }
+
+    }
+
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
     let custo = parseFloat(keys[24])
     let frete = parseFloat(fretePreco)
     let custoeFrete = (custo + frete)
+    let desconto = (custo * 0.9)
+    let descontoEcusto = (desconto + frete)
 
-    const custoTot = () => (
-        setCustoTotal(custoeFrete.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}))
-    )
+    // const custoTot = () => (
+    //     setCustoTotal(custoeFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
+    // )
 
     //setCustoTotal(custo + frete)
-    
+
 
     return (
 
@@ -115,8 +143,21 @@ const Carrinho = () => {
                                     <button
                                         type="submit"
                                         value="vcupom"
-                                        onClick={custoTot}
                                     >OK</button>
+                                </div>
+                            </form>
+                            <form onSubmit={calcularHandler}>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        name="calcular"
+                                        className="form-control"
+                                    >
+                                    </input>
+                                    <button
+                                        type="submit"
+                                        value="Calcular"
+                                    >Calcular</button>
                                 </div>
                             </form>
                         </div>

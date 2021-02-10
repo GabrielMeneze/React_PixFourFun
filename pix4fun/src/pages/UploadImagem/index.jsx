@@ -149,8 +149,7 @@ const UploadImagem = () => {
                         <div className="container-cropper" >
                         <div className='cropper'>
                             <Cropper
-                                image={image}
-                                // imagens={imagens}
+                                imagens={imagens}
                                 crop={crop}
                                 zoom={zoom}
                                 aspect={1}
@@ -243,7 +242,8 @@ const UploadImagem = () => {
 
             <hr className="lin" id="ContainerT" />
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
-
+            {container2 ? (
+                        <>
             <div className="ContainerTwo">
 
                 <div className="container_bloco">
@@ -303,6 +303,8 @@ const UploadImagem = () => {
                 <Button
                     onClick={refCortar}>cortar</Button>
             </div>
+            </>
+                    ) : null}
 
             <div id="contact" />
             <div id="doubt" />
