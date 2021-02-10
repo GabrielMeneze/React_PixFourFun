@@ -3,25 +3,20 @@ import "./index.css";
 import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'
 import logoPT from '../../assets/img/003-pinterest.svg'
-//import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com';
 
 
 export default function Footer() {
-
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
-
   function sendEmail(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
-    //   .then((result) => {
-    //     console.log(result.text);
-    //     alert('Menssagem enviada')
-    //   }, (error) => {
-    //     console.log(error.text);
-    //   });
+    emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
+      .then((result) => {
+        console.log(result.text);
+        alert('Menssagem enviada')
+      }, (error) => {
+        console.log(error.text);
+      });
   }
   return (
     <footer id="rodape">
@@ -35,11 +30,11 @@ export default function Footer() {
 
           <form className="contact-form" onSubmit={sendEmail}>
             <input type="hidden" name="contact_number" />
-            <label>Name</label>
+            <label>Nome</label>
             <input type="text" name="user_name" />
             <label>Email</label>
             <input type="email" name="user_email" />
-            <label>Message</label>
+            <label>Mensagem</label>
             <textarea name="message" />
             <input type="submit" value="Send" />
           </form>

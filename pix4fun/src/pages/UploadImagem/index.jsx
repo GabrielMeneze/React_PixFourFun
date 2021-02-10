@@ -63,6 +63,7 @@ const UploadImagem = () => {
         var pack12 = 11;
         var pack18 = 17;
 
+        console.log(keys)
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0 && li == 'oi') {
             // seleciona a foto
@@ -288,20 +289,11 @@ const UploadImagem = () => {
                                 className="Btn"
                                 onClick={refbtnEscolher}
                             >ESCOLHER OUTRA IMAGEM</button>
-                            <button
-                                className="Btn"
-                                onClick={uparImg}
-                            >SALVAR E ENVIAR</button>
+                                <Link to="/Carrinho" className="Btn"
+                                onClick={uparImg} >SALVAR E ENVIAR</Link>
                         </div>
                     </div>
                 </div>
-
-                <input
-                    ref={inputCortar}
-                    style={{ display: 'none' }}
-                />
-                <Button
-                    onClick={refCortar}>cortar</Button>
             </div>
             </>
                     ) : null}
