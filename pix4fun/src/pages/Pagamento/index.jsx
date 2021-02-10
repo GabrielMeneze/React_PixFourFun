@@ -27,21 +27,7 @@ export default function Pagamento() {
             .catch(console.error);
     };
 
-    function calcularHandler(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        fetch('http://localhost:3002/?calcular=' + data.calcular)
-            .then(response => response.json())
-            .then(r => {
-                return (
-                    console.log(r),
-                    localStorage.setItem('frete', r.result[1].Valor)
-                )          
-            })
-            .catch(console.error)
-            
-    }
+    
 
 
    
@@ -71,20 +57,7 @@ export default function Pagamento() {
                 <TrackingEvents events={events} />
 
 
-                <form onSubmit={calcularHandler}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            name="calcular"
-                            className="form-control"
-                        >
-                        </input>
-                        <button
-                            type="submit"
-                            value="Calcular"
-                        >Calcular</button>
-                    </div>
-                </form>
+                
                 <script
                     src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                     data-preference-id='TEST-99dc7658-aafe-4a21-b88b-1f2cc48a70a1'>
