@@ -1,5 +1,3 @@
-// Fechar o crop como você fecha o input da frase
-
 import React, { useState } from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
@@ -16,19 +14,11 @@ const UploadImagem = () => {
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [li, setLi] = useState('oi')
-    const [crop, setCrop] = React.useState({ x: 0, y: 0 })
-    const [zoom, setZoom] = React.useState(1)
     const [container2, setContainer2] = React.useState(null)
-    const [croppedarea, setCroppedarea] = React.useState(null)
-    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
-
-    const keys = qtdImgs.split(' ')
-
-    // Variaveis referentes aos botões
-    const [frase, setFrase] = useState('')
     const [image, setImage] = React.useState(null)
-
-    //variaveis do modal
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
+    const [frase, setFrase] = useState('')
+    const keys = qtdImgs.split(' ')
     const [modalShow, setModalShow] = React.useState(false)
     const [modalcrop, setModalcrop] = React.useState(false)
 
@@ -39,12 +29,6 @@ const UploadImagem = () => {
     //Referencia o input no Botão Cortar
     const inputCortar = React.useRef();
     const refCortar = () => inputCortar.current.click();
-
-    //Componente que define a area do crop
-    const onCropComplete = (cropPorcentagem, cropPixels) => {
-        setCroppedarea(cropPixels)
-        console.log(cropPorcentagem, croppedarea)
-    }
 
     // Upa imagem para a api
     const uparFrase = () => {
@@ -63,6 +47,7 @@ const UploadImagem = () => {
         var pack12 = 11;
         var pack18 = 17;
 
+        console.log(keys)
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0 && li == 'oi') {
             // seleciona a foto
@@ -116,22 +101,30 @@ const UploadImagem = () => {
         setLimitador(limitador + i);
     }
 
-
-    // Componente que escolhe a imagem e o corta 
-    // const AbrirCrop = (event, props) => {
-
-    //     const reader = new FileReader();
-
-    //     if (event.target.files[0]) {
-    //         reader.readAsDataURL(event.target.files[0])
-    //         reader.addEventListener("load", () => {
-    //             setImage(reader.result)
-    //         })
-    //     }
-    // };
-
-        
     function ModalCrop(props) {
+        //Componente que define a area do crop
+        const onCropComplete = (cropPorcentagem, cropPixels) => {
+            setCroppedarea(cropPixels)
+            console.log(cropPorcentagem, croppedarea)
+        }
+
+        // Componente que escolhe a imagem e o corta 
+        const AbrirCrop = (event, props) => {
+
+            const reader = new FileReader();
+
+            if (event.target.files[0]) {
+                reader.readAsDataURL(event.target.files[0])
+                reader.addEventListener("load", () => {
+                    setImage(reader.result)
+                })
+            }
+        };
+
+        const [crop, setCrop] = React.useState({ x: 0, y: 0 })
+        const [zoom, setZoom] = React.useState(1)
+        const [croppedarea, setCroppedarea] = React.useState(null)
+
         return (
             <Modal
                 {...props}
@@ -143,33 +136,47 @@ const UploadImagem = () => {
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Recorte a imagem
-              </Modal.Title>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        <div className="container-cropper" >
-                        <div className='cropper'>
-                            <Cropper
-                                imagens={imagens}
-                                crop={crop}
-                                zoom={zoom}
-                                aspect={1}
-                                onCropChange={setCrop}
-                                onZoomChange={setZoom}
-                                onCropComplete={onCropComplete}
-                            />
-                        </div>
+                    {image ? (
+                        <>
+                            <div className="container-cropper" >
+                                <div className='cropper'>
+                                    <Cropper
+                                        image={image}
+                                        crop={crop}
+                                        zoom={zoom}
+                                        aspect={1}
+                                        onCropChange={setCrop}
+                                        onZoomChange={setZoom}
+                                        onCropComplete={onCropComplete}
+                                    />
+                                </div>
 
-                        <div className='slider'>
-                            <Slider
-                                min={1}
-                                max={6}
-                                step={0.1}
-                                value={zoom}
-                                onChange={(e, zoom) => setZoom(zoom)}
-                                color='secondary'
-                            />
-                        </div>
-                    </div>
+                                <div className='slider'>
+                                    <Slider
+                                        min={1}
+                                        max={6}
+                                        step={0.1}
+                                        value={zoom}
+                                        onChange={(e, zoom) => setZoom(zoom)}
+                                        color='secondary'
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    ) : null}
+                    <input
+                        type="file"
+                        ref={inputCortar}
+                        accept='image/*'
+                        style={{ display: 'none' }}
+                        onChange={AbrirCrop}
+                    />
+                    <Button
+                        onClick={refCortar}
+                    >Cortar</Button>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Fechar</Button>
@@ -243,68 +250,59 @@ const UploadImagem = () => {
             <hr className="lin" id="ContainerT" />
             {/* ----------------------------------------------Fim do 1°Container------------------------------------------------------ */}
             {container2 ? (
-                        <>
-            <div className="ContainerTwo">
+                <>
+                    <div className="ContainerTwo">
 
-                <div className="container_bloco">
-                    {imagens.map(item => {
-                        return (
-                            <div className="bloco-imagem">
-                                <div className="imagem">
-                                    {/* lista a imagem no bloco */}
-                                    <img src={item} />
-                                </div>
-                                <div className="container-buttons">
-                                    {/* botão excluir */}
-                                    <Button onClick={() => excluirImg(item.id)} >Excluir</Button>
+                        <div className="container_bloco">
+                            {imagens.map(item => {
+                                return (
+                                    <div className="bloco-imagem">
+                                        <div className="imagem">
+                                            {/* lista a imagem no bloco */}
+                                            <img src={item} />
+                                        </div>
+                                        <div className="container-buttons">
+                                            {/* botão excluir */}
+                                            <Button onClick={() => excluirImg(item.id)} >Excluir</Button>
 
-                                    {/* Abre o cortar imagem */}
-                                    <Button
-                                        onClick={() => setModalcrop(true)}
-                                    >Cortar</Button>
-                                    <ModalCrop
-                                        show={modalcrop}
-                                        onHide={() => setModalcrop(false)}
-                                    />
-                                    {/* Abre o input para a frase da foto */}
-                                    <Button
-                                        onClick={() => setModalShow(true)}>
-                                        Frase
+                                            {/* Abre o cortar imagem */}
+                                            <Button
+                                                onClick={() => setModalcrop(true)}
+                                            >Cortar</Button>
+                                            <ModalCrop
+                                                show={modalcrop}
+                                                onHide={() => setModalcrop(false)}
+                                            />
+                                            {/* Abre o input para a frase da foto */}
+                                            <Button
+                                                onClick={() => setModalShow(true)}>
+                                                Frase
                                     </Button>
-                                    <ModalFrase
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
+                                            <ModalFrase
+                                                show={modalShow}
+                                                onHide={() => setModalShow(false)}
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className="man">
+                            <div className="container-subimit">
+                                {<p>Você ainda pode escolher {limitador} imagens</p>}
+                                <div className="escolherdnv">
+                                    <button
+                                        className="Btn"
+                                        onClick={refbtnEscolher}
+                                    >ESCOLHER OUTRA IMAGEM</button>
+                                    <Link to="/Carrinho" className="Btn"
+                                        onClick={uparImg} >SALVAR E ENVIAR</Link>
                                 </div>
                             </div>
-                        )
-                    })}
-                </div>
-                <div className="man">
-                    <div className="container-subimit">
-                        {<p>Você ainda pode escolher {limitador} imagens</p>}
-                        <div className="escolherdnv">
-                            <button
-                                className="Btn"
-                                onClick={refbtnEscolher}
-                            >ESCOLHER OUTRA IMAGEM</button>
-                            <button
-                                className="Btn"
-                                onClick={uparImg}
-                            >SALVAR E ENVIAR</button>
                         </div>
                     </div>
-                </div>
-
-                <input
-                    ref={inputCortar}
-                    style={{ display: 'none' }}
-                />
-                <Button
-                    onClick={refCortar}>cortar</Button>
-            </div>
-            </>
-                    ) : null}
+                </>
+            ) : null}
 
             <div id="contact" />
             <div id="doubt" />
