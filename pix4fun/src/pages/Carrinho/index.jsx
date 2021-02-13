@@ -18,7 +18,7 @@ const Carrinho = () => {
 
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
-                let desconto = (custo * 0.9);
+                let desconto = (custoeFrete * 0.9);
                 if (frete) {
                     console.log('e')
                     setCustoTotal(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
@@ -64,12 +64,6 @@ const Carrinho = () => {
     let desconto = (custo * 0.9)
     let descontoEcusto = (desconto + frete)
 
-    // const custoTot = () => (
-    //     setCustoTotal(custoeFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
-    // )
-
-    //setCustoTotal(custo + frete)
-
 
     return (
 
@@ -105,13 +99,13 @@ const Carrinho = () => {
                             {<p>frete</p>}
                             {<p>R${fretePreco}</p>}
                         </div>
-                        <div className="resumo-detalhes">
+                        <div className="resumo-inputs">
                             <form className="form-cupom" onSubmit={Validar}>
-                                <div className="form-cupom">
+                                <div className="form-group">
                                     <input
                                         type="text"
                                         name="Cupom"
-                                        className="input-cupom"
+                                        className="form-control"
                                     >
                                     </input>
                                     <button

@@ -32,23 +32,23 @@ export default function Home() {
   function botaoComprar() {
     if (token === null) {
       return (
-        <Link 
-         onClick={(i) => {
-          cartsnumber(produtos[i]);
-          custoTotal(produtos[i]);
-         }} 
-        id="bota" to="/LoginCadastro" className="buyButton" >
+        <Link
+          onClick={(i) => {
+            cartsnumber(produtos[i]);
+            custoTotal(produtos[i]);
+          }}
+          id="bota" to="/Carrinho" className="buyButton" >
           COMPRAR
         </Link>
       );
     } else {
       return (
-         <Link 
-        onClick={(i) => {
-          cartsnumber(produtos[i]);
-          custoTotal(produtos[i]);
-        }} 
-        id="bota" to="/uploadimagem" className="buyButton">
+        <Link
+          onClick={(i) => {
+            cartsnumber(produtos[i]);
+            custoTotal(produtos[i]);
+          }}
+          id="bota" to="/uploadimagem" className="buyButton">
           COMPRAR
         </Link>
       );
@@ -71,6 +71,7 @@ export default function Home() {
   //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
   function setItems() {
     let cartItems = localStorage.getItem('produtoinCart');
+    console.log(cartItems)
     cartItems = JSON.parse(cartItems)
 
     if (cartItems != null) {

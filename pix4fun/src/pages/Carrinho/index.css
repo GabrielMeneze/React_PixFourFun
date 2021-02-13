@@ -87,8 +87,13 @@
     
     .resumo-detalhes {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
+    }
+
+    .resumo-inputs{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
     
     .input-cupom {
