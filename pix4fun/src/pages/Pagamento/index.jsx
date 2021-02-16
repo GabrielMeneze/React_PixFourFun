@@ -5,37 +5,51 @@ import TrackingEvents from '../../components/TrackingEvents';
 import './index.css';
 
 export default function Pagamento() {
+    // // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
+
+    // const [events, setEvents] = useState([]);
+
+    // const submitHandler = (event) => {
+    //     event.preventDefault();
+
+    //     const formData = new FormData(event.target);
+    //     const data = Object.fromEntries(formData);
+
+    //     fetch('http://localhost:3001/?tracking=' + data.tracking)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const events = data.events;
+    //             setEvents(events);
+    //         })
+    //         .catch(console.error);
+    // };
 
 
 
-    // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
-
-    const [events, setEvents] = useState([]);
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-
-        fetch('http://localhost:3001/?tracking=' + data.tracking)
-            .then(response => response.json())
-            .then(data => {
-                const events = data.events;
-                setEvents(events);
-            })
-            .catch(console.error);
-    };
 
     
 
-
+function a() {
+    var a = "hello"
+    document.getElementById("a").innerHTML = a.charCodeAt(0)
+}
    
 
     return (
         <div className="bloco">
             <Header />
-            <div className="localdeentrega">
+         
+
+
+            <button onClick={a()}>click</button>
+
+
+
+
+
+
+
+            {/* <div className="localdeentrega">
                 <h1>Rastreamento de pacote:</h1>
 
                 <form onSubmit={submitHandler}>
@@ -64,7 +78,7 @@ export default function Pagamento() {
                 </script>
             </div>
             <div id="contact" />
-            <div id="doubt" />
+            <div id="doubt" /> */}
             <Footer />
         </div>
     )

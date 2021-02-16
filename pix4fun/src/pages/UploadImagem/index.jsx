@@ -101,6 +101,8 @@ const UploadImagem = () => {
         setLimitador(limitador + i);
     }
 
+    
+    
     function ModalCrop(props) {
         //Componente que define a area do crop
         const onCropComplete = (cropPorcentagem, cropPixels) => {
