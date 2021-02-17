@@ -320,7 +320,7 @@ const UploadImagem = () => {
                                         onClick={refbtnEscolher}
                                     >ESCOLHER OUTRA IMAGEM</button>
                                     <Link to="/Carrinho" className="Btn"
-                                        onClick={uparImg} >SALVAR E ENVIAR</Link>
+                                        onClick={uparImg} >SALVAR</Link>
                                 </div>
                             </div>
                         </div>
