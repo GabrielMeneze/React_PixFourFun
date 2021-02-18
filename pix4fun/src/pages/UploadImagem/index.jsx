@@ -11,6 +11,7 @@ import { event, get } from 'jquery';
 
 const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
+    const [imagenss, setImagenss] = useState([])
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [li, setLi] = useState('oi')
@@ -52,7 +53,9 @@ const UploadImagem = () => {
         if (limitador == 0 && li == 'oi') {
             // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            console.log(imagens)
+            setImagenss({
+                selected: imagenss
+            })
             if (keys[6] == 6) {
                 setLimitador(limitador + pack6)
             }
@@ -64,6 +67,9 @@ const UploadImagem = () => {
             }
         } else if (li == 'oi') {
             imagens.push(URL.createObjectURL(event.target.files[0]))
+            setImagenss({
+                selected: imagenss
+            })
 
             setLimitador(limitador + des)
 
@@ -78,16 +84,20 @@ const UploadImagem = () => {
 
     // Upa imagem para a api
     const uparImg = (event) => {
-        if (limitador > 0) {
-            alert('você ainda pode selecionar mais fotos')
-        } else {
-            const fd = new FormData();
-            fd.append('image', imagens)
-            fetch('http://localhost:5000/api/Foto', fd)
-                .then(res => {
-                    console.log(res)
-                });
-        }
+        // if (limitador > 0) {
+        //     alert('você ainda pode selecionar mais fotos')
+        // } else {
+
+        const fd = new FormData();
+        fd.append('image', imagenss.selected)
+        fetch('http://localhost:3000/api/Foto', fd)
+            .then(res => {
+                console.log(res)
+            });
+
+
+
+        // }
     }
 
 
@@ -101,13 +111,13 @@ const UploadImagem = () => {
         setLimitador(limitador + i);
     }
 
-    
-    
+
+
     function ModalCrop(props) {
         //Componente que define a area do crop
-        const onCropComplete = (cropPorcentagem, cropPixels) => {
+        const onCropComplete = (cropPixels) => {
             setCroppedarea(cropPixels)
-            console.log(cropPorcentagem, croppedarea)
+            console.log(croppedarea)
         }
 
         // Componente que escolhe a imagem e o corta 
@@ -125,26 +135,26 @@ const UploadImagem = () => {
 
         const [crop, setCrop] = React.useState({ x: 0, y: 0 })
         const [zoom, setZoom] = React.useState(1)
-        const [aspect, setAspect] = React.useState(1)
+        const [aspect, setAspect] = React.useState(0)
         const [croppedarea, setCroppedarea] = React.useState(null)
 
         function Dime3() {
             setAspect({
                 asp: 0.9
             })
-         }
+        }
 
         function Dime2() {
-           setAspect({
-               asp: 2.1
-           })
+            setAspect({
+                asp: 2.1
+            })
         }
 
         function Dime1() {
             setAspect({
                 asp: 1
             })
-         }
+        }
 
         return (
             <Modal
@@ -165,7 +175,7 @@ const UploadImagem = () => {
                             <div className="container-cropper" >
                                 <div className='cropper'>
                                     <Cropper
-                                        image={imagens}
+                                        image={image}
                                         crop={crop}
                                         zoom={zoom}
                                         aspect={aspect.asp}
@@ -319,8 +329,8 @@ const UploadImagem = () => {
                                         className="Btn"
                                         onClick={refbtnEscolher}
                                     >ESCOLHER OUTRA IMAGEM</button>
-                                    <Link to="/Carrinho" className="Btn"
-                                        onClick={uparImg} >SALVAR</Link>
+                                    <Link to="#" className="Btn"
+                                        onClick={uparImg} >SALVAR </Link>
                                 </div>
                             </div>
                         </div>
