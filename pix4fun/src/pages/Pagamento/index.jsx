@@ -1,3 +1,4 @@
+import { encode } from 'iconv-lite';
 import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -5,37 +6,53 @@ import TrackingEvents from '../../components/TrackingEvents';
 import './index.css';
 
 export default function Pagamento() {
+    // // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
+
+    // const [events, setEvents] = useState([]);
+
+    // const submitHandler = (event) => {
+    //     event.preventDefault();
+
+    //     const formData = new FormData(event.target);
+    //     const data = Object.fromEntries(formData);
+
+    //     fetch('http://localhost:3001/?tracking=' + data.tracking)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const events = data.events;
+    //             setEvents(events);
+    //         })
+    //         .catch(console.error);
+    // };
+
+    // function main() {
+    //     const encodeString = "729799107101114328297110107";
+
+    //     const result = here(encodeString);
+    // }
+
+    // function here(encodeString) {
+    //     '729799107101114328297110107'.charCodeAt(0);
+    // }
+
+    var balde = 2
+    var parede = parseInt(window.prompt("Tamanho da parede em metros: "))
+    var x = parede/2;
+    console.log("Você precisara de ", x, "baldes de tinta")
 
 
-
-    // const [frete, setFrete] = React.useState(localStorage.getItem(' '))
-
-    const [events, setEvents] = useState([]);
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-
-        fetch('http://localhost:3001/?tracking=' + data.tracking)
-            .then(response => response.json())
-            .then(data => {
-                const events = data.events;
-                setEvents(events);
-            })
-            .catch(console.error);
-    };
-
-    
-
-
-   
 
     return (
+        // main(),
         <div className="bloco">
             <Header />
-            <div className="localdeentrega">
+
+
+
+
+
+
+            {/* <div className="localdeentrega">
                 <h1>Rastreamento de pacote:</h1>
 
                 <form onSubmit={submitHandler}>
@@ -64,7 +81,7 @@ export default function Pagamento() {
                 </script>
             </div>
             <div id="contact" />
-            <div id="doubt" />
+            <div id="doubt" /> */}
             <Footer />
         </div>
     )
