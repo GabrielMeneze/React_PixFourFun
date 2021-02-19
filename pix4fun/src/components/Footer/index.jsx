@@ -3,21 +3,21 @@ import "./index.css";
 import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'
 import logoPT from '../../assets/img/003-pinterest.svg'
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
 
 
 export default function Footer() {
-  function sendEmail(e) {
-    e.preventDefault();
+  // function sendEmail(e) {
+  //   e.preventDefault();
 
-    emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
-      .then((result) => {
-        console.log(result.text);
-        alert('Menssagem enviada')
-      }, (error) => {
-        console.log(error.text);
-      });
-  }
+  //   emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
+  //     .then((result) => {
+  //       console.log(result.text);
+  //       alert('Menssagem enviada')
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
   return (
     <footer id="rodape">
       <div className="container">
@@ -28,7 +28,8 @@ export default function Footer() {
             <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@PIX4FUN.COM.BR</a>
           </div>
 
-          <form className="contact-form" onSubmit={sendEmail}>
+          <form className="contact-form" //onSubmit={sendEmail}
+          >
             <input type="hidden" name="contact_number" />
             <label>Nome</label>
             <input type="text" name="user_name" />

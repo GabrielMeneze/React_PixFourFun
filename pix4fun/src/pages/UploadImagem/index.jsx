@@ -91,7 +91,7 @@ const UploadImagem = () => {
     }
 
 
-    function excluirImg(target, index) {
+    function excluirImg(index) {
         var i = 1
         const list = Array.from(imagens)
         list.splice(index, 1);
