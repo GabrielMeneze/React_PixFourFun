@@ -61,8 +61,7 @@ const Carrinho = () => {
     
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
-    console.log(keys)
-
+    
     let custo = parseFloat(keys[24])
     let frete = parseFloat(fretePreco)
     let custoeFrete = (custo + frete)
@@ -142,7 +141,7 @@ const Carrinho = () => {
 
                         <div className="resumo-detalhes">
                             <strong>total</strong>
-                            <strong>{custoeFrete}</strong>
+                            <strong>{custoTotal}</strong>
                         </div>
                         <div className="buy-area">
                             <button className="buy-button">
