@@ -13,13 +13,18 @@ export default function Home() {
       price: 17.99,
       qtd: 6,
       inCart: 0
-    },
+    }
+  ]
+
+  let produtos1 = [
     {
       name: 'Pack com 12 fotos polaroid',
       price: 21.99,
       qtd: 6,
       inCart: 0
-    },
+    }
+  ]
+  let produtos2 = [
     {
       name: 'Pack com 18 fotos polaroid',
       price: 26.99,
@@ -27,7 +32,7 @@ export default function Home() {
       inCart: 0
     }
   ]
-
+  
   // Botões que direcionam para pagina de login ou upload
   function botaoComprar() {
     if (token === null) {
@@ -37,7 +42,7 @@ export default function Home() {
             cartsnumber(produtos[i]);
             custoTotal(produtos[i]);
           }}
-          id="bota" to="/Carrinho" className="buyButton" >
+          id="bota" to="/LoginCadastro" className="buyButton" >
           COMPRAR
         </Link>
       );
@@ -47,6 +52,56 @@ export default function Home() {
           onClick={(i) => {
             cartsnumber(produtos[i]);
             custoTotal(produtos[i]);
+          }}
+          id="bota" to="/uploadimagem" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    }
+  };
+  function botaoComprar2() {
+    if (token === null) {
+      return (
+        <Link
+          onClick={(i) => {
+            cartsnumber1(produtos1[i]);
+            custoTotal(produtos1[i]);
+          }}
+          id="bota" to="/LoginCadastro" className="buyButton" >
+          COMPRAR
+        </Link>
+      );
+    } else {
+      return (
+        <Link
+          onClick={(i) => {
+            cartsnumber1(produtos1[i]);
+            custoTotal(produtos1[i]);
+          }}
+          id="bota" to="/uploadimagem" className="buyButton">
+          COMPRAR
+        </Link>
+      );
+    }
+  };
+  function botaoComprar3() {
+    if (token === null) {
+      return (
+        <Link
+          onClick={(i) => {
+            cartsnumber2(produtos2[i]);
+            custoTotal(produtos2[i]);
+          }}
+          id="bota" to="/LoginCadastro" className="buyButton" >
+          COMPRAR
+        </Link>
+      );
+    } else {
+      return (
+        <Link
+          onClick={(i) => {
+            cartsnumber2(produtos2[i]);
+            custoTotal(produtos2[i]);
           }}
           id="bota" to="/uploadimagem" className="buyButton">
           COMPRAR
@@ -91,6 +146,80 @@ export default function Home() {
 
     localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
   }
+
+  function cartsnumber1() {
+    let productnumber = localStorage.getItem('cartNumber');
+
+    productnumber = parseInt(productnumber);
+
+    if (productnumber) {
+      localStorage.setItem('cartNumber', productnumber + 1);
+    } else {
+      localStorage.setItem('cartNumber', 1);
+    }
+    setItems1(produtos1)
+  }
+
+  //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
+  function setItems1() {
+    let cartItems = localStorage.getItem('produtoinCart');
+    cartItems = JSON.parse(cartItems)
+
+    if (cartItems != null) {
+      if (cartItems[produtos1.name] === undefined) {
+        cartItems = {
+          ...cartItems,
+          [produtos1.name]: produtos1
+        }
+      }
+      cartItems[produtos1.name].inCart += 1;
+    } else {
+      produtos1.inCart = 1;
+      cartItems = {
+        [produtos1.name]: produtos1
+      }
+    }
+    localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
+  }
+
+  function cartsnumber2() {
+    let productnumber = localStorage.getItem('cartNumber');
+
+    productnumber = parseInt(productnumber);
+
+    if (productnumber) {
+      localStorage.setItem('cartNumber', productnumber + 1);
+    } else {
+      localStorage.setItem('cartNumber', 1);
+    }
+    setItems2(produtos2)
+  }
+
+  //  cria um array com os produtos selecionados: para ver os mesmos é necessario ir a application no console e selecionar um produto
+  function setItems2() {
+    let cartItems = localStorage.getItem('produtoinCart');
+    cartItems = JSON.parse(cartItems)
+
+    if (cartItems != null) {
+      if (cartItems[produtos2.name] === undefined) {
+        cartItems = {
+          ...cartItems,
+          [produtos2.name]: produtos2
+        }
+      }
+      cartItems[produtos2.name].inCart += 1;
+    } else {
+      produtos2.inCart = 1;
+      cartItems = {
+        [produtos2.name]: produtos2
+      }
+    }
+
+    localStorage.setItem('produtoinCart', JSON.stringify(cartItems))
+  }
+
+
+
 
   // Calcula o preço total
   function custoTotal() {
@@ -228,7 +357,7 @@ export default function Home() {
                 <h4>R$ 21,99</h4>
               </div>
               <div className="buy buy2">
-                {botaoComprar()}
+                {botaoComprar2()}
               </div>
             </div>
             <div className="pack3">
@@ -267,7 +396,7 @@ export default function Home() {
                 <h4>R$ 26,99</h4>
               </div>
               <div className="buy buy3">
-                {botaoComprar()}
+                {botaoComprar3()}
               </div>
             </div>
           </div>
