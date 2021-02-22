@@ -55,6 +55,11 @@ const Carrinho = () => {
 
     }
 
+    const reload = () =>{
+        window.location.reload()
+        return true;
+    }
+    
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
@@ -112,6 +117,7 @@ const Carrinho = () => {
                                         type="submit"
                                         value="Calcular"
                                         className="input-btn"
+                                        onClick = {reload}
                                     >Calcular</button>
                                 </div>
                             </form>

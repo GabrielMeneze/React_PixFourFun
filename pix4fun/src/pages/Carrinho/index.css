@@ -137,9 +137,8 @@
         width: 10vh;
         background-color: #EB9A3D;
         border: none;
-        color: white;
         border-radius: 0.2rem;
-        color: black;
+        color: #f0f0f0;
         margin-top: 5px ;
     }
     
