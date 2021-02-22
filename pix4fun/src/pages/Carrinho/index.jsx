@@ -35,6 +35,8 @@ const Carrinho = () => {
         }
     }
 
+    
+
     function calcularHandler(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -51,13 +53,12 @@ const Carrinho = () => {
             .catch(console.error)
 
         if (frete) {
-            setCustoTotal(custoTotal + custoeFrete)
+            setCustoTotal(FreteCusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
         }
             
                   
     }
-
-    
+ 
     
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
@@ -67,6 +68,8 @@ const Carrinho = () => {
     let custoeFrete = (custo + frete)
     let desconto = (custo * 0.9)
     let descontoEcusto = (desconto + frete)
+    let FreteCusto = (frete+custo)
+    
 
 
     return (
