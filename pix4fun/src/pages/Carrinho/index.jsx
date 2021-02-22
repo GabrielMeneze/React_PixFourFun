@@ -44,7 +44,8 @@ const Carrinho = () => {
             .then(r => {
                 return (
                     console.log(r),
-                    localStorage.setItem('frete', r.result[1].Valor)
+                    localStorage.setItem('frete', r.result[1].Valor),
+                    window.location.reload()
                 )
             })
             .catch(console.error)
@@ -52,13 +53,11 @@ const Carrinho = () => {
         if (frete) {
             setCustoTotal(custoTotal + custoeFrete)
         }
-
+            
+                  
     }
 
-    const reload = () =>{
-        window.location.reload()
-        return true;
-    }
+    
     
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
@@ -117,7 +116,6 @@ const Carrinho = () => {
                                         type="submit"
                                         value="Calcular"
                                         className="input-btn"
-                                        onClick = {reload}
                                     >Calcular</button>
                                 </div>
                             </form>
