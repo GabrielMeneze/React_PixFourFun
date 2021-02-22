@@ -1,187 +1,187 @@
-    .con {
-        max-width: 650px;
-        justify-content: space-around;
-        margin: 0 auto;
-        margin-top: 50px;
+.con {
+    max-width: 650px;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.con ion-icon {
+    font-size: 25px;
+    color: blue;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cari {
+    background-color: rgb(223, 221, 221);
+    border-radius: initial;
+    width: 100%;
+    height: 70px;
+}
+
+.produto-h {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 4px solid lavenderblush;
+    margin: 0 auto;
+}
+
+.titulo {
+    width: 45%;
+}
+
+.preco {
+    width: 15%;
+    align-items: center;
+}
+
+.quantidade {
+    width: 30%;
+    border-bottom: 1px solid lavenderblush;
+    align-items: center;
+}
+
+.total {
+    width: 10%;
+    border-bottom: 1px solid lavenderblush;
+    display: flex;
+    align-items: center;
+}
+
+.produtos {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid lavenderblush;
+}
+
+.produto-carrinho {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quantidade-b {
+    margin-right: 40px;
+}
+
+.resumo-pedido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vh;
+    height: 45vh;
+    background-color: #f0f0f0;
+    margin-right: 3vh;
+}
+
+.limit-div {
+    width: 35vh;
+    height: 40vh;
+}
+
+.resumo-detalhes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resumo-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.input-cupom {
+    width: 15vh;
+    height: 3vh;
+}
+
+.form-cupom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buy-button {
+    width: 20vh;
+    height: 5vh;
+    background-color: #EB9A3D;
+    border: none;
+    color: white;
+    border-radius: 0.2rem;
+}
+
+.buy-area {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+}
+
+.produto-detalhes {
+    margin-left: -50vh;
+}
+
+.container-resumo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20vh;
+    margin-bottom: 10vh;
+}
+
+.input-btn{
+    width: 10vh;
+    background-color: #EB9A3D;
+    border: none;
+    border-radius: 0.2rem;
+    color: #f0f0f0;
+    margin-top: 5px ;
+}
+
+@media(max-width:1110px) {
+    .container-resumo {
+        margin-top: 7vh;
+        justify-content: center;
     }
-    
-    .con ion-icon {
-        font-size: 25px;
-        color: blue;
-        margin-left: 10px;
-        margin-right: 10px;
-        cursor: pointer;
+    .produto-detalhes {
+        margin-left: 0;
+        width: 75%;
+        margin-left: 7.5vh;
     }
-    
-    .cari {
-        background-color: rgb(223, 221, 221);
-        border-radius: initial;
-        width: 100%;
-        height: 70px;
+    .pack-nome{
+        width: 25%;
     }
-    
-    .produto-h {
-        width: 100%;
-        max-width: 650px;
-        display: flex;
-        justify-content: space-around;
-        border-bottom: 4px solid lavenderblush;
-        margin: 0 auto;
+    .titulo{
+        width: 25%;
     }
-    
+}
+
+@media(max-width: 375px) {
+    .produto-detalhes {
+        font-size: small;
+        margin-left: 4vh;
+    }
     .titulo {
-        width: 45%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    
     .preco {
-        width: 15%;
-        align-items: center;
+        width: 20%;
     }
-    
     .quantidade {
-        width: 30%;
-        border-bottom: 1px solid lavenderblush;
-        align-items: center;
+        width: 25%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    
     .total {
         width: 10%;
-        border-bottom: 1px solid lavenderblush;
-        display: flex;
-        align-items: center;
+    }
+    .resumo-pedido{
+        margin-right: 0;
     }
     
-    .produtos {
-        width: 100%;
-        max-width: 650px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid lavenderblush;
-    }
-    
-    .produto-carrinho {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .quantidade-b {
-        margin-right: 40px;
-    }
-    
-    .resumo-pedido {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40vh;
-        height: 45vh;
-        background-color: #f0f0f0;
-        margin-right: 3vh;
-    }
-    
-    .limit-div {
-        width: 35vh;
-        height: 40vh;
-    }
-    
-    .resumo-detalhes {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .resumo-inputs{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-    
-    .input-cupom {
-        width: 15vh;
-        height: 3vh;
-    }
-    
-    .form-cupom {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .buy-button {
-        width: 20vh;
-        height: 5vh;
-        background-color: #EB9A3D;
-        border: none;
-        color: white;
-        border-radius: 0.2rem;
-    }
-    
-    .buy-area {
-        display: flex;
-        justify-content: center;
-        margin-top: 4vh;
-    }
-    
-    .produto-detalhes {
-        margin-left: -50vh;
-    }
-    
-    .container-resumo {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        margin-top: -20vh;
-        margin-bottom: 10vh;
-    }
-
-    .input-btn{
-        width: 10vh;
-        background-color: #EB9A3D;
-        border: none;
-        border-radius: 0.2rem;
-        color: #f0f0f0;
-        margin-top: 5px ;
-    }
-    
-    @media(max-width:1110px) {
-        .container-resumo {
-            margin-top: 7vh;
-            justify-content: center;
-        }
-        .produto-detalhes {
-            margin-left: 0;
-            width: 75%;
-            margin-left: 7.5vh;
-        }
-        .pack-nome{
-            width: 25%;
-        }
-        .titulo{
-            width: 25%;
-        }
-    }
-    
-    @media(max-width: 375px) {
-        .produto-detalhes {
-            font-size: small;
-            margin-left: 4vh;
-        }
-        .titulo {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .preco {
-            width: 20%;
-        }
-        .quantidade {
-            width: 25%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .total {
-            width: 10%;
-        }
-        .resumo-pedido{
-            margin-right: 0;
-        }
-        
-    }
+}
