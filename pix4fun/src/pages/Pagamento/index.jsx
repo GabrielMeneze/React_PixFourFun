@@ -1,3 +1,4 @@
+import { encode } from 'iconv-lite';
 import React, { useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -24,25 +25,27 @@ export default function Pagamento() {
     //         .catch(console.error);
     // };
 
+    // function main() {
+    //     const encodeString = "729799107101114328297110107";
+
+    //     const result = here(encodeString);
+    // }
+
+    // function here(encodeString) {
+    //     '729799107101114328297110107'.charCodeAt(0);
+    // }
+
+    var balde = 2
+    var parede = parseInt(window.prompt("Tamanho da parede em metros: "))
+    var x = parede/2;
+    console.log("Você precisara de ", x, "baldes de tinta")
 
 
-
-    
-
-function a() {
-    var a = "hello"
-    document.getElementById("a").innerHTML = a.charCodeAt(0)
-}
-   
 
     return (
+        // main(),
         <div className="bloco">
             <Header />
-         
-
-
-            <button onClick={a()}>click</button>
-
 
 
 

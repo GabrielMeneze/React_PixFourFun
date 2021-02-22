@@ -26,6 +26,7 @@ footer {
 
 .contact-form {
     width: 350px;
+    padding-top: 0em ;
 }
 
 .textFooter,
@@ -58,8 +59,9 @@ footer textarea {
     border: solid 2px rgba(82, 82, 82, 1);
     font-family: "Questrial";
     padding: 3px;
-    padding-left: 30px;
+    padding-left: 0px;
     background-color: var(--main-color-01);
+    margin: 4px 6px 4px 0px;
 }
 
 footer input[type="text"]:focus,

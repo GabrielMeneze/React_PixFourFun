@@ -3,21 +3,21 @@ import "./index.css";
 import logoIN from '../../assets/img/001-instagram.svg'
 import logoFB from '../../assets/img/002-facebook.svg'
 import logoPT from '../../assets/img/003-pinterest.svg'
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
 
 
 export default function Footer() {
-  function sendEmail(e) {
-    e.preventDefault();
+  // function sendEmail(e) {
+  //   e.preventDefault();
 
-    emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
-      .then((result) => {
-        console.log(result.text);
-        alert('Menssagem enviada')
-      }, (error) => {
-        console.log(error.text);
-      });
-  }
+  //   emailjs.sendForm('service_1gaplug', 'template_fuwm9ed', e.target, 'user_0wIRb9eHUQfkmEWEasXf1')
+  //     .then((result) => {
+  //       console.log(result.text);
+  //       alert('Menssagem enviada')
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
   return (
     <footer id="rodape">
       <div className="container">
@@ -28,19 +28,17 @@ export default function Footer() {
             <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@PIX4FUN.COM.BR</a>
           </div>
 
-          <form className="contact-form" onSubmit={sendEmail}>
+          <form className="contact-form" //onSubmit={sendEmail}
+          >
             <input type="hidden" name="contact_number" />
-            <label>Nome</label>
-            <input type="text" name="user_name" />
-            <label>Email</label>
-            <input type="email" name="user_email" />
-            <label>Mensagem</label>
-            <textarea name="message" />
-            <input type="submit" value="Send" />
+            <input type="text" name="user_name" placeholder= "Nome"/>
+            <input type="email" name="user_email" placeholder= "E-mail"/>
+            <textarea name="message" placeholder= "Adicione uma mensagem"/>
+            <button className="btnEnviar">ENVIAR</button> 
           </form>
         </div>
 
-        <div className="pFooter">
+        <div className="Footer">
           <p>©PIX4FUN Todos os direitos reservados. CNPJ 18.882.937/0001-01</p>
           <p>SIGA-NOS EM NOSSAS REDES SOCIAIS PARA FICAR POR DENTRO DE TODAS AS
             NOVIDADES!</p>

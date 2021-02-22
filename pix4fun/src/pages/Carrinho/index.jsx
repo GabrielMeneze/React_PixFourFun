@@ -22,7 +22,7 @@ const Carrinho = () => {
                 if (frete) {
                     console.log('e')
                     setCustoTotal(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
-                }else{
+                } else {
                     console.log('s')
                     setCustoTotal(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 }
@@ -44,17 +44,21 @@ const Carrinho = () => {
             .then(r => {
                 return (
                     console.log(r),
-                    localStorage.setItem('frete', r.result[1].Valor)
+                    localStorage.setItem('frete', r.result[1].Valor),
+                    window.location.reload()
                 )
             })
             .catch(console.error)
 
-            if (frete) {
-                setCustoTotal(custoTotal + custoeFrete)
-            }
-
+        if (frete) {
+            setCustoTotal(custoTotal + custoeFrete)
+        }
+            
+                  
     }
 
+    
+    
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
@@ -66,7 +70,6 @@ const Carrinho = () => {
 
 
     return (
-
         <div className="mai">
             <Header />
             <div className="produto-detalhes">
@@ -100,23 +103,10 @@ const Carrinho = () => {
                             {<p>R${fretePreco}</p>}
                         </div>
                         <div className="resumo-inputs">
-                            <form className="form-cupom" onSubmit={Validar}>
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        name="Cupom"
-                                        className="form-control"
-                                    >
-                                    </input>
-                                    <button
-                                        type="submit"
-                                        value="vcupom"
-                                    >OK</button>
-                                </div>
-                            </form>
                             <form onSubmit={calcularHandler}>
                                 <div className="form-group">
                                     <input
+                                        placeholder="CEP"
                                         type="text"
                                         name="calcular"
                                         className="form-control"
@@ -125,7 +115,24 @@ const Carrinho = () => {
                                     <button
                                         type="submit"
                                         value="Calcular"
+                                        className="input-btn"
                                     >Calcular</button>
+                                </div>
+                            </form>
+                            <form className="form-cupom" onSubmit={Validar}>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        name="Cupom"
+                                        className="form-control"
+                                        placeholder="Cupom"
+                                    >
+                                    </input>
+                                    <button
+                                        type="submit"
+                                        value="vcupom"
+                                        className="input-btn"
+                                    >OK</button>
                                 </div>
                             </form>
                         </div>

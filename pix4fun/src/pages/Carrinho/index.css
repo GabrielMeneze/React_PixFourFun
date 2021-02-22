@@ -132,6 +132,15 @@
         margin-top: -20vh;
         margin-bottom: 10vh;
     }
+
+    .input-btn{
+        width: 10vh;
+        background-color: #EB9A3D;
+        border: none;
+        border-radius: 0.2rem;
+        color: #f0f0f0;
+        margin-top: 5px ;
+    }
     
     @media(max-width:1110px) {
         .container-resumo {
