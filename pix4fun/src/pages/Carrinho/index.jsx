@@ -45,7 +45,8 @@ const Carrinho = () => {
                 return (
                     console.log(r),
                     localStorage.setItem('frete', r.result[1].Valor),
-                    window.location.reload()
+                    window.location.reload(),
+                    setCustoTotal(custo + frete)
                 )
             })
             .catch(console.error)
@@ -56,11 +57,11 @@ const Carrinho = () => {
             
                   
     }
-
-    
+ 
     
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
+    console.log(keys)
 
     let custo = parseFloat(keys[24])
     let frete = parseFloat(fretePreco)
@@ -141,7 +142,7 @@ const Carrinho = () => {
 
                         <div className="resumo-detalhes">
                             <strong>total</strong>
-                            <strong>{custoTotal}</strong>
+                            <strong>{custoeFrete}</strong>
                         </div>
                         <div className="buy-area">
                             <button className="buy-button">
