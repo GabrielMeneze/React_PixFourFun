@@ -56,13 +56,13 @@ const UploadImagem = () => {
             setImagenss({
                 selected: imagenss
             })
-            if (keys[6] == 6) {
+            if (keys[2] == 6) {
                 setLimitador(limitador + pack6)
             }
-            else if (keys[6] == 12) {
+            else if (keys[2] == 12) {
                 setLimitador(limitador + pack12);
             }
-            else if (keys[6] == 18) {
+            else if (keys[2] == 18) {
                 setLimitador(limitador + pack18);
             }
         } else if (li == 'oi') {
