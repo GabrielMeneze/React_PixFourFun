@@ -35,7 +35,7 @@ const Carrinho = () => {
         }
     }
 
-    
+
 
     function calcularHandler(event) {
         event.preventDefault();
@@ -47,7 +47,7 @@ const Carrinho = () => {
                 return (
                     console.log(r),
                     localStorage.setItem('frete', r.result[1].Valor),
-                    window.location.reload()                  
+                    window.location.reload()
                 )
             })
             .catch(console.error)
@@ -55,11 +55,27 @@ const Carrinho = () => {
         if (frete) {
             setCustoTotal(FreteCusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
         }
-            
-                  
+
+
     }
- 
-    
+
+    function Mer(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+        fetch('http://localhost:3005/?Mercado=' + data.Mercado)
+            .then(response => response.json())
+            .then(r => {
+                return (
+                    console.log(r)
+                )
+            })
+            .catch(console.error)
+
+
+    }
+
+
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
@@ -68,8 +84,8 @@ const Carrinho = () => {
     let custoeFrete = (custo + frete)
     let desconto = (custo * 0.9)
     let descontoEcusto = (desconto + frete)
-    let FreteCusto = (frete+custo)
-    
+    let FreteCusto = (frete + custo)
+
 
 
     return (
@@ -151,29 +167,29 @@ const Carrinho = () => {
                                 COMPRAR
                         </button>
                         </div>
+                        <form className="form-cupom" onSubmit={Mer}>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    name="Mercado"
+                                    className="form-control"
+                                    src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+                                    data-preference-id='<%= global.id %>'
+                                >
+                                </input>
+                                <button
+                                    type="submit"
+                                    value="vcupom"
+                                    className="input-btn"
+                                >OK</button>
+                                
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
 
-            {/* <form onSubmit={pagamentoHandler}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            name="pago"
-                            className="form-control"
-                        >
-                        </input>
-                        <button
-                            type="submit"
-                            value="Pago"
-                        >mercado</button>
-                    </div>
-                </form> */}
-            <script
-                src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                data-preference-id='<%= global.id %>'>
-            </script>
-            <Footer />
+
         </div>
 
     )

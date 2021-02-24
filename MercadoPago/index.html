@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Pago</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-2">produto</h1>
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <div class="card-header">
+                    <h3>camiseta</h3>
+                    <div class="card-body">
+                        <p>imagem</p>
+                        <hr>
+                        <h4>Descrição</h4>
+                        <hr>
+                        <form action="http://localhost:3005/checkout" method="POST">
+                            <input type="hidden" name="title" value="camiseta">
+                            <input type="hidden" name="price" value="10">
+                            <input type="submit" value="comprar" class="btn btn-primary btn-block">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
