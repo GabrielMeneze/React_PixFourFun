@@ -59,23 +59,6 @@ const Carrinho = () => {
 
     }
 
-    function Mer(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        fetch('http://localhost:3005/?Mercado=' + data.Mercado)
-            .then(response => response.json())
-            .then(r => {
-                return (
-                    console.log(r)
-                )
-            })
-            .catch(console.error)
-
-
-    }
-
-
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
@@ -167,24 +150,6 @@ const Carrinho = () => {
                                 COMPRAR
                         </button>
                         </div>
-                        <form className="form-cupom" onSubmit={Mer}>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="Mercado"
-                                    className="form-control"
-                                    src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-                                    data-preference-id='<%= global.id %>'
-                                >
-                                </input>
-                                <button
-                                    type="submit"
-                                    value="vcupom"
-                                    className="input-btn"
-                                >OK</button>
-                                
-                            </div>
-                        </form>
                     </div>
                 </div>
             </section>
