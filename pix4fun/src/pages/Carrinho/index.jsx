@@ -145,11 +145,13 @@ const Carrinho = () => {
                             <strong>total</strong>
                             <strong>{custoTotal}</strong>
                         </div>
-                        <div className="buy-area">
-                            <button className="buy-button">
-                                COMPRAR
-                        </button>
-                        </div>
+
+                        <form action="http://localhost:3006/checkout" method="POST">
+                            <input type="hidden" name="title" value={keys[14]}/>
+                            <input type="hidden" name="price" value={custoeFrete}/>
+                            <input type="submit" value="comprar" class="btn btn-primary btn-block"/>
+                        </form>
+
                     </div>
                 </div>
             </section>

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const PORT = 3005;
+const PORT = 3006;
 
 // SDK de Mercado Pago
 const mercadopago = require ('mercadopago');
