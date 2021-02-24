@@ -75,14 +75,14 @@
     justify-content: center;
     align-items: center;
     width: 40vh;
-    height: 45vh;
+    height: 50vh;
     background-color: #f0f0f0;
-    margin-right: 3vh;
+    margin-right: 15vh;
 }
 
 .limit-div {
     width: 35vh;
-    height: 40vh;
+    height: 45vh;
 }
 
 .resumo-detalhes {
@@ -129,7 +129,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-top: -20vh;
+    margin-top: -15vh;
     margin-bottom: 10vh;
 }
 
@@ -142,7 +142,7 @@
     margin-top: 5px ;
 }
 
-@media(max-width:1110px) {
+@media(max-width:1185px) {
     .container-resumo {
         margin-top: 7vh;
         justify-content: center;
@@ -150,7 +150,7 @@
     .produto-detalhes {
         margin-left: 0;
         width: 75%;
-        margin-left: 7.5vh;
+       
     }
     .pack-nome{
         width: 25%;
