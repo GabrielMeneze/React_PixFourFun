@@ -92,7 +92,7 @@ const Carrinho = () => {
                     </div>
                 </div>
             </div>
-            <section className="container-resumo">
+            <div className="container-resumo">
                 <div className="resumo-pedido">
                     <div className="limit-div">
                         <h5>Resumo pedido</h5>
@@ -154,7 +154,7 @@ const Carrinho = () => {
 
                     </div>
                 </div>
-            </section>
+            </div>
 
 
         </div>
