@@ -7,7 +7,8 @@ import Footer from '../../components/Footer';
 const Carrinho = () => {
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
-    const [custoTotal, setCustoTotal] = useState(0)
+    const [custoTotal, setCustoTotal] = useState(0);
+    const [show, setShow] = useState(0)
     const [cartNumber, setCartNumber] = React.useState(localStorage.getItem("cartNumber"))
     const [fretePreco, setFrete] = React.useState(localStorage.getItem("frete"))
 
@@ -19,12 +20,15 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoeFrete * 0.9);
+                let descontoEcusto = (desconto + frete);
                 if (frete) {
                     console.log('e')
-                    setCustoTotal(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(descontoEcusto);
+                    setShow(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 } else {
                     console.log('s')
-                    setCustoTotal(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(desconto);
+                    setShow(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 }
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
@@ -51,11 +55,14 @@ const Carrinho = () => {
             .catch(console.error)
 
         if (frete) {
-            setCustoTotal(custoTotal + custoeFrete)
+            let custoeFrete = (custo + frete);
+            setCustoTotal(custoeFrete);
+            setShow(custoeFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
         }
             
                   
     }
+    
 
     
     
@@ -141,39 +148,22 @@ const Carrinho = () => {
 
                         <div className="resumo-detalhes">
                             <strong>total</strong>
-                            <strong>{custoTotal}</strong>
+                            <strong>{show}</strong>
                         </div>
                         <div className="buy-area">
-                            <button className="buy-button">
-                                COMPRAR
-                        </button>
+                        <form action="http://localhost:3006/checkout" method="POST"> 
+                            <input type="hidden" name="title" value={keys[14]}/>
+                            <input type="hidden" name="price" value={custoTotal}/>
+                            <input type="submit" value="comprar" class="btn btn-primary btn-block"/>
+                        </form>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* <form onSubmit={pagamentoHandler}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            name="pago"
-                            className="form-control"
-                        >
-                        </input>
-                        <button
-                            type="submit"
-                            value="Pago"
-                        >mercado</button>
-                    </div>
-                </form> */}
-            <script
-                src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                data-preference-id='<%= global.id %>'>
-            </script>
-            <Footer />
         </div>
 
     )
 }
 
 export default Carrinho;
+                        

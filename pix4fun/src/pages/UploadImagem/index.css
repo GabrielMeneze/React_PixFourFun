@@ -154,6 +154,14 @@
         width: 100%;
     }
     
+
+    .btns{
+        display: flex;
+        width: 90%;
+        height: 90%;
+        position: relative;
+    }
+
     .cropper {
         width: 90%;
         height: 90%;
