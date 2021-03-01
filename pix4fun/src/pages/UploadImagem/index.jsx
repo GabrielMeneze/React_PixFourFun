@@ -172,6 +172,11 @@ const UploadImagem = () => {
                 <Modal.Body>
                     {image ? (
                         <>
+                            <div className="btns" >
+                                <Button onClick={Dime2}>Paisagem</Button>
+                                <Button onClick={Dime1}>Quadrado</Button>
+                                <Button onClick={Dime3}>Retrato</Button>
+                            </div>
                             <div className="container-cropper" >
                                 <div className='cropper'>
                                     <Cropper
@@ -198,9 +203,7 @@ const UploadImagem = () => {
                             </div>
                         </>
                     ) : null}
-                    <Button onClick={Dime2}>Paisagem</Button>
-                    <Button onClick={Dime1}>Quadrado</Button>
-                    <Button onClick={Dime3}>Retrato</Button>
+
                     <input
                         type="file"
                         ref={inputCortar}
@@ -210,7 +213,7 @@ const UploadImagem = () => {
                     />
                     <Button
                         onClick={refCortar}
-                    >Cortar</Button>
+                    >Escolher imagem a ser cortada</Button>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Fechar</Button>
