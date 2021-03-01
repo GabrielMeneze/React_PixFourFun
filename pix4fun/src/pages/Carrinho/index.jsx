@@ -7,7 +7,8 @@ import Footer from '../../components/Footer';
 const Carrinho = () => {
 
     const [listarImgs, setListarImgs] = React.useState(localStorage.getItem("produtoinCart"));
-    const [custoTotal, setCustoTotal] = useState(0)
+    const [custoTotal, setCustoTotal] = useState(0);
+    const [show, setShow] = useState(0)
     const [cartNumber, setCartNumber] = React.useState(localStorage.getItem("cartNumber"))
     const [fretePreco, setFrete] = React.useState(localStorage.getItem("frete"))
 
@@ -19,12 +20,15 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoeFrete * 0.9);
+                let descontoEcusto = (desconto + frete);
                 if (frete) {
                     console.log('e')
-                    setCustoTotal(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(descontoEcusto);
+                    setShow(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 } else {
                     console.log('s')
-                    setCustoTotal(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(desconto);
+                    setShow(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 }
                 console.log('novo valor com 10% de desconto: ', desconto)
             } else {
@@ -34,8 +38,6 @@ const Carrinho = () => {
             console.log('é necessario preencher o campo')
         }
     }
-
-
 
     function calcularHandler(event) {
         event.preventDefault();
@@ -53,12 +55,17 @@ const Carrinho = () => {
             .catch(console.error)
 
         if (frete) {
-            setCustoTotal(FreteCusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
+            let custoeFrete = (custo + frete);
+            setCustoTotal(custoeFrete);
+            setShow(custoeFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
         }
-
-
+            
+                  
     }
+    
 
+    
+    
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
 
@@ -67,8 +74,6 @@ const Carrinho = () => {
     let custoeFrete = (custo + frete)
     let desconto = (custo * 0.9)
     let descontoEcusto = (desconto + frete)
-    let FreteCusto = (frete + custo)
-
 
 
     return (
@@ -92,7 +97,7 @@ const Carrinho = () => {
                     </div>
                 </div>
             </div>
-            <div className="container-resumo">
+            <section className="container-resumo">
                 <div className="resumo-pedido">
                     <div className="limit-div">
                         <h5>Resumo pedido</h5>
@@ -143,23 +148,22 @@ const Carrinho = () => {
 
                         <div className="resumo-detalhes">
                             <strong>total</strong>
-                            <strong>{custoTotal}</strong>
+                            <strong>{show}</strong>
                         </div>
-
-                        <form action="http://localhost:3006/checkout" method="POST">
+                        <div className="buy-area">
+                        <form action="http://localhost:3006/checkout" method="POST"> 
                             <input type="hidden" name="title" value={keys[14]}/>
-                            <input type="hidden" name="price" value={custoeFrete}/>
+                            <input type="hidden" name="price" value={custoTotal}/>
                             <input type="submit" value="comprar" class="btn btn-primary btn-block"/>
                         </form>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
+            </section>
         </div>
 
     )
 }
 
 export default Carrinho;
+                        
