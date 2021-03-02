@@ -311,7 +311,6 @@ export default function Home() {
                     <br />
                     <br />
                   </p>
-                  <p>•Frete FIXO R$10,00</p>
                 </span>
               </div>
               <div className="precoPack">
@@ -350,7 +349,6 @@ export default function Home() {
                     <br />
                     <br />
                   </p>
-                  <p>•Frete FIXO R$10,00</p>
                 </span>
               </div>
               <div className="precoPack">
@@ -389,7 +387,6 @@ export default function Home() {
                     <br />
                     <br />
                   </p>
-                  <p>•Frete FIXO R$10,00</p>
                 </span>
               </div>
               <div className="precoPack">

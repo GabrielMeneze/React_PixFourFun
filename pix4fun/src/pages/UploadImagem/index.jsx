@@ -17,8 +17,8 @@ const UploadImagem = () => {
     const [li, setLi] = useState('oi')
     const [container2, setContainer2] = React.useState(null)
     const [image, setImage] = React.useState(null)
-    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
     const [frase, setFrase] = useState('')
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
     const keys = qtdImgs.split(' ')
     const [modalShow, setModalShow] = React.useState(false)
     const [modalcrop, setModalcrop] = React.useState(false)
@@ -328,11 +328,7 @@ const UploadImagem = () => {
                             <div className="container-subimit">
                                 {<p>Você ainda pode escolher {limitador} imagens</p>}
                                 <div className="escolherdnv">
-                                    <button
-                                        className="Btn"
-                                        onClick={refbtnEscolher}
-                                    >ESCOLHER OUTRA IMAGEM</button>
-                                    <Link to="#" className="Btn"
+                                    <Link to="/Carrinho" className="Btn"
                                         onClick={uparImg} >SALVAR </Link>
                                 </div>
                             </div>

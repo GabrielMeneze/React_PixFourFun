@@ -30,7 +30,7 @@ export default function Header() {
           <Nav.Link href="/">Inicio</Nav.Link>
           <Nav.Link href="#buy">Comprar</Nav.Link>
           <Nav.Link href="#doubt">Dúvidas </Nav.Link>
-          <Nav.Link href="#contact">Contatos</Nav.Link>
+          <Nav.Link href="#doubt">Contatos</Nav.Link>
           <hr />
           <Nav.Link
             href="/logincadastro"

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header'
 import './index.css';
-import Footer from '../../components/Footer';
 
 
 const Carrinho = () => {
@@ -20,11 +19,10 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoeFrete * 0.9);
-                let descontoEcusto = (desconto + frete);
                 if (frete) {
                     console.log('e')
-                    setCustoTotal(descontoEcusto);
-                    setShow(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(desconto);
+                    setShow(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 } else {
                     console.log('s')
                     setCustoTotal(desconto);
@@ -68,6 +66,8 @@ const Carrinho = () => {
     
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
+    const keys1 = qtdImgs.split(' ')
 
     let custo = parseFloat(keys[24])
     let frete = parseFloat(fretePreco)
@@ -92,7 +92,7 @@ const Carrinho = () => {
                     <div className="produto-carrinho">
                         {<p className="pack-nome" >{keys[14]}</p>}
                         {<p className="preco-b">{keys[24]}</p>}
-                        {<p className="quantidade-b">{cartNumber}</p>}
+                        {<p className="quantidade-b">{keys1[2]}</p>}
                         {<p className="custo">{keys[24]}</p>}
                     </div>
                 </div>
@@ -102,7 +102,7 @@ const Carrinho = () => {
                     <div className="limit-div">
                         <h5>Resumo pedido</h5>
                         <div className="resumo-detalhes">
-                            {<p>{cartNumber} produto(s)</p>}
+                            {<p>{keys1[2]} Fotos</p>}
                             {<p>R${keys[24]}</p>}
                         </div>
                         <div className="resumo-detalhes">
