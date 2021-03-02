@@ -4546,6 +4546,11 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
+emailjs-com@^2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/emailjs-com/-/emailjs-com-2.6.4.tgz#c3bac8f7ee58d536ab34923e73013ad39f299f46"
+  integrity sha512-4G8rxq+1mbL4rGntMa9tqNJ4N9BhuCl8lFJASDHxZVXeC82ivwL6qw+Zu48cAWHpNK2/F3vScaAZk8zoTAfiAA==
+
 emittery@^0.7.1:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.7.2.tgz#25595908e13af0f5674ab419396e2fb394cdfa82"
@@ -7603,10 +7608,10 @@ memory-fs@^0.5.0:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-mercadopago@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/mercadopago/-/mercadopago-1.5.2.tgz#00d5f1f7fa4e6434af83d67333a2a0d1a7bd7452"
-  integrity sha512-4KaGh+uvjfZRxg4fH/omArZ7poC6LuEjoLPU0ua6+tM5g9L60evD+XU58GcjX441o7n6UdT3095HQB24/hYCpg==
+mercadopago@^1.5.3:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/mercadopago/-/mercadopago-1.5.5.tgz#04a0f1294ecf99d53482049d70dbfc8a1263ba9a"
+  integrity sha512-iONayUIxhS+vcMFttsqjAz++yvQmIpFy5KjZUXTPKkeKVTetb/zeAl533yzGoEUDciI941NB1P066NmRf0RDzw==
   dependencies:
     ajv "4.10.3"
     bluebird "3.4.7"

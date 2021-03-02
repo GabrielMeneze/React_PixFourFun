@@ -89,8 +89,8 @@ const UploadImagem = () => {
         // } else {
 
         const fd = new FormData();
-        fd.append('image', imagenss.selected)
-        fetch('http://localhost:3000/api/Foto', fd)
+        fd.append('image', imagens)
+        fetch('http://localhost:5000/api/Foto', fd)
             .then(res => {
                 console.log(res)
             });
