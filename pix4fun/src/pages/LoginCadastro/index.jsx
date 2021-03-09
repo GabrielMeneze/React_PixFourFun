@@ -26,7 +26,7 @@ export default function LoginCadastro() {
     event.preventDefault();
 
     // Faz a conexão com o banco de dados
-    fetch(url + "usuario", {
+    fetch(url + "Usuario", {
       // Define o método que será utilizado
       method: "POST",
       // Define as informações que são necessárias para o login
@@ -49,8 +49,8 @@ export default function LoginCadastro() {
       if (response.ok) {
         console.log(response.json());
 
-        alert("Usuario cadastrado.");
-        history.push("/uploadimagem");
+        alert("Muito bem!, agora faça o Login");
+        history.push("/LoginCadastro");
       }
     });
   };

@@ -7,11 +7,9 @@ import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import './index.css';
-import { event, get } from 'jquery';
 
 const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
-    const [imagenss, setImagenss] = useState([])
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [li, setLi] = useState('oi')
@@ -35,7 +33,7 @@ const UploadImagem = () => {
     const uparFrase = () => {
         const fd = new FormData();
         fd.append('FraseFoto', frase)
-        fetch('http://localhost:3000/api/Foto/FraseFoto', fd)
+        fetch('http://localhost:5000/api/Foto/FraseFoto', fd)
             .then(res => {
                 console.log(res)
             });
@@ -51,11 +49,11 @@ const UploadImagem = () => {
         console.log(keys)
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0 && li == 'oi') {
+
             // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagenss({
-                selected: imagenss
-            })
+            setImagens(imagens)
+
             if (keys[2] == 6) {
                 setLimitador(limitador + pack6)
             }
@@ -66,10 +64,15 @@ const UploadImagem = () => {
                 setLimitador(limitador + pack18);
             }
         } else if (li == 'oi') {
+
+
+            // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagenss({
-                selected: imagenss
-            })
+            setImagens(imagens)
+
+
+
+
 
             setLimitador(limitador + des)
 
@@ -82,23 +85,29 @@ const UploadImagem = () => {
         }
     }
 
-    // Upa imagem para a api
-    const uparImg = (event) => {
-        // if (limitador > 0) {
-        //     alert('você ainda pode selecionar mais fotos')
-        // } else {
 
+
+
+
+
+
+
+    // Upa imagem para a api
+    const uparImg = () => {
         const fd = new FormData();
-        fd.append('image', imagenss.selected)
-        fetch('http://localhost:3000/api/Foto', fd)
+        fd.append('imagem', imagens)
+        fetch('http://localhost:5000/api/Upload', fd)
             .then(res => {
                 console.log(res)
             });
-
-
-
-        // }
     }
+
+
+
+
+
+
+
 
 
     function excluirImg(index) {
@@ -123,25 +132,25 @@ const UploadImagem = () => {
         const [inputImg, setInputImg] = useState('')
         const [blob, setBlob] = React.useState(null)
         
-        const createImage = (url) => {
-            new Promise((resolve, reject) => {
-                const imagee = new imagee()
-                imagee.addEventListener('load', () => resolve(imagee))
-                imagee.addEventListener('error', error => reject(error))
-                imagee.setAttribute('crossOrigin', 'anonymous')
-                imagee.src = url
-            })
-        }
+        // const createImage = (url) => {
+        //     new Promise((resolve, reject) => {
+        //         const imagee = new imagee()
+        //         imagee.addEventListener('load', () => resolve(imagee))
+        //         imagee.addEventListener('error', error => reject(error))
+        //         imagee.setAttribute('crossOrigin', 'anonymous')
+        //         imagee.src = url
+        //     })
+        // }
          const getCroppedImg = async (imageSrc, crop) => {
-            const image = await createImage(imageSrc)
-            const canvas = document.createElement('canvas')
-            const ctx = canvas.getContext('2d')
+            // const image = await createImage(imageSrc)
+            // const canvas = document.createElement('canvas')
+            // const ctx = canvas.getContext('2d')
             
-            return new Promise((resolve) => {
-                canvas.toBlob((blob) => {
-                    resolve(blob)
-                }, 'imagee/jpeg')
-            })
+            // return new Promise((resolve) => {
+            //     canvas.toBlob((blob) => {
+            //         resolve(blob)
+            //     }, 'imagee/jpeg')
+            // })
         }
 
         //Componente que define a area do crop: x, y, width, height
@@ -366,7 +375,7 @@ const UploadImagem = () => {
                             <div className="container-subimit">
                                 {<p>Você ainda pode escolher {limitador} imagens</p>}
                                 <div className="escolherdnv">
-                                    <Link to="/Carrinho" className="Btn"
+                                    <Link to="#" className="Btn"
                                         onClick={uparImg} >SALVAR </Link>
                                 </div>
                             </div>

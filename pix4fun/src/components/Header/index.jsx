@@ -50,6 +50,12 @@ export default function Header() {
         >
           <Nav.Link href="/dashboard">Dashboard</Nav.Link>
           <Nav.Link
+            href="/Pagamento"
+            alt="Link para página de login ou cadastro"
+          >
+            Cadastrar um adm
+          </Nav.Link>
+          <Nav.Link
             style={{
               color: "#7c7c7c",
             }}
