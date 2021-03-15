@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Agrega credenciales
 mercadopago.configure({
-    access_token: 'APP_USR-6623451607855904-111502-1f258ab308efb0fb26345a2912a3cfa5-672708410'
+    access_token: 'APP_USR-7350916820655330-121001-8c949b85ceccc996ae9edfac9688d20d-238845500'
   });
 
   

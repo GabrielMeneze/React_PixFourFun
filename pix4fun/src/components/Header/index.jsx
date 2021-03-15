@@ -30,7 +30,7 @@ export default function Header() {
           <Nav.Link href="/">Inicio</Nav.Link>
           <Nav.Link href="#buy">Comprar</Nav.Link>
           <Nav.Link href="#doubt">Dúvidas </Nav.Link>
-          <Nav.Link href="#contact">Contatos</Nav.Link>
+          <Nav.Link href="#doubt">Contatos</Nav.Link>
           <hr />
           <Nav.Link
             href="/logincadastro"
@@ -49,6 +49,12 @@ export default function Header() {
           }}
         >
           <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+          <Nav.Link
+            href="/Pagamento"
+            alt="Link para página de login ou cadastro"
+          >
+            Cadastrar um adm
+          </Nav.Link>
           <Nav.Link
             style={{
               color: "#7c7c7c",
