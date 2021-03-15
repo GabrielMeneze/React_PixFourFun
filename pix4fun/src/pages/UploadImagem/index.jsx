@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useImperativeHandle, useState } from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
@@ -49,6 +49,8 @@ const UploadImagem = () => {
         var pack18 = 17;
 
         console.log(keys)
+
+
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0 && li == 'oi') {
             // seleciona a foto
@@ -88,9 +90,14 @@ const UploadImagem = () => {
         //     alert('você ainda pode selecionar mais fotos')
         // } else {
 
+        console.log(imagens.map(imgMap =>{
+           return imgMap
+        }))
+
         const fd = new FormData();
         fd.append('image', imagens)
         fetch('http://localhost:5000/api/Foto', fd)
+                    
             .then(res => {
                 console.log(res)
             });
@@ -333,7 +340,7 @@ const UploadImagem = () => {
                                         onClick={refbtnEscolher}
                                     >ESCOLHER OUTRA IMAGEM</button>
                                     <Link to="#" className="Btn"
-                                        onClick={uparImg} >SALVAR </Link>
+                                        onClick={uparImg} multiple>SALVAR </Link>
                                 </div>
                             </div>
                         </div>

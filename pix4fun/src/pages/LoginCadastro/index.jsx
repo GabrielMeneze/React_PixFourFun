@@ -35,10 +35,10 @@ export default function LoginCadastro() {
         email: emailCadastro,
         senha: senhaCadastro,
         telefone: telefone,
-        cep: cep,
         rua: rua,
         numero: numero,
         complemento: complemento,
+        cep: cep,
         idPerfilAcesso: 1,
       }),
       headers: {

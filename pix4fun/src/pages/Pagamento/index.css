@@ -3,4 +3,32 @@
     padding: 0;
 }
 
+.uhul{
+    width: 50vh;
+    height: 50vh;
+    color: black;
+}
+
+.map{
+    width: 90vh;
+}
+
+.cadastroCupom{
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+
+.excluirCupom{
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+    margin-bottom: 5vh;
+}
+
+
+
 
