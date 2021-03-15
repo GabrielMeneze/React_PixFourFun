@@ -6,6 +6,7 @@ import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { url } from "../../utils/constants";
 import './index.css';
 
 const UploadImagem = () => {
@@ -39,6 +40,8 @@ const UploadImagem = () => {
             });
     }
 
+
+    
     // componente que escolhe a imagem
     const escolherImg = event => {
 
@@ -70,10 +73,6 @@ const UploadImagem = () => {
             imagens.push(URL.createObjectURL(event.target.files[0]))
             setImagens(imagens)
 
-
-
-
-
             setLimitador(limitador + des)
 
             if (limitador == 1) {
@@ -85,27 +84,12 @@ const UploadImagem = () => {
         }
     }
 
+    
 
+    // // Upa imagem para a api
+    // const uparImg = (event) => {
 
-
-
-
-
-
-    // Upa imagem para a api
-    const uparImg = () => {
-        const fd = new FormData();
-        fd.append('imagem', imagens)
-        fetch('http://localhost:5000/api/Upload', fd)
-            .then(res => {
-                console.log(res)
-            });
-    }
-
-
-
-
-
+    // }
 
 
 
@@ -131,7 +115,7 @@ const UploadImagem = () => {
         const [image, setImage] = React.useState(null)
         const [inputImg, setInputImg] = useState('')
         const [blob, setBlob] = React.useState(null)
-        
+
         // const createImage = (url) => {
         //     new Promise((resolve, reject) => {
         //         const imagee = new imagee()
@@ -141,11 +125,11 @@ const UploadImagem = () => {
         //         imagee.src = url
         //     })
         // }
-         const getCroppedImg = async (imageSrc, crop) => {
+        const getCroppedImg = async (imageSrc, crop) => {
             // const image = await createImage(imageSrc)
             // const canvas = document.createElement('canvas')
             // const ctx = canvas.getContext('2d')
-            
+
             // return new Promise((resolve) => {
             //     canvas.toBlob((blob) => {
             //         resolve(blob)
@@ -155,7 +139,7 @@ const UploadImagem = () => {
 
         //Componente que define a area do crop: x, y, width, height
         const onCropComplete = async (cropPixels) => {
-            const imagemCortada =  await getCroppedImg(
+            const imagemCortada = await getCroppedImg(
                 inputImg,
                 cropPixels
             )
@@ -329,6 +313,10 @@ const UploadImagem = () => {
                         onClick={refbtnEscolher}
                     >Escolher imagem</button>
                 </div>
+                {/* <form>
+                    <input type="file" multiple={true} onChange={e => onFileChange(e.target.files); escolherImg;} />
+                    <button onClick={handleClick}>Upload</button>
+                </form> */}
             </div>
 
             <hr className="lin" id="ContainerT" />
@@ -376,7 +364,7 @@ const UploadImagem = () => {
                                 {<p>Você ainda pode escolher {limitador} imagens</p>}
                                 <div className="escolherdnv">
                                     <Link to="#" className="Btn"
-                                        onClick={uparImg} >SALVAR </Link>
+                                         >SALVAR </Link>
                                 </div>
                             </div>
                         </div>
