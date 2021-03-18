@@ -40,8 +40,28 @@ const UploadImagem = () => {
             });
     }
 
+    const [images, setImages] = useState([]);
 
-    
+    // const onFileChange = (files) => {
+    //     setImages(f => [...f, ...files]);
+    // };
+
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        for (let i = 0; i < images.length; i++) {
+            // 'images' name of the formData values must match the action method param on your controller
+            formData.append(`images`, images[i]);
+        }
+
+        // Make sure you api is running on the same endpoint or you need to set up CORS
+        fetch('http://localhost:5000/api/Upload', {
+            body: formData,
+            method: "POST" // Make sure you add the method POST to your request when API is only accepting POST
+        }).then(res => console.log(res));
+    };
+
     // componente que escolhe a imagem
     const escolherImg = event => {
 
@@ -54,8 +74,8 @@ const UploadImagem = () => {
         if (limitador == 0 && li == 'oi') {
 
             // seleciona a foto
-            imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagens(imagens)
+            images.push(URL.createObjectURL(event.target.files[0]))
+            
 
             if (keys[2] == 6) {
                 setLimitador(limitador + pack6)
@@ -84,7 +104,7 @@ const UploadImagem = () => {
         }
     }
 
-    
+
 
     // // Upa imagem para a api
     // const uparImg = (event) => {
@@ -314,8 +334,8 @@ const UploadImagem = () => {
                     >Escolher imagem</button>
                 </div>
                 {/* <form>
-                    <input type="file" multiple={true} onChange={e => onFileChange(e.target.files); escolherImg;} />
-                    <button onClick={handleClick}>Upload</button>
+                    <input type="file" multiple={true} onChange={e => onFileChange(e.target.files)} />
+                    <button >Upload</button>
                 </form> */}
             </div>
 
@@ -326,7 +346,7 @@ const UploadImagem = () => {
                     <div className="ContainerTwo">
 
                         <div className="container_bloco">
-                            {imagens.map(item => {
+                            {images.map(item => {
                                 return (
                                     <div className="bloco-imagem">
                                         <div className="imagem">
@@ -364,7 +384,7 @@ const UploadImagem = () => {
                                 {<p>Você ainda pode escolher {limitador} imagens</p>}
                                 <div className="escolherdnv">
                                     <Link to="#" className="Btn"
-                                         >SALVAR </Link>
+                                    onClick={handleClick}>SALVAR </Link>
                                 </div>
                             </div>
                         </div>
