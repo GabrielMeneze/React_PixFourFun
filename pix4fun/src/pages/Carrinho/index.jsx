@@ -41,7 +41,9 @@ const Carrinho = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
-        fetch('http://localhost:3002/?calcular=' + data.calcular)
+        
+        if(cartNumber > 2){
+            fetch('http://localhost:3002/?calcular=' + data.calcular)
             .then(response => response.json())
             .then(r => {
                 return (
@@ -51,6 +53,10 @@ const Carrinho = () => {
                 )
             })
             .catch(console.error)
+        }else{
+            setFrete(10)
+        }
+                 
 
         if (frete) {
             let custoeFrete = (custo + frete);
@@ -92,8 +98,8 @@ const Carrinho = () => {
                     <div className="produto-carrinho">
                         {<p className="pack-nome" >{keys[14]}</p>}
                         {<p className="preco-b">{keys[24]}</p>}
-                        {<p className="quantidade-b">{keys1[2]}</p>}
-                        {<p className="custo">{keys[24]}</p>}
+                        {<p className="quantidade-b">{cartNumber}</p>}
+                        {<p className="custo">{custo * cartNumber}</p>}
                     </div>
                 </div>
             </div>
@@ -102,8 +108,8 @@ const Carrinho = () => {
                     <div className="limit-div">
                         <h5>Resumo pedido</h5>
                         <div className="resumo-detalhes">
-                            {<p>{keys1[2]} Fotos</p>}
-                            {<p>R${keys[24]}</p>}
+                            {<p>{cartNumber} produto(s)</p>}
+                            {<p>R${custo * cartNumber}</p>}
                         </div>
                         <div className="resumo-detalhes">
                             {<p>frete</p>}
