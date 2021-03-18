@@ -93,7 +93,7 @@ const Carrinho = () => {
                         {<p className="pack-nome" >{keys[14]}</p>}
                         {<p className="preco-b">{keys[24]}</p>}
                         {<p className="quantidade-b">{cartNumber}</p>}
-                        {<p className="custo">{keys[24]}</p>}
+                        {<p className="custo">{custo * cartNumber}</p>}
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@ const Carrinho = () => {
                         <h5>Resumo pedido</h5>
                         <div className="resumo-detalhes">
                             {<p>{cartNumber} produto(s)</p>}
-                            {<p>R${keys[24]}</p>}
+                            {<p>R${custo * cartNumber}</p>}
                         </div>
                         <div className="resumo-detalhes">
                             {<p>frete</p>}
