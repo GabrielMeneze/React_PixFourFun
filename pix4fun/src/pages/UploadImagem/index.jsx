@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
 import Button from '@material-ui/core/Button';
@@ -6,19 +6,18 @@ import Slider from '@material-ui/core/Slider';
 import Cropper from 'react-easy-crop';
 import { Modal } from 'react-bootstrap';
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { url } from "../../utils/constants";
 import './index.css';
-import { event, get } from 'jquery';
 
 const UploadImagem = () => {
     const [imagens, setImagens] = useState([])
-    const [imagenss, setImagenss] = useState([])
     const [limitador, setLimitador] = useState(0)
     const [des, setDes] = useState(-1)
     const [li, setLi] = useState('oi')
     const [container2, setContainer2] = React.useState(null)
     const [image, setImage] = React.useState(null)
-    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
     const [frase, setFrase] = useState('')
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
     const keys = qtdImgs.split(' ')
     const [modalShow, setModalShow] = React.useState(false)
     const [modalcrop, setModalcrop] = React.useState(false)
@@ -35,12 +34,14 @@ const UploadImagem = () => {
     const uparFrase = () => {
         const fd = new FormData();
         fd.append('FraseFoto', frase)
-        fetch('http://localhost:3000/api/Foto/FraseFoto', fd)
+        fetch('http://localhost:5000/api/Foto/FraseFoto', fd)
             .then(res => {
                 console.log(res)
             });
     }
 
+
+    
     // componente que escolhe a imagem
     const escolherImg = event => {
 
@@ -49,15 +50,13 @@ const UploadImagem = () => {
         var pack18 = 17;
 
         console.log(keys)
-
-
         // Verificação para limitar quantidade de fotos escolhidas
         if (limitador == 0 && li == 'oi') {
+
             // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagenss({
-                selected: imagenss
-            })
+            setImagens(imagens)
+
             if (keys[2] == 6) {
                 setLimitador(limitador + pack6)
             }
@@ -68,10 +67,11 @@ const UploadImagem = () => {
                 setLimitador(limitador + pack18);
             }
         } else if (li == 'oi') {
+
+
+            // seleciona a foto
             imagens.push(URL.createObjectURL(event.target.files[0]))
-            setImagenss({
-                selected: imagenss
-            })
+            setImagens(imagens)
 
             setLimitador(limitador + des)
 
@@ -84,28 +84,14 @@ const UploadImagem = () => {
         }
     }
 
-    // Upa imagem para a api
-    const uparImg = (event) => {
-        // if (limitador > 0) {
-        //     alert('você ainda pode selecionar mais fotos')
-        // } else {
+    
 
-        console.log(imagens.map(imgMap =>{
-           return imgMap
-        }))
+    // // Upa imagem para a api
+    // const uparImg = (event) => {
 
-        const fd = new FormData();
-        fd.append('image', imagens)
-        fetch('http://localhost:5000/api/Foto', fd)
-                    
-            .then(res => {
-                console.log(res)
-            });
+    // }
 
 
-
-        // }
-    }
 
 
     function excluirImg(index) {
@@ -121,48 +107,81 @@ const UploadImagem = () => {
 
 
     function ModalCrop(props) {
-        //Componente que define a area do crop
-        const onCropComplete = (cropPixels) => {
-            setCroppedarea(cropPixels)
-            console.log(croppedarea)
+
+        // Variaveis que constituem o crop
+        const [crop, setCrop] = React.useState({ x: 0, y: 0 })
+        const [zoom, setZoom] = React.useState(1)
+        const [aspect, setAspect] = React.useState(1)
+        const [image, setImage] = React.useState(null)
+        const [inputImg, setInputImg] = useState('')
+        const [blob, setBlob] = React.useState(null)
+
+        // const createImage = (url) => {
+        //     new Promise((resolve, reject) => {
+        //         const imagee = new imagee()
+        //         imagee.addEventListener('load', () => resolve(imagee))
+        //         imagee.addEventListener('error', error => reject(error))
+        //         imagee.setAttribute('crossOrigin', 'anonymous')
+        //         imagee.src = url
+        //     })
+        // }
+        const getCroppedImg = async (imageSrc, crop) => {
+            // const image = await createImage(imageSrc)
+            // const canvas = document.createElement('canvas')
+            // const ctx = canvas.getContext('2d')
+
+            // return new Promise((resolve) => {
+            //     canvas.toBlob((blob) => {
+            //         resolve(blob)
+            //     }, 'imagee/jpeg')
+            // })
         }
 
-        // Componente que escolhe a imagem e o corta 
-        const AbrirCrop = (event, props) => {
+        //Componente que define a area do crop: x, y, width, height
+        const onCropComplete = async (cropPixels) => {
+            const imagemCortada = await getCroppedImg(
+                inputImg,
+                cropPixels
+            )
+            getBlob(imagemCortada);
+        }
 
-            const reader = new FileReader();
+        function getBlob(blob) {
+            setBlob(blob)
+        }
 
-            if (event.target.files[0]) {
-                reader.readAsDataURL(event.target.files[0])
-                reader.addEventListener("load", () => {
-                    setImage(reader.result)
-                })
+        // Componente que escolhe a imagem a ser recortada
+        const AbrirCrop = (e) => {
+
+            const file = e.target.files[0]
+            const reader = new FileReader()
+
+            reader.addEventListener('load', () => {
+                setInputImg(reader.result)
+            }, false)
+
+            if (file) {
+                reader.readAsDataURL(file)
             }
         };
 
-        const [crop, setCrop] = React.useState({ x: 0, y: 0 })
-        const [zoom, setZoom] = React.useState(1)
-        const [aspect, setAspect] = React.useState(0)
-        const [croppedarea, setCroppedarea] = React.useState(null)
-
-        function Dime3() {
-            setAspect({
-                asp: 0.9
-            })
+        function uparCrop(e) {
+            e.preventDefault()
+            const fd = new FormData();
+            fd.append('image', blob, { contentType: blob.type })
+            fetch('http://localhost:5000/api/Foto', fd)
+                .then(res => {
+                    console.log(res)
+                });
         }
 
-        function Dime2() {
-            setAspect({
-                asp: 2.1
-            })
-        }
 
-        function Dime1() {
-            setAspect({
-                asp: 1
-            })
-        }
+        // Funções referentes aos botôes Paisagem Quadrado Retrato
+        function Dime1() { setAspect(1) } // Quadrado
+        function Dime2() { setAspect(2.1) } // Paisagem
+        function Dime3() { setAspect(0.9) } // Retrato
 
+        // retorna o front-end do modal e o crop
         return (
             <Modal
                 {...props}
@@ -177,20 +196,23 @@ const UploadImagem = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {image ? (
+                    {inputImg ? (
                         <>
+                            <div className="FraseBtn">
+                                <h3>Escolha a dimensão da sua foto</h3>
+                            </div>
                             <div className="btns" >
-                                <Button onClick={Dime2}>Paisagem</Button>
                                 <Button onClick={Dime1}>Quadrado</Button>
+                                <Button onClick={Dime2}>Paisagem</Button>
                                 <Button onClick={Dime3}>Retrato</Button>
                             </div>
                             <div className="container-cropper" >
                                 <div className='cropper'>
                                     <Cropper
-                                        image={image}
+                                        image={inputImg}
                                         crop={crop}
                                         zoom={zoom}
-                                        aspect={aspect.asp}
+                                        aspect={aspect}
                                         onCropChange={setCrop}
                                         onZoomChange={setZoom}
                                         onCropComplete={onCropComplete}
@@ -211,6 +233,7 @@ const UploadImagem = () => {
                         </>
                     ) : null}
 
+
                     <input
                         type="file"
                         ref={inputCortar}
@@ -218,12 +241,13 @@ const UploadImagem = () => {
                         style={{ display: 'none' }}
                         onChange={AbrirCrop}
                     />
+
                     <Button
                         onClick={refCortar}
                     >Escolher imagem a ser cortada</Button>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={props.onHide}>Fechar</Button>
+                    <Button onClick={uparCrop}>Salvar</Button>
                 </Modal.Footer>
             </Modal>
         );
@@ -289,6 +313,10 @@ const UploadImagem = () => {
                         onClick={refbtnEscolher}
                     >Escolher imagem</button>
                 </div>
+                {/* <form>
+                    <input type="file" multiple={true} onChange={e => onFileChange(e.target.files); escolherImg;} />
+                    <button onClick={handleClick}>Upload</button>
+                </form> */}
             </div>
 
             <hr className="lin" id="ContainerT" />
@@ -335,12 +363,8 @@ const UploadImagem = () => {
                             <div className="container-subimit">
                                 {<p>Você ainda pode escolher {limitador} imagens</p>}
                                 <div className="escolherdnv">
-                                    <button
-                                        className="Btn"
-                                        onClick={refbtnEscolher}
-                                    >ESCOLHER OUTRA IMAGEM</button>
                                     <Link to="#" className="Btn"
-                                        onClick={uparImg} multiple>SALVAR </Link>
+                                         >SALVAR </Link>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header'
 import './index.css';
-import Footer from '../../components/Footer';
 
 
 const Carrinho = () => {
@@ -20,11 +19,10 @@ const Carrinho = () => {
         if (data.Cupom) {
             if (data.Cupom === 'PIX10') {
                 let desconto = (custoeFrete * 0.9);
-                let descontoEcusto = (desconto + frete);
                 if (frete) {
                     console.log('e')
-                    setCustoTotal(descontoEcusto);
-                    setShow(descontoEcusto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+                    setCustoTotal(desconto);
+                    setShow(desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
                 } else {
                     console.log('s')
                     setCustoTotal(desconto);
@@ -59,15 +57,17 @@ const Carrinho = () => {
             setCustoTotal(custoeFrete);
             setShow(custoeFrete.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }))
         }
-            
-                  
-    }
-    
 
-    
-    
+
+    }
+
+
+
+
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
+    const keys1 = qtdImgs.split(' ')
 
     let custo = parseFloat(keys[24])
     let frete = parseFloat(fretePreco)
@@ -110,6 +110,8 @@ const Carrinho = () => {
                             {<p>R${fretePreco}</p>}
                         </div>
                         <div className="resumo-inputs">
+
+
                             <form onSubmit={calcularHandler}>
                                 <div className="form-group">
                                     <input
@@ -151,11 +153,11 @@ const Carrinho = () => {
                             <strong>{show}</strong>
                         </div>
                         <div className="buy-area">
-                        <form action="http://localhost:3006/checkout" method="POST"> 
-                            <input type="hidden" name="title" value={keys[14]}/>
-                            <input type="hidden" name="price" value={custoTotal}/>
-                            <input type="submit" value="comprar" class="btn btn-primary btn-block"/>
-                        </form>
+                            <form action="http://localhost:3006/checkout" method="POST">
+                                <input type="hidden" name="title" value={keys[14]} />
+                                <input type="hidden" name="price" value={custoTotal} />
+                                <input type="submit" value="comprar" class="btn btn-primary btn-block" />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -166,4 +168,3 @@ const Carrinho = () => {
 }
 
 export default Carrinho;
-                        

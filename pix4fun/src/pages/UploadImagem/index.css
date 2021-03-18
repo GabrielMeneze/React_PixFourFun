@@ -154,12 +154,18 @@
         width: 100%;
     }
     
+    .FraseBtn{
+        width: 88%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
 
     .btns{
+        width: 88%;
+        margin: auto;
         display: flex;
-        width: 90%;
-        height: 90%;
-        position: relative;
+        justify-content: space-around;
     }
 
     .cropper {
