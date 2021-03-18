@@ -41,7 +41,9 @@ const Carrinho = () => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
-        fetch('http://localhost:3002/?calcular=' + data.calcular)
+        
+        if(cartNumber > 2){
+            fetch('http://localhost:3002/?calcular=' + data.calcular)
             .then(response => response.json())
             .then(r => {
                 return (
@@ -51,6 +53,10 @@ const Carrinho = () => {
                 )
             })
             .catch(console.error)
+        }else{
+            setFrete(10)
+        }
+                 
 
         if (frete) {
             let custoeFrete = (custo + frete);
