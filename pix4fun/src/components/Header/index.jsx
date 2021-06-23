@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { Nav, Navbar, Dropdown } from "react-bootstrap";
-import logo from "../../assets/img/LOGO.png";
+import logo from "../../assets/img/fff.png";
 import "./index.css";
 
 export default function Header() {
@@ -155,7 +155,7 @@ export default function Header() {
         style={{ maxWidth: 1000, margin: "0 auto" }}
       >
         <Navbar.Brand className="logo" href="/">
-          <img src={logo} alt="Logo pix4fun" width="195" height="50" />
+          {/* <img src={logo} alt="Logo pix4fun" width="195" height="50" /> */}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

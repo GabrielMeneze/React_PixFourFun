@@ -68,11 +68,11 @@ const Carrinho = () => {
     }
 
 
-
+    
+    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
 
     var separadores = ['"', ':', ',', '}']
     const keys = listarImgs.split(new RegExp('(' + separadores.join('|') + ')'))
-    const [qtdImgs, setQntdItens] = React.useState(localStorage.getItem("produtoinCart"))
     const keys1 = qtdImgs.split(' ')
 
     let custo = parseFloat(keys[24])

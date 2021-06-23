@@ -418,7 +418,7 @@ export default function Home() {
             <h4>COMO Serão Enviadas as minhas fotos?</h4>
             <p>
               Suas fotos serão enviadas por carta registrada através do Correios
-              em uma embalagem PIX4FUN personalizada com frete fixo de R$10,00.
+              em uma embalagem Pics.polaroid personalizada com frete fixo de R$10,00.
             </p>
           </div>
           <div className="pergunta">

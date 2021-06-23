@@ -23,9 +23,9 @@ export default function Footer() {
       <div className="container">
         <div className="flex">
           <div className="textFooter">
-            <p>Pix4Fun</p>
+            <p>Pics.polaroid</p>
             <p>IMPRESSÃO DE FOTOS NO FORMATO POLAROID</p>
-            <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@PIX4FUN.COM.BR</a>
+            <a href="mailto:CONTATO@PIX4FUN.COM.BR">CONTATO@Pics.polaroid.COM.BR</a>
           </div>
 
           <form className="contact-form" onSubmit={sendEmail}>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="Footer">
-          <p>©PIX4FUN Todos os direitos reservados. CNPJ 18.882.937/0001-01</p>
+          <p>@Pics.polaroid Todos os direitos reservados. CNPJ 18.882.937/0001-01</p>
           <p>SIGA-NOS EM NOSSAS REDES SOCIAIS PARA FICAR POR DENTRO DE TODAS AS
             NOVIDADES!</p>
         </div>
